@@ -144,8 +144,8 @@ class PlayerData
 
 	public static var buizSexyRecords:Array<Float>;
 	public static var buizChats:Array<Int>;
-	public static var buizSexyBeforeChat;
-	public static var buizSexyAfterChat;
+	public static var buizSexyBeforeChat: Dynamic;
+	public static var buizSexyAfterChat: Dynamic;
 	public static var buizMale:Bool;
 	public static inline var buizDefaultMale:Bool = false;
 	public static var buizReservoir:Int;
@@ -153,8 +153,8 @@ class PlayerData
 
 	public static var grovSexyRecords:Array<Float>;
 	public static var grovChats:Array<Int>;
-	public static var grovSexyBeforeChat;
-	public static var grovSexyAfterChat;
+	public static var grovSexyBeforeChat: Dynamic;
+	public static var grovSexyAfterChat: Dynamic;
 	public static var grovMale:Bool;
 	public static inline var grovDefaultMale:Bool = false;
 	public static var grovReservoir:Int;
@@ -162,8 +162,8 @@ class PlayerData
 
 	public static var sandSexyRecords:Array<Float>;
 	public static var sandChats:Array<Int>;
-	public static var sandSexyBeforeChat;
-	public static var sandSexyAfterChat;
+	public static var sandSexyBeforeChat: Dynamic;
+	public static var sandSexyAfterChat: Dynamic;
 	public static var sandMale:Bool;
 	public static inline var sandDefaultMale:Bool = true;
 	public static var sandReservoir:Int;
@@ -171,8 +171,8 @@ class PlayerData
 
 	public static var rhydSexyRecords:Array<Float>;
 	public static var rhydChats:Array<Int>;
-	public static var rhydSexyBeforeChat;
-	public static var rhydSexyAfterChat;
+	public static var rhydSexyBeforeChat: Dynamic;
+	public static var rhydSexyAfterChat: Dynamic;
 	public static var rhydMale:Bool;
 	public static inline var rhydDefaultMale:Bool = true;
 	public static var rhydReservoir:Int;
@@ -181,8 +181,8 @@ class PlayerData
 
 	public static var smeaSexyRecords:Array<Float>;
 	public static var smeaChats:Array<Int>;
-	public static var smeaSexyBeforeChat;
-	public static var smeaSexyAfterChat;
+	public static var smeaSexyBeforeChat: Dynamic;
+	public static var smeaSexyAfterChat: Dynamic;
 	public static var smeaMale:Bool;
 	public static inline var smeaDefaultMale:Bool = true;
 	public static var smeaReservoir:Int;
@@ -196,8 +196,8 @@ class PlayerData
 
 	public static var magnSexyRecords:Array<Float>;
 	public static var magnChats:Array<Int>;
-	public static var magnSexyBeforeChat;
-	public static var magnSexyAfterChat;
+	public static var magnSexyBeforeChat: Dynamic;
+	public static var magnSexyAfterChat: Dynamic;
 	public static var magnMale:Bool;
 	public static inline var magnDefaultMale:Bool = false;
 	public static var magnReservoir:Int;
@@ -206,8 +206,8 @@ class PlayerData
 
 	public static var grimSexyRecords:Array<Float>;
 	public static var grimChats:Array<Int>;
-	public static var grimSexyBeforeChat;
-	public static var grimSexyAfterChat;
+	public static var grimSexyBeforeChat: Dynamic;
+	public static var grimSexyAfterChat: Dynamic;
 	public static var grimMale:Bool;
 	public static inline var grimDefaultMale:Bool = false;
 	public static var grimReservoir:Int;
@@ -236,8 +236,8 @@ class PlayerData
 
 	public static var heraSexyRecords:Array<Float>;
 	public static var heraChats:Array<Int>;
-	public static var heraSexyBeforeChat;
-	public static var heraSexyAfterChat;
+	public static var heraSexyBeforeChat: Dynamic;
+	public static var heraSexyAfterChat: Dynamic;
 	public static var heraMale:Bool;
 	public static inline var heraDefaultMale:Bool = true;
 	public static var heraReservoir:Int;
@@ -245,8 +245,8 @@ class PlayerData
 
 	public static var lucaSexyRecords:Array<Float>;
 	public static var lucaChats:Array<Int>;
-	public static var lucaSexyBeforeChat;
-	public static var lucaSexyAfterChat;
+	public static var lucaSexyBeforeChat: Dynamic;
+	public static var lucaSexyAfterChat: Dynamic;
 	public static var lucaMale:Bool;
 	public static inline var lucaDefaultMale:Bool = false;
 	public static var lucaReservoir:Int;

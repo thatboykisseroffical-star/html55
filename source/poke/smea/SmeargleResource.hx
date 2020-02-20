@@ -6,9 +6,9 @@ package poke.smea;
  */
 class SmeargleResource
 {
-	public static var dick;
-	public static var undies;
-	public static var dickVibe;
+	public static var dick: Dynamic;
+	public static var undies: Dynamic;
+	public static var dickVibe: Dynamic;
 
 	public static function initialize():Void
 	{

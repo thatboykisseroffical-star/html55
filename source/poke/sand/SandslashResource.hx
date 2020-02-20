@@ -6,19 +6,19 @@ package poke.sand;
  */
 class SandslashResource
 {
-	public static var button;
-	public static var bg;
-	public static var bowtie;
-	public static var dick;
-	public static var head1;
-	public static var undies;
-	public static var chat;
-	public static var wordsSmall;
+	public static var button: Dynamic;
+	public static var bg: Dynamic;
+	public static var bowtie: Dynamic;
+	public static var dick: Dynamic;
+	public static var head1: Dynamic;
+	public static var undies: Dynamic;
+	public static var chat: Dynamic;
+	public static var wordsSmall: Dynamic;
 
-	public static var shopBody;
-	public static var shopHead;
-	public static var dildoHead1;
-	static public var dildoDick;
+	public static var shopBody: Dynamic;
+	public static var shopHead: Dynamic;
+	public static var dildoHead1: Dynamic;
+	static public var dildoDick: Dynamic;
 
 	public static function initialize():Void
 	{

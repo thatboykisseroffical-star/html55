@@ -5,7 +5,7 @@ package poke.kecl;
  * gender
  */
 class KecleonResource {
-	public static var undies;
+	public static var undies: Dynamic;
 
 	public static function initialize():Void
 	{
