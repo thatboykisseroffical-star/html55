@@ -1,5 +1,5 @@
 package poke.abra;
-import flash.utils.Object;
+import openfl.utils.Object;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.effects.particles.FlxEmitter;
