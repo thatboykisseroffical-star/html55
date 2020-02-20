@@ -1509,7 +1509,7 @@ class PuzzleState extends LevelState
 		_puzzleLightsManager.setLightsOn();
 		if (_lightsOut == null)
 		{
-			return null;
+			return;
 		}
 		for (bodyPart in GrovyleResource.BODY_PARTS)
 		{
