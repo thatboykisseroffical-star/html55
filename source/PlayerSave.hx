@@ -301,11 +301,14 @@ class PlayerSave
 	 */
 	private static function defEnum<T>(e:Enum<T>, o:Object, defaultValue:Dynamic):T
 	{
-		if (o == null || o.tag == null)
+		// FIXME: Fix this tag thingy
+		// Object has no field called tag anymore
+		/*if (o == null || o.tag == null)
 		{
 			return defaultValue;
 		}
-		return Type.createEnum(e, o.tag);
+		return Type.createEnum(e, o.tag);*/
+		return defaultValue;
 	}
 
 	private static function quickLoad()
