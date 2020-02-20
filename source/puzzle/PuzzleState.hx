@@ -714,7 +714,7 @@ class PuzzleState extends LevelState
 						// don't cache pokemon; not being displayed
 						break;
 					}
-					PokeWindow.fromString(t[0].substring(6, t[0].length - 1));
+					PokeWindow.fromString(cast(t[0], String).substring(6, cast(t[0], String).length - 1));
 				}
 			}
 		}
