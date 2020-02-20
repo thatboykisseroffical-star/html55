@@ -36,7 +36,7 @@ class Hologram extends FlxSprite
 	
 	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
-		fill(FlxColor.TRANSPARENT);
+		FlxSpriteUtil.fill(this, FlxColor.TRANSPARENT);
 		if (_holopad._critter != null) {
 			stamp(_holopad._critter._bodySprite, 0, 0);
 			stamp(_holopad._critter._headSprite, 0, 0);
@@ -51,7 +51,7 @@ class Hologram extends FlxSprite
 			disruption1 = FlxG.random.float(disruption0 - 5, disruption0 + 5);
 		}
 		// Erase a little stripe of the hologram to make it look more hologrammy
-		drawLine(0, disruption0, pixels.width, disruption1, { color:FlxColor.WHITE, thickness: 3 }, { blendMode: BlendMode.ERASE } );
+		FlxSpriteUtil.drawLine(this, 0, disruption0, pixels.width, disruption1, { color:FlxColor.WHITE, thickness: 3 }, { blendMode: BlendMode.ERASE } );
 	}
 	
 	override public function destroy():Void {
