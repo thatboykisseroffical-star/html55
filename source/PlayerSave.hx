@@ -299,7 +299,7 @@ class PlayerSave
 	 * @return	an enum representation of the input object if it's not null,
 	 *        	otherwise the defaultValue
 	 */
-	private static function defEnum<T>(e:Enum<T>, o:Object, defaultValue:Dynamic):T
+	private static function defEnum<T>(e:Enum<T>, o:Dynamic, defaultValue:Dynamic):T
 	{
 		if (o == null || o.tag == null)
 		{
