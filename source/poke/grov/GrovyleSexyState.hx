@@ -558,6 +558,7 @@ class GrovyleSexyState extends SexyState<GrovyleWindow>
 				if (guessCount <= 3) {
 					// perfect deduction; immediate orgasm
 					_remainingOrgasms++;
+					_remainingOrgasms++; // +1 extra orgasm for superjizz cheat
 					generateCumshots();
 					refreshArousalFromCumshots();
 					_newHeadTimer = FlxG.random.float(2, 4) * _headTimerFactor;

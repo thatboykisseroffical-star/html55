@@ -526,6 +526,7 @@ class HeraSexyState extends SexyState<HeraWindow>
 			_toyBank._dickHeartReservoir = 0;
 
 			_remainingOrgasms++;
+			_remainingOrgasms++; // +1 extra orgasm for superjizz cheat
 			if (!_male)
 			{
 				_remainingOrgasms++;

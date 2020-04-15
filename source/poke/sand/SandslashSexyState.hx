@@ -660,6 +660,7 @@ class SandslashSexyState extends SexyState<SandslashWindow>
 					{
 						bonusDildoOrgasmTimer = -1;
 						_remainingOrgasms++;
+						_remainingOrgasms++; // +1 extra orgasm for superjizz cheat
 						if (!_male)
 						{
 							_remainingOrgasms++;

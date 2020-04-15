@@ -570,6 +570,7 @@ class BuizelSexyState extends SexyState<BuizelWindow>
 					{
 						bonusDildoOrgasmTimer = -1;
 						_remainingOrgasms++;
+						_remainingOrgasms++; // +1 extra orgasm for superjizz cheat
 						generateCumshots();
 						refreshArousalFromCumshots();
 						_newHeadTimer = FlxG.random.float(2, 4) * _headTimerFactor;

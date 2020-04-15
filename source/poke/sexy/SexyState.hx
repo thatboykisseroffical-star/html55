@@ -226,7 +226,7 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 
 	private var _multipleOrgasmDiminishment = 0.9; // for multiple orgasms, the second and third orgasms will be weaker
 	private var _isOrgasming:Bool = false;
-	public var _remainingOrgasms = 1;
+	public var _remainingOrgasms = 1 + 1; // 1 extra orgasm for superjizz cheat
 
 	public var _breathGroup:FlxTypedGroup<BreathParticle>;
 	private var breathAngleArray:Array<Array<FlxPoint>> = new Array<Array<FlxPoint>>(); // Position and angle for emitting breath poofs
@@ -2340,9 +2340,12 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 			 */
 			amount = _male ? 0.66667 : 1.0000;
 		}
-		if (!_male && amount > FlxG.random.float())
+		if (amount > FlxG.random.float())
 		{
-			_remainingOrgasms += FlxG.random.weightedPick([5, 80, 15]); // 0, 1 or 2
+			_remainingOrgasms += FlxG.random.weightedPick([5, 80, 15]); // additional orgasms for superjizz cheat
+			if (!_male) {
+				_remainingOrgasms += FlxG.random.weightedPick([5, 80, 15]); // 0, 1 or 2
+			}
 		}
 		_heartBank._foreplayHeartReservoir += SexyState.roundUpToQuarter(_heartBank._defaultForeplayHeartReservoir * 0.64 * amount);
 		if (_bonerThreshold > 0)
@@ -2385,6 +2388,11 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 			_heartBank._dickHeartReservoir = SexyState.roundDownToQuarter((_heartBank._dickHeartReservoirCapacity / oldCapacity) * _heartBank._dickHeartReservoir);
 		}
 		_heartEmitCount -= SexyState.roundUpToQuarter(_heartBank._defaultForeplayHeartReservoir * amount * 0.2);
+		
+		// with superjizz cheat active, we remove orgasms if they mess up
+		if (_remainingOrgasms >= 1) {
+			_remainingOrgasms = Std.int(Math.max(1, _remainingOrgasms / 2));
+		}
 
 		_autoSweatRate -= 0.16 * amount;
 	}
@@ -2412,9 +2420,9 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 
 		var rawOrgasmPower:Float = (_heartBank._dickHeartReservoir + _heartBank._foreplayHeartReservoir) * 1.2;
 		var totalOrgasmPower:Float = rawOrgasmPower;
-		if (totalOrgasmPower < 60)
+		if (totalOrgasmPower < 60 * 5) // x5 minimum orgasm power for superjizz cheat
 		{
-			totalOrgasmPower = (30 + totalOrgasmPower) / 1.5;
+			totalOrgasmPower = (30 * 5 + totalOrgasmPower) / 1.5; // x5 minimum orgasm power for superjizz cheat
 		}
 		if (PlayerData.playerIsInDen)
 		{
@@ -2721,7 +2729,7 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 		{
 			bonusCapacity = 30;
 		}
-		return bonusCapacity;
+		return bonusCapacity * 5; // 5x as much bonus capacity with superjizz cheat
 	}
 
 	function computeBonusToyCapacity():Int
@@ -2740,7 +2748,7 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 		{
 			bonusCapacity = 60;
 		}
-		return bonusCapacity;
+		return bonusCapacity * 5; // 5x as much bonus capacity with superjizz cheat
 	}
 
 	public function createToyMeter(toyButton:FlxSprite, pctNerf:Float=1.0):ReservoirMeter

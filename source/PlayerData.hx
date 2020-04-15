@@ -271,7 +271,7 @@ class PlayerData
 	public static var promptDiamondKey:Prompt = Prompt.AlwaysNo;
 	public static var disabledPegColors:Array<String> = [];
 
-	public static var cheatsEnabled:Bool = false;
+	public static var cheatsEnabled:Bool = true;
 	public static var profanity:Bool = true;
 	/**
 	 * If the detail level is lowered, the game tries to conserve memory by
@@ -339,7 +339,7 @@ class PlayerData
 				if (FlxG.random.bool(skipCritterBonusChance))
 				{
 					// skip; critter bonus is applied to reservoir
-					reservoirReward += 20;
+					reservoirReward += 20 * 5; // x5 horniness for "superjizz" cheat
 				}
 				else
 				{
@@ -354,7 +354,7 @@ class PlayerData
 				else
 				{
 					// average 10 per minute... but, this is multiplied if they're good at sexy minigames, so really 20
-					reservoirReward += 10;
+					reservoirReward += 10 * 5; // x5 horniness for "superjizz" cheat
 				}
 
 				minigameReward += 20;
