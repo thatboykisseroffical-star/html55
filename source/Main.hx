@@ -50,6 +50,9 @@ class Main extends Sprite
 
 	public static function main():Void
 	{
+		#if redirectTraces
+		FlxG.log.redirectTraces = true;
+		#end
 		Lib.current.addChild(new Main());
 	}
 
