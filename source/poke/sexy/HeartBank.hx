@@ -17,16 +17,20 @@ class HeartBank
 	public var _dickHeartReservoirCapacity:Float;
 	public var _libido:Int;
 
+	public function restore():Void {
+		_foreplayHeartReservoir = _defaultForeplayHeartReservoir;
+		_foreplayHeartReservoirCapacity = _defaultForeplayHeartReservoir;
+		_dickHeartReservoir = _defaultDickHeartReservoir;
+		_dickHeartReservoirCapacity = _defaultDickHeartReservoir;
+	}
+
 	public function new(TotalReservoirCapacity:Float, ForeplayPercent:Float):Void
 	{
 		_totalReservoirCapacity = TotalReservoirCapacity;
 		_defaultForeplayHeartReservoir = SexyState.roundUpToQuarter(TotalReservoirCapacity * ForeplayPercent);
 		_defaultDickHeartReservoir = TotalReservoirCapacity - _defaultForeplayHeartReservoir;
 
-		_foreplayHeartReservoir = _defaultForeplayHeartReservoir;
-		_foreplayHeartReservoirCapacity = _defaultForeplayHeartReservoir;
-		_dickHeartReservoir = _defaultDickHeartReservoir;
-		_dickHeartReservoirCapacity = _defaultDickHeartReservoir;
+		restore();
 
 		_libido = PlayerData.pokemonLibido;
 	}

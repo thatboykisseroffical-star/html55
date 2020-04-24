@@ -109,7 +109,9 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 	public var sfxOrgasm:Array<FlxSoundAsset> = []; // long sfx which are played when the pokemon orgasms
 
 	public var _idlePunishmentTimer:Float = 0; // when this counts down to 0, the pokemon will feel bored that you're not doing anything
-	public var _idlePunishmentDelay:Float = 1.5;
+	// Pokemon are more forgiving to inactivity in infinijizz mode
+	// This allows more time to resume action after cumming, before the cuddle session is considered to be over.
+	public var _idlePunishmentDelay:Float = 8;
 	private var _rubRewardTimer:Float = 0;
 	private var _rubRewardFrequency:Float = 3.1; // the pokemon can emit hearts every 3 seconds or so. this is the exact interval in seconds
 	private var _minRubForReward = 3; // the pokemon will only emit hearts if you rub them this many times in one interval
@@ -224,9 +226,9 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 	private var _shadowGlove:BouncySprite;
 	public var _shadowGloveBlackGroup:BlackGroup;
 
-	private var _multipleOrgasmDiminishment = 0.9; // for multiple orgasms, the second and third orgasms will be weaker
 	private var _isOrgasming:Bool = false;
-	public var _remainingOrgasms = 1 + 1; // 1 extra orgasm for superjizz cheat
+	// A million orgasms
+	public var _remainingOrgasms = 1000000;
 
 	public var _breathGroup:FlxTypedGroup<BreathParticle>;
 	private var breathAngleArray:Array<Array<FlxPoint>> = new Array<Array<FlxPoint>>(); // Position and angle for emitting breath poofs
@@ -283,12 +285,35 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 
 	override public function create():Void
 	{
+		// Always have highest libido
+		PlayerData.pokemonLibido = 7;
+		PlayerData.grovReservoir = 200;
+		PlayerData.smeaReservoir = 200;
+		PlayerData.buizReservoir = 200;
+		PlayerData.rhydReservoir = 200;
+		PlayerData.abraReservoir = 200;
+		PlayerData.heraReservoir = 200;
+		PlayerData.lucaReservoir = 200;
+		PlayerData.grimReservoir = 200;
+		PlayerData.magnReservoir = 200;
+		PlayerData.sandReservoir = 200;
+		FlxG.watch.add(this, "_gameState", "state");
+		FlxG.watch.add(this, "_idlePunishmentDelay", "punish delay");
+		FlxG.watch.add(this, "_idlePunishmentTimer", "punish timer");
+		FlxG.watch.add(this, "_rubRewardFrequency", "rub reward freq");
+		FlxG.watch.add(this, "_rubRewardFrequency", "rub reward freq");
 		if (PlayerData.cursorSmellTimeRemaining > 0)
 		{
 			doCursorSmellPenalty();
 		}
 		var bonusCapacity:Int = computeBonusCapacity();
 		_heartBank = new HeartBank(30 + bonusCapacity, foreplayFactor());
+		FlxG.watch.add(_heartBank, "_dickHeartReservoir", "dick <3");
+		FlxG.watch.add(_heartBank, "_dickHeartReservoirCapacity", "dick <3 cap");
+		FlxG.watch.add(_heartBank, "_foreplayHeartReservoir", "foreplay <3");
+		FlxG.watch.add(_heartBank, "_foreplayHeartReservoirCapacity", "foreplay <3 cap");
+		FlxG.watch.add(_heartBank, "_libido", "libido");
+		FlxG.watch.add(this, "_cumThreshold", "cum threshold");
 		_toyBank = new HeartBank(80 + computeBonusToyCapacity(), toyForeplayFactor());
 		if (!_male)
 		{
@@ -345,8 +370,6 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 		{
 			_blobbyGroup._shineOpacity = 0xEE;
 		}
-
-		_idlePunishmentDelay = _rubRewardFrequency / 2;
 
 		// Create the particle emitter
 		_fluidEmitter = new FlxEmitter(0, 0, 410);
@@ -877,6 +900,7 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 
 	public function sexyStuff(elapsed:Float):Void
 	{
+		FlxG.watch.addQuick("dick%", _heartBank.getDickPercent());
 		if (displayingToyWindow())
 		{
 			handleToyWindow(elapsed);
@@ -909,6 +933,7 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 			{
 				_idlePunishmentTimer = _rubRewardFrequency * FlxG.random.float( -0.83, -1.20) + _idlePunishmentDelay;
 			}
+			_idlePunishmentTimer = 0;
 		}
 
 		// Maybe reward/punish hearts?
@@ -1077,7 +1102,10 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 
 	function shouldEndSexyGame():Bool
 	{
-		return _gameState == 400 && _heartBank.isEmpty() && _heartEmitCount <= 0 && (_idlePunishmentTimer > _rubRewardFrequency / 2);
+		// Employ a custom logic for ending the game because we messed with the sexy logic
+		// so much that the normal logic doesn't work anymore.
+		// Just end after 7 idle seconds in the 400 state.
+		return _gameState == 400 && _idlePunishmentTimer >= 7;
 	}
 
 	public function isInteracting():Bool
@@ -1927,7 +1955,7 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 					if (_remainingOrgasms > 0)
 					{
 						// just finished ejaculating... but have more to go
-						_heartBank._dickHeartReservoirCapacity = Math.max(1, roundDownToQuarter(0.8 * _heartBank._dickHeartReservoir / _cumThreshold));
+						_heartBank.restore();
 					}
 				}
 			}
@@ -2431,10 +2459,7 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 			totalOrgasmPower *= (denSexResilience / (denSexResilience + PlayerData.denSexCount));
 		}
 		var orgasmPower:Float = totalOrgasmPower;
-		if (_remainingOrgasms > 1)
-		{
-			orgasmPower *= _multipleOrgasmDiminishment / _remainingOrgasms;
-		}
+		trace('Making cum. Orgasm power: $orgasmPower');
 
 		pushCumShot( { force : 0.0, rate : 0.0, duration : 0.1, arousal:5 } );
 		while (orgasmPower > (_male ? 4 : 6))
