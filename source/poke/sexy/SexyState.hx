@@ -109,9 +109,8 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 	public var sfxOrgasm:Array<FlxSoundAsset> = []; // long sfx which are played when the pokemon orgasms
 
 	public var _idlePunishmentTimer:Float = 0; // when this counts down to 0, the pokemon will feel bored that you're not doing anything
-	// Pokemon are more forgiving to inactivity in infinijizz mode
-	// This allows more time to resume action after cumming, before the cuddle session is considered to be over.
-	public var _idlePunishmentDelay:Float = 8;
+	// Pokemon are more much forgiving to inactivity in infinijizz mode, in case your hands are... busy
+	public var _idlePunishmentDelay:Float = 60;
 	private var _rubRewardTimer:Float = 0;
 	private var _rubRewardFrequency:Float = 3.1; // the pokemon can emit hearts every 3 seconds or so. this is the exact interval in seconds
 	private var _minRubForReward = 3; // the pokemon will only emit hearts if you rub them this many times in one interval
@@ -259,6 +258,7 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 	public var _male:Bool = false;
 
 	private var came:Bool = false; // has the pokemon has had at least one orgasm?
+	private var justCame:Bool = false; // Just came, without newly being touched
 	private var _oldCameraPosition:FlxPoint = FlxPoint.get(0, 0);
 
 	private var _otherWindows:Array<PokeWindow> = [];
@@ -302,6 +302,7 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 		FlxG.watch.add(this, "_idlePunishmentTimer", "punish timer");
 		FlxG.watch.add(this, "_rubRewardFrequency", "rub reward freq");
 		FlxG.watch.add(this, "_rubRewardFrequency", "rub reward freq");
+		FlxG.watch.add(this, "justCame", "just came");
 		if (PlayerData.cursorSmellTimeRemaining > 0)
 		{
 			doCursorSmellPenalty();
@@ -985,6 +986,11 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 							}
 							rubSoundCount = 0;
 						}
+						// If we are interacting after ejaculation, it's not "just came"
+						// anymore.
+						if (!isEjaculating()) {
+							justCame = false;
+						}
 					}
 					else
 					{
@@ -994,14 +1000,16 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 					}
 				}
 
+				// If the player stops interacting for 10 seconds after the mon "just came",
+				// it will end the sexy stuff.
+				// Otherwise you can just keep rubbing to continue.
+				if (_idlePunishmentTimer > 10 && _gameState == 200 && justCame) {
+					endSexyStuff();
+				}
+
 				if (_idlePunishmentTimer > _idlePunishmentDelay)
 				{
-					if (_gameState == 200 && came)
-					{
-						// Player stopped interacting with us after we came
-						endSexyStuff();
-					}
-					else if (!_heartBank.isFull() && !_heartBank.isEmpty())
+					if (!_heartBank.isFull() && !_heartBank.isEmpty())
 					{
 						if (shouldEndSexyGame())
 						{
@@ -2541,6 +2549,7 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 
 		_remainingOrgasms--;
 		_isOrgasming = true;
+		justCame = true;
 	}
 
 	function emitCasualEncouragementWords():Void
