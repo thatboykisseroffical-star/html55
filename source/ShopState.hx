@@ -756,7 +756,11 @@ class ShopState extends FlxTransitionableState
 						tree[3] = ["#hera00#Mmm! A friendship with benefits. I could used to something like that, <name>~"];
 						tree[4] = ["#hera04#...Anyway, " + profName + "'s hanging out in the den right now. And I think we've got " + minigameDesc + " set up back there."];
 						tree[5] = ["#hera06#You can play with him but I'll have to charge you, oh... let's say " + moneyString(PlayerData.denCost) + ". Does that sound fair?"];
-						tree[6] = FlxG.random.getObject([[10, 20, 30], [10, 30, 20]]);
+						if (FlxG.random.bool()) {
+							tree[6] = [10, 20, 30];
+						} else {
+							tree[6] = [10, 30, 20];
+						}
 						if (PlayerData.cash < PlayerData.denCost)
 						{
 							// can't afford...
@@ -798,7 +802,11 @@ class ShopState extends FlxTransitionableState
 						// third and subsequent visits continue costing money; no explanation necessary
 						tree[0] = ["#hera04#Oh, " + profName + "'s hanging out in the den right now. And I think we've got " + minigameDesc + " set up back there."];
 						tree[1] = ["#hera06#You can play with him but I'll have to charge you, oh... let's say " + moneyString(PlayerData.denCost) + ". Does that sound fair?"];
-						tree[2] = FlxG.random.getObject([[10, 20, 30], [10, 30, 20]]);
+						if (FlxG.random.bool()) {
+							tree[2] = [10, 20, 30];
+						} else {
+							tree[2] = [10, 30, 20];
+						}
 						if (PlayerData.cash < PlayerData.denCost)
 						{
 							// can't afford...
