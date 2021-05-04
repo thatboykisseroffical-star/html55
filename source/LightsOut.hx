@@ -6,12 +6,12 @@ import flixel.FlxSprite;
 import flixel.graphics.FlxGraphic;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.util.FlxColor;
-import flixel.util.typeLimit.OneOfTwo;
+import flixel.util.typeLimit.OneOfThree;
 import haxe.Constraints.IMap;
 import openfl.display.BitmapData;
 import openfl.geom.Rectangle;
 
-typedef LightsOutTarget = OneOfTwo<FlxSprite, FlxGraphicAsset>;
+typedef LightsOutTarget = OneOfThree<FlxSprite, FlxGraphicAsset, String>;
 
 /**
  * A class for blackening certain pixels in an image, for a silhouette effect
