@@ -886,13 +886,13 @@ class ShopState extends FlxTransitionableState
 
 		if (ItemDatabase.isKecleonPresent())
 		{
-			if (Std.is(clickedItem, ItemDatabase.TelephoneShopItem))
+			if (Std.isOfType(clickedItem, ItemDatabase.TelephoneShopItem))
 			{
 				// kecleon telephone dialog
 				tree = [];
 				KecleonDialog.phoneCall(tree, cast(clickedItem));
 			}
-			else if (Std.is(clickedItem, ItemDatabase.MysteryBoxShopItem))
+			else if (Std.isOfType(clickedItem, ItemDatabase.MysteryBoxShopItem))
 			{
 				// kecleon mystery box dialog
 				tree = [];
@@ -1000,7 +1000,7 @@ class ShopState extends FlxTransitionableState
 			}
 
 			tree[100] = ["Yes"];
-			if (Std.is(clickedItem, ItemDatabase.TelephoneShopItem))
+			if (Std.isOfType(clickedItem, ItemDatabase.TelephoneShopItem))
 			{
 				// don't append %buy% dialog thing; telephone is weird
 				tree[101] = ["%noop%"];
@@ -1203,11 +1203,11 @@ class ShopState extends FlxTransitionableState
 			var item:ItemDatabase.ShopItem = _itemSpriteToItemMap.get(_clickedItemSprite);
 
 			ItemDatabase._shopItems.remove(item);
-			if (Std.is(item, ItemDatabase.TelephoneShopItem))
+			if (Std.isOfType(item, ItemDatabase.TelephoneShopItem))
 			{
 				// do nothing
 			}
-			else if (Std.is(item, ItemDatabase.MysteryBoxShopItem))
+			else if (Std.isOfType(item, ItemDatabase.MysteryBoxShopItem))
 			{
 				ItemDatabase._mysteryBoxStatus++;
 			}
@@ -1221,7 +1221,7 @@ class ShopState extends FlxTransitionableState
 			}
 			PlayerData.cash -= item.getPrice();
 
-			if (Std.is(_clickedItemSprite, CritterBody))
+			if (Std.isOfType(_clickedItemSprite, CritterBody))
 			{
 				var crittersToRemove:Array<Critter> = [];
 				for (critter in _critterToItemMap.keys())

@@ -128,12 +128,12 @@ class DialogTree implements IFlxDestroyable
 		_dialogging = true;
 		while (_tree[_currentLine] != null && _tree[_currentLine].length == 1)
 		{
-			if (Std.is(_tree[_currentLine][0], Int))
+			if (Std.isOfType(_tree[_currentLine][0], Int))
 			{
 				// redirect
 				_currentLine = cast(_tree[_currentLine][0], Int);
 			}
-			else if (Std.is(_tree[_currentLine][0], String) && Std.string(_tree[_currentLine][0]).substring(0, 1) == "%")
+			else if (Std.isOfType(_tree[_currentLine][0], String) && Std.string(_tree[_currentLine][0]).substring(0, 1) == "%")
 			{
 				var lineStr:String = _tree[_currentLine][0];
 				// command
@@ -243,7 +243,7 @@ class DialogTree implements IFlxDestroyable
 	 */
 	public static function replace(Tree:Array<Array<Object>>, index:Int, sub:String, by:String)
 	{
-		if (Tree[index] != null && Std.is(Tree[index][0], String))
+		if (Tree[index] != null && Std.isOfType(Tree[index][0], String))
 		{
 			Tree[index][0] = StringTools.replace(Tree[index][0], sub, by);
 		}
@@ -310,7 +310,7 @@ class DialogTree implements IFlxDestroyable
 			{
 				for (j in 0...item.length)
 				{
-					if (Std.is(item[j], Int))
+					if (Std.isOfType(item[j], Int))
 					{
 						item[j] = cast(item[j], Int) + amount;
 					}
@@ -337,7 +337,7 @@ class DialogTree implements IFlxDestroyable
 	{
 		var newTree:Array<Array<Object>> = [];
 		var j = 0;
-		while (tree[j] != null && Std.is(tree[j][0], String)
+		while (tree[j] != null && Std.isOfType(tree[j][0], String)
 		&& cast(tree[j][0], String).substring(0, 1) == "%"
 		&& cast(tree[j][0], String) != "%noop%")
 		{
@@ -353,7 +353,7 @@ class DialogTree implements IFlxDestroyable
 			{
 				for (i in 0...item.length)
 				{
-					if (Std.is(item[i], Int))
+					if (Std.isOfType(item[i], Int))
 					{
 						item[i] = cast(item[i], Int) + j;
 					}
@@ -388,7 +388,7 @@ class DialogTree implements IFlxDestroyable
 			{
 				for (i in 0...item.length)
 				{
-					if (Std.is(item[i], Int))
+					if (Std.isOfType(item[i], Int))
 					{
 						item[i] = cast(item[i], Int) + (1000 - j);
 					}

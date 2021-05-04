@@ -802,7 +802,7 @@ class MainMenuState extends FlxTransitionableState
 			FlxSoundKludge.play(AssetPaths.abra0__mp3, 0.4);
 			FlxSoundKludge.play(AssetPaths.countdown_go_005c__mp3);
 
-			if (Std.is(abraGroup, WhiteGroup))
+			if (Std.isOfType(abraGroup, WhiteGroup))
 			{
 				cast(abraGroup, WhiteGroup).addTeleparticles(319, 34, 319 + 97, 34 + 268, 20);
 			}
@@ -844,7 +844,7 @@ class MainMenuState extends FlxTransitionableState
 	{
 		for (member in _buttons.members)
 		{
-			if (member.alive && Std.is(member, BouncySprite))
+			if (member.alive && Std.isOfType(member, BouncySprite))
 			{
 				return cast(member, BouncySprite);
 			}

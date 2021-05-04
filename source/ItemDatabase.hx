@@ -346,7 +346,7 @@ class ItemDatabase
 			var mysteryBoxInShop:Bool = false;
 			for (shopItem in _shopItems)
 			{
-				if (Std.is(shopItem, MysteryBoxShopItem))
+				if (Std.isOfType(shopItem, MysteryBoxShopItem))
 				{
 					mysteryBoxInShop = true;
 				}
@@ -363,7 +363,7 @@ class ItemDatabase
 			var telephoneInShop:Bool = false;
 			for (shopItem in _shopItems)
 			{
-				if (Std.is(shopItem, TelephoneShopItem))
+				if (Std.isOfType(shopItem, TelephoneShopItem))
 				{
 					telephoneInShop = true;
 				}

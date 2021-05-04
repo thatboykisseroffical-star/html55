@@ -444,7 +444,7 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 		else {
 			for (t in tree)
 			{
-				if (t != null && Std.is(t[0], String) && cast(t[0], String).substring(0, 6) == "%enter")
+				if (t != null && Std.isOfType(t[0], String) && cast(t[0], String).substring(0, 6) == "%enter")
 				{
 					PokeWindow.fromString(cast(t[0], String).substring(6, cast(t[0], String).length - 1));
 				}

@@ -696,7 +696,7 @@ class LevelState extends FlxTransitionableState
 	function placeCritterInHolder(holder:CritterHolder, critter:Critter)
 	{
 		holder.holdCritter(critter);
-		if (critter.outCold && Std.is(holder, SingleCritterHolder))
+		if (critter.outCold && Std.isOfType(holder, SingleCritterHolder))
 		{
 			critter.playAnim("idle-outcold0");
 		}

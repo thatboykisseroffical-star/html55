@@ -343,7 +343,7 @@ class TugGameState extends MinigameState
 		_midSprites.remove(rope);
 		for (shadow in _shadowGroup._extraShadows)
 		{
-			if (Std.is(shadow, RopeShadow) && cast(shadow, RopeShadow).rope == rope)
+			if (Std.isOfType(shadow, RopeShadow) && cast(shadow, RopeShadow).rope == rope)
 			{
 				_shadowGroup._extraShadows.remove(shadow);
 			}

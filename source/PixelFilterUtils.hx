@@ -42,12 +42,12 @@ class PixelFilterUtils
 			item = group.members[i++];
 			if (item != null && item.exists && item.visible)
 			{
-				if (Std.is(item, FlxSprite))
+				if (Std.isOfType(item, FlxSprite))
 				{
 					spriteItem = cast item;
 					fastStampToBuffer(buffer, spriteItem);
 				}
-				else if (Std.is(item, FlxTypedGroup))
+				else if (Std.isOfType(item, FlxTypedGroup))
 				{
 					groupItem = cast item;
 					drawToBuffer(buffer, groupItem);

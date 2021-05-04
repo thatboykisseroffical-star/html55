@@ -33,19 +33,19 @@ class LightsOut
 
 	private function put(Key:LightsOutTarget, Value:BitmapData)
 	{
-		if (Std.is(Key, FlxSprite))
+		if (Std.isOfType(Key, FlxSprite))
 		{
 			originalDataMap0[cast Key] = Value;
 		}
-		else if (Std.is(Key, FlxGraphic))
+		else if (Std.isOfType(Key, FlxGraphic))
 		{
 			originalDataMap1[cast Key] = Value;
 		}
-		else if (Std.is(Key, BitmapData))
+		else if (Std.isOfType(Key, BitmapData))
 		{
 			originalDataMap2[cast Key] = Value;
 		}
-		else if (Std.is(Key, String))
+		else if (Std.isOfType(Key, String))
 		{
 			originalDataMap3[cast Key] = Value;
 		}
@@ -53,19 +53,19 @@ class LightsOut
 
 	private function get(Key:LightsOutTarget):BitmapData
 	{
-		if (Std.is(Key, FlxSprite))
+		if (Std.isOfType(Key, FlxSprite))
 		{
 			return originalDataMap0[cast Key];
 		}
-		else if (Std.is(Key, FlxGraphic))
+		else if (Std.isOfType(Key, FlxGraphic))
 		{
 			return originalDataMap1[cast Key];
 		}
-		else if (Std.is(Key, BitmapData))
+		else if (Std.isOfType(Key, BitmapData))
 		{
 			return originalDataMap2[cast Key];
 		}
-		else if (Std.is(Key, String))
+		else if (Std.isOfType(Key, String))
 		{
 			return originalDataMap3[cast Key];
 		}
@@ -74,7 +74,7 @@ class LightsOut
 
 	public function lightsOutBody(Item:LightsOutTarget):Void
 	{
-		if (Std.is(Item, FlxGraphic) || Std.is(Item, BitmapData) || Std.is(Item, String))
+		if (Std.isOfType(Item, FlxGraphic) || Std.isOfType(Item, BitmapData) || Std.isOfType(Item, String))
 		{
 			var graphic:FlxGraphic = FlxG.bitmap.add(cast Item, false, null);
 
@@ -88,7 +88,7 @@ class LightsOut
 
 	public function lightsOut(Item:LightsOutTarget, colorMapping:Map<FlxColor, FlxColor>):Void
 	{
-		if (Std.is(Item, FlxGraphic) || Std.is(Item, BitmapData) || Std.is(Item, String))
+		if (Std.isOfType(Item, FlxGraphic) || Std.isOfType(Item, BitmapData) || Std.isOfType(Item, String))
 		{
 			var graphic:FlxGraphic = FlxG.bitmap.add(cast Item, false, null);
 
@@ -146,7 +146,7 @@ class LightsOut
 
 	public function lightsOn(Item:LightsOutTarget):Void
 	{
-		if (Std.is(Item, FlxGraphic) || Std.is(Item, BitmapData) || Std.is(Item, String))
+		if (Std.isOfType(Item, FlxGraphic) || Std.isOfType(Item, BitmapData) || Std.isOfType(Item, String))
 		{
 			var originalPixels:BitmapData = get(Item);
 			if (originalPixels != null)

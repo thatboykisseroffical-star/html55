@@ -109,7 +109,7 @@ class MemLeakState extends FlxState
 	private function doIt(clazz:Dynamic)
 	{
 		var c = Type.createInstance(clazz, []);
-		if (Std.is(c, FlxState))
+		if (Std.isOfType(c, FlxState))
 		{
 			var flxState:FlxState = cast(c, FlxState);
 			flxState.create();

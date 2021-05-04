@@ -645,7 +645,7 @@ class PuzzleState extends LevelState
 					PlayerData.rankChance = true;
 
 					var beforeTree:Array<Array<Object>> = new Array<Array<Object>>();
-					if (Std.is(_pokeWindow, GrovyleWindow))
+					if (Std.isOfType(_pokeWindow, GrovyleWindow))
 					{
 						GrovyleDialog.firstRankChanceGrovyle(beforeTree);
 					}
@@ -671,7 +671,7 @@ class PuzzleState extends LevelState
 					_lockedPuzzle = null;
 
 					var beforeTree:Array<Array<Object>> = new Array<Array<Object>>();
-					if (Std.is(_pokeWindow, GrovyleWindow))
+					if (Std.isOfType(_pokeWindow, GrovyleWindow))
 					{
 						GrovyleDialog.firstRankDefendGrovyle(beforeTree);
 					}
@@ -701,7 +701,7 @@ class PuzzleState extends LevelState
 			var pokeCount:Int = 0;
 			for (t in tree)
 			{
-				if (t != null && Std.is(t[0], String) && cast(t[0], String).substring(0, 6) == "%enter")
+				if (t != null && Std.isOfType(t[0], String) && cast(t[0], String).substring(0, 6) == "%enter")
 				{
 					pokeCount++;
 					if (pokeCount > pokeLimit)
@@ -752,7 +752,7 @@ class PuzzleState extends LevelState
 			// they've pissed abra off; abra doesn't show up to return their glove
 			AbraDialog.restoreHandNone(beforeTree);
 		}
-		else if (Std.is(_pokeWindow, AbraWindow))
+		else if (Std.isOfType(_pokeWindow, AbraWindow))
 		{
 			AbraDialog.restoreHandAbra(beforeTree);
 		}
@@ -872,7 +872,7 @@ class PuzzleState extends LevelState
 			}
 			for (cell in _clueCells)
 			{
-				if (Std.is(cell, Cell))
+				if (Std.isOfType(cell, Cell))
 				{
 					setClueCloud(cast(cell), CloudState.Maybe, true);
 				}
@@ -1901,7 +1901,7 @@ class PuzzleState extends LevelState
 		{
 			for (cell in _allCells)
 			{
-				if (Std.is(cell, BigCell))
+				if (Std.isOfType(cell, BigCell))
 				{
 					cast(cell, BigCell).leashAll(true);
 				}
@@ -2988,7 +2988,7 @@ class PuzzleState extends LevelState
 				{
 					sexyState = SexyState.getSexyState();
 					// don't rotate dialog; we were doing a tutorial
-					if (Std.is(sexyState, AbraSexyState))
+					if (Std.isOfType(sexyState, AbraSexyState))
 					{
 						if (PlayerData.pokemonLibido == 1)
 						{
@@ -3679,7 +3679,7 @@ class PuzzleState extends LevelState
 				SoundStackingFix.play(AssetPaths.drop__mp3);
 				var targetCritterHolder:CritterHolder = cast(findTargetCritterHolder());
 
-				if (Std.is(targetCritterHolder, Cell) || Std.is(_undoOperations[_undoIndex].oldCritterHolder, Cell))
+				if (Std.isOfType(targetCritterHolder, Cell) || Std.isOfType(_undoOperations[_undoIndex].oldCritterHolder, Cell))
 				{
 					// We messed with the solution; reset the "just made mistake" flag
 					_justMadeMistake = false;
@@ -3687,7 +3687,7 @@ class PuzzleState extends LevelState
 
 				if (targetCritterHolder != null)
 				{
-					if (Std.is(targetCritterHolder, Holopad))
+					if (Std.isOfType(targetCritterHolder, Holopad))
 					{
 						var holopad:Holopad = cast(targetCritterHolder, Holopad);
 						var holopadState:Array<Bool> = getHolopadState(_grabbedCritter.getColorIndex());
@@ -4123,7 +4123,7 @@ class PuzzleState extends LevelState
 		var foundCell:Cell.ICell = findCell(critter);
 		if (foundCell != null)
 		{
-			if (Std.is(foundCell, BigCell))
+			if (Std.isOfType(foundCell, BigCell))
 			{
 				var bigCell:BigCell = cast(foundCell);
 				var index:Int = bigCell._assignedCritters.indexOf(critter);
@@ -4175,7 +4175,7 @@ class PuzzleState extends LevelState
 		{
 			// when processing events, it's possible for a critter to be unassigned a cell before he's officially uncubed
 			cell.open();
-			if (Std.is(cell, Cell))
+			if (Std.isOfType(cell, Cell))
 			{
 				critter.setPosition(cell.getSprite().x, cell.getSprite().y + 1);
 			}
@@ -4192,7 +4192,7 @@ class PuzzleState extends LevelState
 		var foundCell:Cell.ICell = findCell(critter);
 		_critters.remove(critter);
 		critter.cube();
-		if (Std.is(foundCell, Cell))
+		if (Std.isOfType(foundCell, Cell))
 		{
 			// move critter's head behind the glass
 			critter.setPosition(foundCell.getSprite().x, foundCell.getSprite().y - 1);
@@ -4291,7 +4291,7 @@ class PuzzleState extends LevelState
 				{
 					var runToX:Float;
 					var runToY:Float;
-					if (Std.is(cell, BigCell))
+					if (Std.isOfType(cell, BigCell))
 					{
 						runToX = cell.getSprite().x - critter._soulSprite.width / 2 + cell.getSprite().width / 2 + distX;
 						runToY = cell.getSprite().y - critter._soulSprite.height / 2 + cell.getSprite().height / 2 + distY - 1;
@@ -4561,7 +4561,7 @@ class PuzzleState extends LevelState
 		var sexyState:SexyState<Dynamic> = SexyState.getSexyState();
 		if (PlayerData.difficulty == PlayerData.Difficulty._7Peg)
 		{
-			if (Std.is(sexyState, AbraSexyState))
+			if (Std.isOfType(sexyState, AbraSexyState))
 			{
 				if (PlayerData.pokemonLibido == 1)
 				{
@@ -4590,7 +4590,7 @@ class PuzzleState extends LevelState
 	public function addAllowedHint():Void
 	{
 		_allowedHintCount++;
-		if (PlayerData.finalTrial && PlayerData.level == 2 && Std.is(_pokeWindow, AbraWindow))
+		if (PlayerData.finalTrial && PlayerData.level == 2 && Std.isOfType(_pokeWindow, AbraWindow))
 		{
 			cast(_pokeWindow, AbraWindow).setPassedOut();
 		}

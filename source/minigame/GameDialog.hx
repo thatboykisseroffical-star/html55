@@ -437,7 +437,7 @@ class GameDialog implements IFlxDestroyable
 
 	private function rewardMoneyMismatch(arg:Dynamic, rewardMoney:Int):Bool
 	{
-		if (Std.is(arg, Array))
+		if (Std.isOfType(arg, Array))
 		{
 			var lines:Array<String> = cast(arg);
 			for (line in lines)
@@ -448,7 +448,7 @@ class GameDialog implements IFlxDestroyable
 				}
 			}
 		}
-		else if (Std.is(arg, String))
+		else if (Std.isOfType(arg, String))
 		{
 			var line:String = cast(arg);
 			if (rewardMoney <= 0 && line.indexOf("<money>") != -1)
@@ -722,7 +722,7 @@ class GameDialogLine
 		var lineIndex:Int = 0;
 		while (lineIndex < tree.length)
 		{
-			if (tree[lineIndex] != null && Std.is(tree[lineIndex][0], String))
+			if (tree[lineIndex] != null && Std.isOfType(tree[lineIndex][0], String))
 			{
 				var line:String = tree[lineIndex][0];
 				if (line.indexOf("|") != -1)

@@ -331,7 +331,7 @@ class Dialogger extends FlxGroup
 			{
 				continue;
 			}
-			if (Std.is(member, FlxSprite))
+			if (Std.isOfType(member, FlxSprite))
 			{
 				var memberSprite:FlxSprite = cast member;
 				memberSprite.visible = visible;
