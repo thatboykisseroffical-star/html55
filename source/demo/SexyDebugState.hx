@@ -178,6 +178,7 @@ class SexyDebugState extends SmeargleSexyState
 					touchedPart.animation.pause();
 				}
 				while (isBlank(touchedPart));
+				trace("Switched to frame index ", touchedPart.animation.frameIndex);
 			}
 		}
 
