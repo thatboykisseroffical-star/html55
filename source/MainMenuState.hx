@@ -1,4 +1,5 @@
 package;
+import demo.SexyDebugState;
 import ReservoirMeter.ReservoirStatus;
 import credits.CreditsState;
 import credits.EndingAnim;
@@ -1059,6 +1060,14 @@ class MainMenuState extends FlxTransitionableState
 			// redirecting to intro...
 			return;
 		}
+
+		#if debug
+
+		if (FlxG.keys.justPressed.S) {
+			FlxG.switchState(new SexyDebugState());
+		}
+
+		#end
 
 		_handSprite.setPosition(FlxG.mouse.x - _handSprite.width / 2, FlxG.mouse.y - _handSprite.height / 2);
 
