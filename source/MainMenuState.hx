@@ -1063,7 +1063,7 @@ class MainMenuState extends FlxTransitionableState
 
 		#if debug
 
-		if (FlxG.keys.justPressed.S) {
+		if (FlxG.keys.justPressed.F5) {
 			FlxG.switchState(new SexyDebugState());
 		}
 
