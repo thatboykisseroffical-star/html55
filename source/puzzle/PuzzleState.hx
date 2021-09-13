@@ -3529,7 +3529,7 @@ class PuzzleState extends LevelState
 
 			destroyBlockers();
 
-			if (_tutorial && ((_tutorialTime - 10) * 0.7) < _finalChest._reward ||
+			if ((_tutorial != null) && ((_tutorialTime - 10) * 0.7) < _finalChest._reward ||
 					_dispensedHintCount > 0)
 			{
 				// completed tutorial too fast, or asked for hints -- in these scenarios, we cap the rewards at $42 per minute

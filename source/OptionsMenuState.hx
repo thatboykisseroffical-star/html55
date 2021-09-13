@@ -338,7 +338,7 @@ class OptionsMenuState extends FlxState
 				_screenSprite.stamp(text, Std.int(text.x), Std.int(text.y));
 			}
 			{
-				var playerItemIndexes:Array<ItemDatabase.ItemType> = PlayerSave.def(saveData.playerItemIndexes, []);
+				var playerItemIndexes:Array<Int> = PlayerSave.def(saveData.playerItemIndexes, []);
 				var abraStoryInt:Int = PlayerSave.def(saveData.abraStoryInt, 0);
 
 				var progress:Float = playerItemIndexes.length;

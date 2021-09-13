@@ -120,8 +120,10 @@ class Dialogger extends FlxGroup
 
 		_selectedChoiceRect = new FlxSprite();
 		_selectedChoiceRect.visible = false;
+		#if flash
+		_selectedChoiceRect.blend = BlendMode.INVERT;
+		#end
 		_selectedChoiceRect.makeGraphic(FlxG.width, FlxG.height);
-		_selectedChoiceRect.blend = BlendMode.DIFFERENCE;
 		add(_selectedChoiceRect);
 
 		_skipButton = SexyState.newBackButton(skip, AssetPaths.skip_button__png);
@@ -249,7 +251,12 @@ class Dialogger extends FlxGroup
 			FlxSpriteUtil.fill(_selectedChoiceRect, FlxColor.TRANSPARENT);
 			var maxWidth = clickedPromptRectangle.width - 4;
 			var width = Math.min(maxWidth, maxWidth * _mouseHoldTime / MAX_CLICK_TIME);
-			FlxSpriteUtil.drawRect(_selectedChoiceRect, Std.int(clickedPromptRectangle.x + 2), Std.int(clickedPromptRectangle.y + 2), Std.int(width), Std.int(clickedPromptRectangle.height - 4), FlxColor.WHITE);
+			var selectedChoiceRectColor = FlxColor.BLACK;
+			#if flash
+			_selectedChoiceRect.blend = BlendMode.INVERT;
+			selectedChoiceRectColor = FlxColor.WHITE;
+			#end
+			FlxSpriteUtil.drawRect(_selectedChoiceRect, Std.int(clickedPromptRectangle.x + 2), Std.int(clickedPromptRectangle.y + 2), Std.int(width), Std.int(clickedPromptRectangle.height - 4), selectedChoiceRectColor);
 
 			if (_mouseHoldTime >= MAX_CLICK_TIME && _canDismiss)
 			{

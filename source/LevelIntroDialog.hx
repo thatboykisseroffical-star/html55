@@ -215,7 +215,7 @@ class LevelIntroDialog
 		var sexyAfterChat:Int = Reflect.field(PlayerData, prefix + "SexyAfterChat");
 		var sexyAfterGood:Array<Dynamic> = Reflect.field(clazz, "sexyAfterGood");
 		var sexyAfterChats:Array<Dynamic> = Reflect.field(clazz, "sexyAfterChats");
-		var sexyRecords:Array<Int> = Reflect.field(PlayerData, prefix + "SexyRecords");
+		var sexyRecords:Array<Float> = Reflect.field(PlayerData, prefix + "SexyRecords");
 		var unlockedChats:Map<String, Bool> = getUnlockedChats(clazz);
 		var tree:Array<Array<Object>> = new Array<Array<Object>>();
 

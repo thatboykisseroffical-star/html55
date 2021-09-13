@@ -301,11 +301,18 @@ class PlayerSave
 	 */
 	private static function defEnum<T>(e:Enum<T>, o:Dynamic, defaultValue:Dynamic):T
 	{
+		var result:T;
+		#if flash
 		if (o == null || o.tag == null)
 		{
-			return defaultValue;
+			result = defaultValue;
+		} else {
+			result = Type.createEnum(e, o.tag);
 		}
-		return Type.createEnum(e, o.tag);
+		#else
+		result = o != null ? o : defaultValue;
+		#end
+		return result;
 	}
 
 	private static function quickLoad()
