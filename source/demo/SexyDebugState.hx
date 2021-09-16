@@ -30,6 +30,7 @@ import poke.smea.SmeargleSexyState;
  * BKSP:  remove a point
  * ESC:   clear points
  *
+ * C: show some encouragement text, 'ooh' 'mmm'
  * P: toggle cumshot
  * SPACE: select the penis/head
  * [, ] : toggle penis/head frame
@@ -103,6 +104,11 @@ class SexyDebugState extends SmeargleSexyState
 			{
 				touchedPart.alpha = 1.0;
 			}
+		}
+
+		if (FlxG.keys.justPressed.C)
+		{
+			emitWords(encouragementWords, 0, 0);
 		}
 
 		if (FlxG.mouse.justPressed)

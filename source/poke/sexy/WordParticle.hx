@@ -1,4 +1,7 @@
 package poke.sexy;
+import openfl.geom.ColorTransform;
+import openfl.geom.Rectangle;
+import openfl.display.BitmapData;
 import flash.display.InterpolationMethod;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -42,7 +45,13 @@ class WordParticle extends LateFadingFlxParticle
 			textAppearX += chunkSize;
 		}
 		stamp(wordGraphics);
+		#if flash
 		FlxSpriteUtil.drawRect(this, textAppearX, 0, width, height, FlxColor.BLACK, null, {blendMode:BlendMode.ERASE});
+		#else
+		var data:BitmapData = pixels.clone();
+		data.colorTransform(new Rectangle(textAppearX, 0, width, height), new ColorTransform(0,0,0,-1,0,0,0,255));
+		pixels = data;
+		#end
 		super.update(elapsed);
 	}
 

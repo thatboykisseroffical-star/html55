@@ -1,5 +1,6 @@
 package;
 
+import lime.tools.SplashScreen;
 import credits.CreditsState;
 import demo.SexyDebugState;
 import demo.TeaserTextState;
