@@ -160,7 +160,7 @@ class ItemDatabase
 			shouldRotateStaff = true;
 		}
 		else {
-			var timeSinceLastRestock:Float = Date.now().getTime() - _prevRefillTime.getTime();
+			var timeSinceLastRestock:Float = MmTools.time() - _prevRefillTime.getTime();
 			if (timeSinceLastRestock < 0)
 			{
 				/*

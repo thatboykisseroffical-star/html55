@@ -117,20 +117,21 @@ class SplashScreenState extends FlxTransitionableState
 		if (wealth >= 80000)
 		{
 			shaderColor = 0xfff6d481;
-			bgShader.alpha = FlxMath.bound((wealth - 80000) / (400000 - 80000), 0, 1.0);
+			shaderAlpha = (wealth - 80000) / (400000 - 80000);
 			bgColor = 0xff438cb4;
 		}
 		else if (wealth >= 40000)
 		{
 			shaderColor = 0xff438cb4;
-			bgShader.alpha = FlxMath.bound((wealth - 40000) / (80000 - 40000), 0, 1.0);
+			shaderAlpha = (wealth - 40000) / (80000 - 40000);
 			bgColor = 0xff6e5384;
 		}
 		else {
 			shaderColor = 0xff6e5384;
-			bgShader.alpha = FlxMath.bound((wealth - 0) / (40000 - 0), 0, 1.0);
+			shaderAlpha = (wealth - 0) / (40000 - 0);
 			bgColor = 0xff516951;
 		}
+		bgShader.alpha = FlxMath.bound(shaderAlpha, 0.0, 1.0);
 		bgShader.makeGraphic(FlxG.width, FlxG.height, shaderColor);
 		add(bgShader);
 

@@ -282,7 +282,7 @@ class PlayerData
 
 	public static function isPlayerDoingStuff():Bool
 	{
-		return clickDate != null && (clickDate.getTime() > Date.now().getTime() - 180 * 1000);
+		return clickDate != null && (clickDate.getTime() > MmTools.time() - 180 * 1000);
 	}
 
 	public static function updateCursorVisible()
@@ -322,7 +322,7 @@ class PlayerData
 		{
 			// if someone's AFK for an hour, or skips their clock ahead, we only count 3 minutes of that hour
 			var oldTimePlayed = timePlayed;
-			var amount:Float = FlxMath.bound((Date.now().getTime() - clickDate.getTime()) / 1000, 0, 180);
+			var amount:Float = FlxMath.bound((MmTools.time() - clickDate.getTime()) / 1000, 0, 180);
 			timePlayed += amount;
 			rewardTime += amount;
 			clickDate = Date.now();

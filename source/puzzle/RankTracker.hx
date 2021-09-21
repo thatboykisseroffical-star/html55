@@ -51,9 +51,9 @@ class RankTracker
 	}
 
 	private var _puzzleState:PuzzleState;
-	private var _rankStart:Float = Date.now().getTime();
+	private var _rankStart:Float = MmTools.time();
 	private var _rankTimer:Float = 0;
-	private var _now:Float = Date.now().getTime();
+	private var _now:Float = MmTools.time();
 	public var _oldRank:Int;
 	private var _rankChance:RankChance;
 
@@ -292,7 +292,7 @@ class RankTracker
 
 	public function update(elapsed:Float)
 	{
-		var newNow:Float = Date.now().getTime();
+		var newNow:Float = MmTools.time();
 		if (newNow < _now)
 		{
 			_rankStart -= (_now - newNow);
@@ -302,7 +302,7 @@ class RankTracker
 
 	public function start()
 	{
-		_rankStart = Date.now().getTime();
+		_rankStart = MmTools.time();
 		_rankTimer = 0;
 	}
 

@@ -206,6 +206,7 @@ class FlxSoundKludge implements IFlxDestroyable
 	public static function play(EmbeddedSound:String, Volume:Float = 1, Looped:Bool = false, ?Group:FlxSoundGroup,
 								AutoDestroy:Bool = true, ?OnComplete:Void->Void):FlxSound
 	{
+		trace("209: play " + EmbeddedSound);
 		return FlxG.sound.play(fixPath(EmbeddedSound), Volume, Looped, Group, AutoDestroy, OnComplete);
 	}
 

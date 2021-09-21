@@ -24,7 +24,7 @@ class SoundStackingFix
 	public static function play(EmbeddedSound:String, Volume:Float = 1, Looped:Bool = false, ?Group:FlxSoundGroup,
 								AutoDestroy:Bool = true, ?OnComplete:Void->Void):FlxSound
 	{
-		var now:Float = Date.now().getTime();
+		var now:Float = MmTools.time();
 		if (lastPlayedMap[EmbeddedSound] > now)
 		{
 			/*
