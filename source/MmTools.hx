@@ -1,5 +1,5 @@
 package;
-import flixel.FlxG;
+import haxe.Timer;
 
 /**
  * A collection of utility functions for MonsterMind
@@ -8,13 +8,11 @@ class MmTools
 {
 	/**
 	 * Returns the system time in milliseconds.
+	 *
+	 * This is intended as a cross-platform replacement for ActionScript's Date.getTime() method.
 	 */
 	public static inline function time():Float
 	{
-		#if flash
-			return Date.now.getTime();
-		#else
-			return Sys.time() * 1000.0;
-		#end
+		return Timer.stamp() * 1000;
 	}
 }
