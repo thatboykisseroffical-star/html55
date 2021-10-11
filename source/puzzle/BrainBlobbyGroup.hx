@@ -6,7 +6,6 @@ import flixel.group.FlxGroup;
 import flixel.util.FlxColor;
 import flixel.util.FlxDestroyUtil;
 import openfl.display.BitmapData;
-import openfl.filters.BlurFilter;
 import openfl.geom.Matrix;
 import openfl.geom.Point;
 import openfl.geom.Rectangle;
@@ -24,10 +23,8 @@ class BrainBlobbyGroup extends FlxGroup
 	public var _shineColour:Int = 0x7FE4FF;
 	public var _shineThreshold:Int = 0x40;
 
-	private var _blur:BlurFilter;
-
-	// the buffer which gets drawn to and blurred
-	private var _blurBuffer:BitmapData;
+	// the buffer which gets drawn to
+	private var _sourceBuffer:BitmapData;
 	public var _targetBuffer:BitmapData;
 	private var _highlightBuffer:BitmapData;
 
@@ -45,18 +42,11 @@ class BrainBlobbyGroup extends FlxGroup
 		_clipRect = new Rectangle(x, y, maskGraphic.width, maskGraphic.height);
 		_maskGraphic = maskGraphic;
 		_zeroPoint = new Point(0, 0);
-		_blur = new BlurFilter(12, 12, 3);
 		_maskMatrix = new Matrix();
 		_maskMatrix.translate(_clipRect.x, _clipRect.y);
-		_blurBuffer = new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00);
+		_sourceBuffer = new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00);
 		_targetBuffer = new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00);
 		_highlightBuffer = new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00);
-	}
-
-	public function setBlurAmount(BlurAmount:Int)
-	{
-		_blur.blurX = BlurAmount;
-		_blur.blurY = BlurAmount;
 	}
 
 	private function _clearCameraBuffer():Void
@@ -67,18 +57,17 @@ class BrainBlobbyGroup extends FlxGroup
 	private function _swapCameraBuffer():Void
 	{
 		var tmpBuffer:BitmapData = FlxG.camera.buffer;
-		FlxG.camera.buffer = _blurBuffer;
-		_blurBuffer = tmpBuffer;
+		FlxG.camera.buffer = _sourceBuffer;
+		_sourceBuffer = tmpBuffer;
 	}
 
 	private function _postProcess():Void
 	{
-		_blurBuffer.applyFilter(_blurBuffer, _blurBuffer.rect, _zeroPoint, _blur);
 		_targetBuffer.fillRect(_targetBuffer.rect, 0xFF2084A0);
 
-		_targetBuffer.threshold(_blurBuffer, _blurBuffer.rect, _zeroPoint, '>', _blobThreshold << 16, _blobOpacity << 24 | _blobColour, 0x00FF0000, false);
+		_targetBuffer.threshold(_sourceBuffer, _sourceBuffer.rect, _zeroPoint, '>', _blobThreshold << 16, _blobOpacity << 24 | _blobColour, 0x00FF0000, false);
 
-		_targetBuffer.threshold(_blurBuffer, _blurBuffer.rect, _zeroPoint, '>', _shineThreshold << 16, _shineOpacity << 24 | _shineColour, 0x00FF0000, false);
+		_targetBuffer.threshold(_sourceBuffer, _sourceBuffer.rect, _zeroPoint, '>', _shineThreshold << 16, _shineOpacity << 24 | _shineColour, 0x00FF0000, false);
 
 		_targetBuffer.draw(_maskGraphic.bitmap, _maskMatrix);
 		_targetBuffer.threshold(_targetBuffer, new Rectangle(0, 0, _targetBuffer.width, _targetBuffer.height), new Point(0, 0), "==", 0xffff00ff, 0x00000000);
@@ -109,18 +98,12 @@ class BrainBlobbyGroup extends FlxGroup
 		#end
 	}
 
-	public function getBlurAmount()
-	{
-		return _blur.blurX;
-	}
-
 	override public function destroy():Void
 	{
 		super.destroy();
 
 		_zeroPoint = null;
-		_blur = null;
-		_blurBuffer = FlxDestroyUtil.dispose(_blurBuffer);
+		_sourceBuffer = FlxDestroyUtil.dispose(_sourceBuffer);
 		_targetBuffer = FlxDestroyUtil.dispose(_targetBuffer);
 		_highlightBuffer = FlxDestroyUtil.dispose(_highlightBuffer);
 		_clipRect = null;

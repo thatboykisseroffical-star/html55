@@ -192,7 +192,8 @@ class BrainHemisphere implements IFlxDestroyable
 		for (i in 0...emitter.maxSize)
 		{
 			var particle:GlowyParticle = new GlowyParticle();
-			particle.makeGraphic(5, 5, 0xFFFFFFFF);
+			// these preblurred blobs were made by rendering a 5x5 white rectangle at 100% opacity, then gaussian blurring it in a 25 pixel radius
+			particle.loadGraphic(AssetPaths.fuzzy_circle_25__png);
 			particle.exists = false;
 			emitter.add(particle);
 		}

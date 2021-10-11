@@ -158,17 +158,12 @@ class RhydonSexyState extends SexyState<RhydonWindow>
 		_toyInterface = new RhydonBeadInterface();
 		toyGroup.add(_toyInterface);
 
-		_blobbyGroup.setBlurAmount(9);
+		// load bigger blob graphics than normal
 		for (particle in _fluidEmitter.members)
 		{
-			if (FlxG.random.bool())
-			{
-				particle.makeGraphic(5, 4, 0xEEFFFFFF);
-			}
-			else
-			{
-				particle.makeGraphic(4, 5, 0xEEFFFFFF);
-			}
+			// these pre-blurred blobs were made by rendering a 4x5 white rectangle at 93% opacity, then gaussian blurring it in a 9 pixel radius
+			particle.loadGraphic(FlxG.random.bool() ? AssetPaths.fuzzy_circle_9a__png : AssetPaths.fuzzy_circle_9b__png);
+			particle.flipX = FlxG.random.bool();
 		}
 		if (_male)
 		{
@@ -195,7 +190,7 @@ class RhydonSexyState extends SexyState<RhydonWindow>
 			_blobbyGroup.add(_splatEmitter);
 		}
 
-		_spoogeKludge.makeGraphic(4, 5, 0xFFFFFFFF);
+		_spoogeKludge.loadGraphic(AssetPaths.fuzzy_circle_9a__png);
 
 		_pokeWindow.arrangeArmsAndLegs();
 
