@@ -788,7 +788,7 @@ class BuizelDialog
 			}
 			else if (puzzleCount < 20)
 			{
-				tree[1] = ["#buiz01#Well... I'm starting to lose count now, but it's been reall fun playing with you. You've made me a very happy Buizel."];
+				tree[1] = ["#buiz01#Well... I'm starting to lose count now, but it's been really fun playing with you. You've made me a very happy Buizel."];
 			}
 			else
 			{
