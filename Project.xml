@@ -31,7 +31,13 @@
 
 	<set name="BUILD_DIR" value="export" />
 	<source path="source" />
-	<assets path="assets" />
+
+	<!-- _________________________________ Assets _______________________________ -->
+
+	<assets path="assets/fonts" include="*.otf|*.ttf" />
+	<assets path="assets/images" include="*.png" />
+	<assets path="assets/sounds" include="*.wav|*.mp3" if="flash"/>
+	<assets path="assets/sounds" include="*.wav|*.ogg" unless="flash"/>
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
