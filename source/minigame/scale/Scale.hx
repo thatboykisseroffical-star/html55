@@ -160,7 +160,7 @@ class Scale extends FlxGroup
 			_notes[i].pixels.fillRect(_notes[i].pixels.rect, FlxColor.TRANSPARENT);
 			var noteSprite:FlxSprite = new FlxSprite(0, 0);
 			noteSprite.loadGraphic(AssetPaths.scale_note_small__png, true, 40, 30);
-			noteSprite.animation.frameIndex = FlxG.random.int(0, noteSprite.animation.frames - 1);
+			noteSprite.animation.frameIndex = FlxG.random.int(0, noteSprite.animation.numFrames - 1);
 			noteSprite.flipX = FlxG.random.bool();
 			_notes[i].stamp(noteSprite, 0, 6);
 			var text:FlxText = new FlxText(0, 0, 40, Std.string(_puzzle._weights[i]), 22);
@@ -170,7 +170,7 @@ class Scale extends FlxGroup
 			_notes[i].stamp(text, 0, 10);
 			var tape:FlxSprite = new FlxSprite(0, 0);
 			tape.loadGraphic(AssetPaths.scale_tape__png, true, 20, 20);
-			tape.animation.frameIndex = FlxG.random.int(0, noteSprite.animation.frames - 1);
+			tape.animation.frameIndex = FlxG.random.int(0, noteSprite.animation.numFrames - 1);
 			tape.flipX = FlxG.random.bool();
 			tape.alpha = 0.4;
 			_notes[i].stamp(tape, 10, 0);

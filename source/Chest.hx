@@ -3,7 +3,6 @@ import critter.Critter;
 import flixel.effects.particles.FlxParticle;
 import flixel.util.FlxDestroyUtil.IFlxDestroyable;
 import flixel.FlxG;
-import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.effects.FlxFlicker;
 import flixel.group.FlxGroup;
@@ -11,6 +10,7 @@ import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxDestroyUtil;
+import flixel.util.FlxDirectionFlags;
 import kludge.BetterFlxRandom;
 import kludge.LateFadingFlxParticle;
 
@@ -39,9 +39,9 @@ class Chest implements IFlxDestroyable
 		_chestSprite.loadGraphic(AssetPaths.chests__png, true, 64, 64);
 		_chestSprite.setSize(36, 10);
 		_chestSprite.offset.set(14, 39);
-		_chestSprite.setFacingFlip(FlxObject.LEFT, false, false);
-		_chestSprite.setFacingFlip(FlxObject.RIGHT, true, false);
-		_chestSprite.facing = FlxG.random.getObject([FlxObject.LEFT, FlxObject.RIGHT]);
+		_chestSprite.setFacingFlip(FlxDirectionFlags.LEFT, false, false);
+		_chestSprite.setFacingFlip(FlxDirectionFlags.RIGHT, true, false);
+		_chestSprite.facing = FlxG.random.getObject([FlxDirectionFlags.LEFT, FlxDirectionFlags.RIGHT]);
 	}
 
 	public function setReward(Reward:Int, ?UpdateChestType:Bool=true):Void

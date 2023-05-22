@@ -5,7 +5,6 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
-import flixel.math.FlxVector;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -90,7 +89,7 @@ class RhydonBeadWindow extends PokeWindow
 	 * bv[3] = average of bv[2] and bv[4]
 	 * bv[4] = ...
 	 */
-	private var bv:Array<FlxVector> = [];
+	private var bv:Array<FlxPoint> = [];
 
 	public function new(X:Float=0, Y:Float=0, Width:Int=248, Height:Int = 349)
 	{
@@ -567,7 +566,7 @@ class RhydonBeadWindow extends PokeWindow
 		else {
 			path.pushNode(182, 471);
 			path.pushNode(SPHINCTER_COORDS.x, SPHINCTER_COORDS.y);
-			var beadVector:FlxVector = FlxVector.get( -30, 360);
+			var beadVector:FlxPoint = FlxPoint.get( -30, 360);
 			beadVector.rotateByRadians( -Math.PI * 0.06 * visualLineAngle);
 			beadVector.y *= 0.6;
 			path.pushNode(path.nodes[path.nodes.length - 1].x + beadVector.x, path.nodes[path.nodes.length - 1].y + beadVector.y);
@@ -595,7 +594,7 @@ class RhydonBeadWindow extends PokeWindow
 
 		while (bv.length < beadCoords.length * 2 + 1)
 		{
-			bv.push(FlxVector.get());
+			bv.push(FlxPoint.get());
 		}
 
 		bv[0] = bv[0].set(beadCoords[0].x - 189, beadCoords[0].y - 421).normalize();
@@ -814,7 +813,7 @@ class RhydonBeadWindow extends PokeWindow
 
 	private function drawBeadLine(targetSprite:FlxSprite, x0:Float, y0:Float, x1:Float, y1:Float)
 	{
-		var slope:FlxVector = FlxVector.get(x1 - x0, y1 - y0);
+		var slope:FlxPoint = FlxPoint.get(x1 - x0, y1 - y0);
 		slope.length = LINE_THICKNESS / 2;
 
 		if (greyBeads)

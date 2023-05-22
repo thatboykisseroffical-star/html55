@@ -177,7 +177,7 @@ class RhydonSexyState extends SexyState<RhydonWindow>
 				var particle:FlxParticle = new FlxParticle();
 				particle.loadGraphic(AssetPaths.sexy_splat__png, true, 64, 64);
 				particle.flipX = FlxG.random.bool();
-				particle.animation.frameIndex = FlxG.random.int(0, particle.animation.frames);
+				particle.animation.frameIndex = FlxG.random.int(0, particle.animation.numFrames);
 				particle.exists = false;
 				_splatEmitter.add(particle);
 			}

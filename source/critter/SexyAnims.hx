@@ -1,9 +1,9 @@
 package critter;
 import critter.Critter;
 import flixel.FlxG;
-import flixel.FlxObject;
 import flixel.math.FlxPoint;
 import kludge.BetterFlxRandom;
+import flixel.util.FlxDirectionFlags;
 
 /**
  * The bugs in the game have different sexual animations they can do. Some of
@@ -2124,8 +2124,8 @@ class SexyAnims
 
 			for (critter in otherCritters)
 			{
-				var facing:Int = critter._bodySprite.x > botCritter._bodySprite.x ? FlxObject.LEFT : FlxObject.RIGHT;
-				var jumpTarget:FlxPoint = FlxPoint.get(botCritter._targetSprite.x + (facing == FlxObject.LEFT ? 18 : -18), botCritter._targetSprite.y - 9);
+				var facing:Int = critter._bodySprite.x > botCritter._bodySprite.x ? FlxDirectionFlags.LEFT : FlxDirectionFlags.RIGHT;
+				var jumpTarget:FlxPoint = FlxPoint.get(botCritter._targetSprite.x + (facing == FlxDirectionFlags.LEFT ? 18 : -18), botCritter._targetSprite.y - 9);
 
 				var dx:Float = critter._bodySprite.x - jumpTarget.x;
 				var dy:Float = critter._bodySprite.y - jumpTarget.y;

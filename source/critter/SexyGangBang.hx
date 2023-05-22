@@ -1,8 +1,8 @@
 package critter;
 
 import flixel.FlxG;
-import flixel.FlxObject;
 import flixel.math.FlxPoint;
+import flixel.util.FlxDirectionFlags;
 
 /**
  * An animation where a bunch of bugs take turns fucking the same bug
@@ -37,7 +37,7 @@ class SexyGangBang extends SexyCritterAnim
 			for (critter in initialWatchers)
 			{
 				var jumpSource:FlxPoint = sexyDoggy0.rotateFromJumpTarget(jumpTargetAngles.pop(), 50);
-				var sexyMasturbate:SexyMasturbate = new SexyMasturbate(critter, botCritter._bodySprite.x < jumpSource.x ? FlxObject.LEFT : FlxObject.RIGHT);
+				var sexyMasturbate:SexyMasturbate = new SexyMasturbate(critter, botCritter._bodySprite.x < jumpSource.x ? FlxDirectionFlags.LEFT : FlxDirectionFlags.RIGHT);
 				sexyMasturbates.push(sexyMasturbate);
 				sexyMasturbate.runToAndMasturbate(jumpSource);
 			}

@@ -215,7 +215,7 @@ class StairGameState extends MinigameState
 			var particle:FlxParticle = new MinRadiusParticle(7);
 			particle.loadGraphic(AssetPaths.poofs_tiny__png, true, 20, 20);
 			particle.flipX = FlxG.random.bool();
-			particle.animation.frameIndex = FlxG.random.int(0, particle.animation.frames);
+			particle.animation.frameIndex = FlxG.random.int(0, particle.animation.numFrames);
 			particle.exists = false;
 			poofParticles.add(particle);
 		}

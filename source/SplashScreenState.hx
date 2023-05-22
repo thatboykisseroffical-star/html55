@@ -144,7 +144,7 @@ class SplashScreenState extends FlxTransitionableState
 			{
 				if (FlxG.random.bool())
 				{
-					swooshStamp.animation.frameIndex = FlxG.random.int(0, swooshStamp.animation.frames - 1);
+					swooshStamp.animation.frameIndex = FlxG.random.int(0, swooshStamp.animation.numFrames - 1);
 					swooshStamp.flipX = FlxG.random.bool();
 					bgSwoosh.stamp(swooshStamp);
 				}
@@ -275,7 +275,7 @@ class SplashScreenState extends FlxTransitionableState
 		var critterColor:CritterColor = Critter.CRITTER_COLORS[colorIndex];
 		Critter.loadPaletteShiftedGraphic(critterBody, critterColor, AssetPaths.splash_critter_body__png, true, 150, 200);
 		critterBody.offset.set(0, 125);
-		critterBody.animation.frameIndex = FlxG.random.int(0, critterBody.animation.frames);
+		critterBody.animation.frameIndex = FlxG.random.int(0, critterBody.animation.numFrames);
 		critterBody.flipX = FlxG.random.bool();
 		fgGroup.add(critterBody);
 

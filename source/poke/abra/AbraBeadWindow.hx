@@ -1,12 +1,11 @@
 package poke.abra;
 import flash.geom.Point;
 import flixel.FlxG;
-import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.input.FlxAccelerometer;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
-import flixel.math.FlxVector;
+import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 import flixel.util.FlxDestroyUtil;
 import flixel.util.FlxSpriteUtil;
@@ -76,7 +75,7 @@ class AbraBeadWindow extends PokeWindow
 	 * bv[3] = average of bv[2] and bv[4]
 	 * bv[4] = ...
 	 */
-	private var bv:Array<FlxVector> = [];
+	private var bv:Array<FlxPoint> = [];
 
 	public function new(X:Float=0, Y:Float=0, Width:Int=248, Height:Int = 349)
 	{
@@ -388,7 +387,7 @@ class AbraBeadWindow extends PokeWindow
 			path.pushNode(160, 332);
 			path.pushNode(143, 345);
 
-			var beadVector:FlxVector = FlxVector.get( -300, 420);
+			var beadVector:FlxPoint = FlxPoint.get( -300, 420);
 			beadVector.rotateByRadians(-Math.PI * 0.06 * visualLineAngle);
 			beadVector.y *= 0.6;
 
@@ -457,7 +456,7 @@ class AbraBeadWindow extends PokeWindow
 
 		while (bv.length < beadCoords.length * 2 + 1)
 		{
-			bv.push(FlxVector.get());
+			bv.push(FlxPoint.get());
 		}
 
 		bv[0].set(beadCoords[0].x - 175, beadCoords[0].y - 319);
@@ -472,13 +471,13 @@ class AbraBeadWindow extends PokeWindow
 		{
 			if (tmpBeadPosition < BEAD_BP_CENTER)
 			{
-				bv[1] = FlxVector.get( -0.812, 0.583).rotateByDegrees([0, 10, 30, 50, 70, 90][_ass.animation.frameIndex]);
+				bv[1] = FlxPoint.get( -0.812, 0.583).rotateByDegrees([0, 10, 30, 50, 70, 90][_ass.animation.frameIndex]);
 			}
 			else
 			{
-				bv[1] = FlxVector.get(-0.519, -0.857);
+				bv[1] = FlxPoint.get(-0.519, -0.857);
 			}
-			bv[3].rotate(FlxPoint.weak(0, 0), 10);
+			bv[3].pivotDegrees(FlxPoint.weak(0, 0), 10);
 		}
 
 		if (_ass.animation.frameIndex == 0 && tmpBeadPosition < BEAD_BP_CENTER)

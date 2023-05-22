@@ -1,8 +1,8 @@
 package;
 import flixel.FlxG;
-import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.effects.particles.FlxParticle;
+import flixel.util.FlxDirectionFlags;
 import kludge.BetterFlxRandom;
 
 /**
@@ -20,8 +20,8 @@ class Gem extends FlxParticle
 	{
 		super();
 		loadGraphic(AssetPaths.gems__png, true, 24, 24);
-		setFacingFlip(FlxObject.LEFT, false, false);
-		setFacingFlip(FlxObject.RIGHT, true, false);
+		setFacingFlip(FlxDirectionFlags.LEFT, false, false);
+		setFacingFlip(FlxDirectionFlags.RIGHT, true, false);
 	}
 
 	override public function update(elapsed:Float):Void
@@ -42,7 +42,7 @@ class Gem extends FlxParticle
 	{
 		super.onEmit();
 		animation.frameIndex = FlxG.random.int(0, 3);
-		facing = FlxG.random.getObject([FlxObject.LEFT, FlxObject.RIGHT]);
+		facing = FlxG.random.getObject([FlxDirectionFlags.LEFT, FlxDirectionFlags.RIGHT]);
 	}
 
 	override public function reset(X:Float, Y:Float):Void

@@ -5,7 +5,6 @@ import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
-import flixel.math.FlxVector;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.util.FlxColor;
 import flixel.util.FlxDestroyUtil;
@@ -307,7 +306,7 @@ class DildoInterface extends FlxSpriteGroup
 	{
 		canvas.stamp(bgSprite, 0, 0); // draw bg sprite...
 
-		var arrowVector:FlxVector = FlxVector.get(220 - DILDO_TARGET.x, 101 - DILDO_TARGET.y);
+		var arrowVector:FlxPoint = FlxPoint.get(220 - DILDO_TARGET.x, 101 - DILDO_TARGET.y);
 		arrowVector.length = arrowDist;
 		var arrowTip:FlxPoint = FlxPoint.get(DILDO_TARGET.x + arrowVector.x, DILDO_TARGET.y + arrowVector.y);
 		var arrowColor:FlxColor = arrowDist <= ARROW_INSIDE_THRESHOLD ? 0xff40a4c0 : 0xff00647f;
@@ -315,7 +314,7 @@ class DildoInterface extends FlxSpriteGroup
 		// draw dildo...
 		if (dildoSprite.visible)
 		{
-			var dildoVector:FlxVector = FlxVector.get(220 - DILDO_TARGET.x, 101 - DILDO_TARGET.y);
+			var dildoVector:FlxPoint = FlxPoint.get(220 - DILDO_TARGET.x, 101 - DILDO_TARGET.y);
 			dildoVector.length = dildoMaxDist * (1 - dildoInPct) + dildoMinDist * dildoInPct;
 			var dildoTip:FlxPoint = FlxPoint.get(DILDO_TARGET.x + dildoVector.x, DILDO_TARGET.y + dildoVector.y);
 			canvas.stamp(dildoSprite, Std.int(dildoTip.x + dildoOffset.x), Std.int(dildoTip.y + dildoOffset.y));

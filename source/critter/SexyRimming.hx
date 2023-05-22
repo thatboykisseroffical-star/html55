@@ -1,7 +1,7 @@
 package critter;
 
-import flixel.FlxObject;
 import flixel.math.FlxPoint;
+import flixel.util.FlxDirectionFlags;
 
 /**
  * An animation where a bug rims/eats out the other bug
@@ -28,10 +28,10 @@ class SexyRimming extends SexyCritterAnim
 	{
 		if (facing == 0)
 		{
-			facing = topCritter._bodySprite.x > botCritter._bodySprite.x ? FlxObject.LEFT : FlxObject.RIGHT;
+			facing = topCritter._bodySprite.x > botCritter._bodySprite.x ? FlxDirectionFlags.LEFT : FlxDirectionFlags.RIGHT;
 		}
 
-		jumpTarget = FlxPoint.get(botCritter._targetSprite.x + (facing == FlxObject.LEFT ? 18 : -18), botCritter._targetSprite.y - 9);
+		jumpTarget = FlxPoint.get(botCritter._targetSprite.x + (facing == FlxDirectionFlags.LEFT ? 18 : -18), botCritter._targetSprite.y - 9);
 
 		var dx:Float = topCritter._bodySprite.x - jumpTarget.x;
 		var dy:Float = topCritter._bodySprite.y - jumpTarget.y;
@@ -106,11 +106,11 @@ class SexyRimming extends SexyCritterAnim
 		if (topShouldReposition)
 		{
 			topCritter.resetFrontBodySprite(); // reset front body sprite, just in case we were standing up or something
-			topCritter.setPosition(botCritter._bodySprite.x + (facing == FlxObject.LEFT ? 12 : -12), botCritter._bodySprite.y - 6);
+			topCritter.setPosition(botCritter._bodySprite.x + (facing == FlxDirectionFlags.LEFT ? 12 : -12), botCritter._bodySprite.y - 6);
 		}
 		else
 		{
-			botCritter.setPosition(topCritter._bodySprite.x + (facing == FlxObject.LEFT ? -12 : 12), topCritter._bodySprite.y + 6);
+			botCritter.setPosition(topCritter._bodySprite.x + (facing == FlxDirectionFlags.LEFT ? -12 : 12), topCritter._bodySprite.y + 6);
 		}
 
 		stopSexyAnim(topCritter);
@@ -259,7 +259,7 @@ class SexyRimming extends SexyCritterAnim
 
 	public function botOrgasm(args:Array<Dynamic>)
 	{
-		botCritter.jizzStamp(facing == FlxObject.LEFT ? 6 : -6, -3);
+		botCritter.jizzStamp(facing == FlxDirectionFlags.LEFT ? 6 : -6, -3);
 
 		stopSexyAnim(botCritter);
 		botCritter._bodySprite.animation.add("sexy-misc", [
@@ -351,7 +351,7 @@ class SexyRimming extends SexyCritterAnim
 	public function topDoneForNow(args:Array<Dynamic>)
 	{
 		stopSexyAnim(topCritter);
-		topCritter.runTo(botCritter._bodySprite.x + (facing == FlxObject.LEFT ? 24 : -24), botCritter._bodySprite.y + 6, SexyAnims.stayImmobile);
+		topCritter.runTo(botCritter._bodySprite.x + (facing == FlxDirectionFlags.LEFT ? 24 : -24), botCritter._bodySprite.y + 6, SexyAnims.stayImmobile);
 	}
 
 	public function botDoneForNow(args:Array<Dynamic>)

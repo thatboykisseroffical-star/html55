@@ -1,7 +1,7 @@
 package critter;
 import flixel.FlxG;
-import flixel.FlxObject;
 import flixel.math.FlxPoint;
+import flixel.util.FlxDirectionFlags;
 
 /**
  * An animation where a bug blows the other one
@@ -30,9 +30,9 @@ class SexyBlowJob extends SexyCritterAnim
 
 	public function refresh(args:Array<Dynamic>)
 	{
-		facing = topCritter._bodySprite.x > botCritter._bodySprite.x ? FlxObject.LEFT : FlxObject.RIGHT;
+		facing = topCritter._bodySprite.x > botCritter._bodySprite.x ? FlxDirectionFlags.LEFT : FlxDirectionFlags.RIGHT;
 
-		jumpTarget = FlxPoint.get(topCritter._targetSprite.x + (facing == FlxObject.LEFT ? -19 : 19), topCritter._targetSprite.y + 14);
+		jumpTarget = FlxPoint.get(topCritter._targetSprite.x + (facing == FlxDirectionFlags.LEFT ? -19 : 19), topCritter._targetSprite.y + 14);
 	}
 
 	public function botSitUp(args:Array<Dynamic>)
@@ -397,11 +397,11 @@ class SexyBlowJob extends SexyCritterAnim
 
 		if (topCritter.isMale())
 		{
-			topCritter._eventStack.addEvent({time:topCritter._eventStack._time + 0.4, callback:topCritter.eventJizzStamp, args:[ 28 * (topCritter._bodySprite.facing == FlxObject.LEFT ? -1 : 1), 6]});
+			topCritter._eventStack.addEvent({time:topCritter._eventStack._time + 0.4, callback:topCritter.eventJizzStamp, args:[ 28 * (topCritter._bodySprite.facing == FlxDirectionFlags.LEFT ? -1 : 1), 6]});
 		}
 		else
 		{
-			topCritter._eventStack.addEvent({time:topCritter._eventStack._time + 0.1, callback:topCritter.eventJizzStamp, args:[ 6 * (topCritter._bodySprite.facing == FlxObject.LEFT ? -1 : 1), 4]});
+			topCritter._eventStack.addEvent({time:topCritter._eventStack._time + 0.1, callback:topCritter.eventJizzStamp, args:[ 6 * (topCritter._bodySprite.facing == FlxDirectionFlags.LEFT ? -1 : 1), 4]});
 		}
 	}
 
@@ -432,9 +432,9 @@ class SexyBlowJob extends SexyCritterAnim
 	public function startBj(args:Array<Dynamic>)
 	{
 		topCritter._bodySprite.facing = facing;
-		botCritter._bodySprite.facing = (facing == FlxObject.LEFT ? FlxObject.RIGHT : FlxObject.LEFT);
+		botCritter._bodySprite.facing = (facing == FlxDirectionFlags.LEFT ? FlxDirectionFlags.RIGHT : FlxDirectionFlags.LEFT);
 
-		botCritter.setPosition(topCritter._bodySprite.x + (facing == FlxObject.LEFT ? -19 : 19), topCritter._targetSprite.y + 14);
+		botCritter.setPosition(topCritter._bodySprite.x + (facing == FlxDirectionFlags.LEFT ? -19 : 19), topCritter._targetSprite.y + 14);
 
 		botBj(null);
 		topSitBack(null);
@@ -448,7 +448,7 @@ class SexyBlowJob extends SexyCritterAnim
 	public function critterStartJerk(critter:Critter)
 	{
 		topCritter._bodySprite.facing = facing;
-		botCritter._bodySprite.facing = (facing == FlxObject.LEFT ? FlxObject.RIGHT : FlxObject.LEFT);
+		botCritter._bodySprite.facing = (facing == FlxDirectionFlags.LEFT ? FlxDirectionFlags.RIGHT : FlxDirectionFlags.LEFT);
 
 		stopSexyAnim(botCritter);
 		if (topCritter.isMale())
@@ -552,13 +552,13 @@ class SexyBlowJob extends SexyCritterAnim
 
 	public function topRunIntoPositionAndSitBack(args:Array<Dynamic>)
 	{
-		var otherTarget:FlxPoint = FlxPoint.get(botCritter._targetSprite.x - (facing == FlxObject.LEFT ? -19 : 19), botCritter._targetSprite.y - 14);
+		var otherTarget:FlxPoint = FlxPoint.get(botCritter._targetSprite.x - (facing == FlxDirectionFlags.LEFT ? -19 : 19), botCritter._targetSprite.y - 14);
 		topCritter.runTo(otherTarget.x, otherTarget.y, critterTopSitBack);
 	}
 
 	public function botNotice(args:Array<Dynamic>)
 	{
-		botCritter._bodySprite.facing = topCritter._bodySprite.x > botCritter._bodySprite.x ? FlxObject.LEFT : FlxObject.RIGHT;
+		botCritter._bodySprite.facing = topCritter._bodySprite.x > botCritter._bodySprite.x ? FlxDirectionFlags.LEFT : FlxDirectionFlags.RIGHT;
 
 		stopSexyAnim(botCritter);
 		botCritter._bodySprite.animation.add("sexy-misc", [
@@ -579,13 +579,13 @@ class SexyBlowJob extends SexyCritterAnim
 	public function botDoneForNowRunAway(args:Array<Dynamic>)
 	{
 		stopSexyAnim(botCritter);
-		botCritter.runTo(botCritter._soulSprite.x + (facing == FlxObject.RIGHT ? 1 : -1) * 40, botCritter._soulSprite.y + 5);
+		botCritter.runTo(botCritter._soulSprite.x + (facing == FlxDirectionFlags.RIGHT ? 1 : -1) * 40, botCritter._soulSprite.y + 5);
 	}
 
 	public function botDoneForNowRunToSwap(args:Array<Dynamic>)
 	{
 		stopSexyAnim(botCritter);
-		botCritter.runTo(botCritter._soulSprite.x + (facing == FlxObject.RIGHT ? 19 : -19), botCritter._soulSprite.y - 14);
+		botCritter.runTo(botCritter._soulSprite.x + (facing == FlxDirectionFlags.RIGHT ? 19 : -19), botCritter._soulSprite.y - 14);
 	}
 
 	public function botReturnAndBj(args:Array<Dynamic>)
@@ -597,18 +597,18 @@ class SexyBlowJob extends SexyCritterAnim
 	public function botDoneRunAway(args:Array<Dynamic>)
 	{
 		done(botCritter);
-		botCritter.runTo(botCritter._soulSprite.x + (facing == FlxObject.RIGHT ? 1 : -1) * FlxG.random.float(20, 60), botCritter._soulSprite.y + FlxG.random.float(-10, 10));
+		botCritter.runTo(botCritter._soulSprite.x + (facing == FlxDirectionFlags.RIGHT ? 1 : -1) * FlxG.random.float(20, 60), botCritter._soulSprite.y + FlxG.random.float(-10, 10));
 	}
 
 	public function botDoneRunFarAway(args:Array<Dynamic>)
 	{
 		done(botCritter);
-		botCritter.runTo(botCritter._soulSprite.x + (facing == FlxObject.RIGHT ? 1 : -1) * FlxG.random.float(80, 140), botCritter._soulSprite.y + FlxG.random.float(-10, 10));
+		botCritter.runTo(botCritter._soulSprite.x + (facing == FlxDirectionFlags.RIGHT ? 1 : -1) * FlxG.random.float(80, 140), botCritter._soulSprite.y + FlxG.random.float(-10, 10));
 	}
 
 	public function topDoneRunFarAway(args:Array<Dynamic>)
 	{
 		done(topCritter);
-		topCritter.runTo(topCritter._soulSprite.x + (facing == FlxObject.RIGHT ? -1 : 1) * FlxG.random.float(80, 140), topCritter._soulSprite.y + FlxG.random.float(-10, 10));
+		topCritter.runTo(topCritter._soulSprite.x + (facing == FlxDirectionFlags.RIGHT ? -1 : 1) * FlxG.random.float(80, 140), topCritter._soulSprite.y + FlxG.random.float(-10, 10));
 	}
 }

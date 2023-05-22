@@ -1,9 +1,9 @@
 package critter;
 import critter.Critter;
 import flixel.FlxG;
-import flixel.FlxObject;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
+import flixel.util.FlxDirectionFlags;
 
 /**
  * An animation where a bug fucks another bug doggy-style
@@ -29,10 +29,10 @@ class SexyDoggy extends SexyCritterAnim
 	{
 		if (facing == 0)
 		{
-			facing = topCritter._bodySprite.x > botCritter._bodySprite.x ? FlxObject.LEFT : FlxObject.RIGHT;
+			facing = topCritter._bodySprite.x > botCritter._bodySprite.x ? FlxDirectionFlags.LEFT : FlxDirectionFlags.RIGHT;
 		}
 
-		jumpTarget = FlxPoint.get(botCritter._targetSprite.x + (facing == FlxObject.LEFT ? 10 : -10), botCritter._targetSprite.y - 12);
+		jumpTarget = FlxPoint.get(botCritter._targetSprite.x + (facing == FlxDirectionFlags.LEFT ? 10 : -10), botCritter._targetSprite.y - 12);
 
 		var dx:Float = topCritter._bodySprite.x - jumpTarget.x;
 		var dy:Float = topCritter._bodySprite.y - jumpTarget.y;
@@ -63,11 +63,11 @@ class SexyDoggy extends SexyCritterAnim
 		var topShouldReposition:Bool = args == null ? false : args[0];
 		if (topShouldReposition)
 		{
-			topCritter.setPosition(botCritter._bodySprite.x + (facing == FlxObject.LEFT ? 10 : -10), botCritter._bodySprite.y - 12);
+			topCritter.setPosition(botCritter._bodySprite.x + (facing == FlxDirectionFlags.LEFT ? 10 : -10), botCritter._bodySprite.y - 12);
 		}
 		else
 		{
-			botCritter.setPosition(topCritter._bodySprite.x + (facing == FlxObject.LEFT ? -10 : 10), topCritter._bodySprite.y + 12);
+			botCritter.setPosition(topCritter._bodySprite.x + (facing == FlxDirectionFlags.LEFT ? -10 : 10), topCritter._bodySprite.y + 12);
 		}
 
 		stopSexyAnim(topCritter);
@@ -343,7 +343,7 @@ class SexyDoggy extends SexyCritterAnim
 
 	public function botOrgasm(args:Array<Dynamic>)
 	{
-		botCritter.jizzStamp(facing == FlxObject.LEFT ? 3 : -3, -3);
+		botCritter.jizzStamp(facing == FlxDirectionFlags.LEFT ? 3 : -3, -3);
 
 		stopSexyAnim(botCritter);
 		botCritter._bodySprite.animation.add("sexy-misc", [

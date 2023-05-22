@@ -1,6 +1,6 @@
 package;
-import flixel.system.FlxSound;
-import flixel.system.FlxSoundGroup;
+import flixel.sound.FlxSound;
+import flixel.sound.FlxSoundGroup;
 import kludge.FlxSoundKludge;
 
 /**
