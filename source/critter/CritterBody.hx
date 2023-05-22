@@ -1,13 +1,12 @@
 package critter;
 
 import flixel.FlxG;
-import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRandom;
-import flixel.math.FlxVector;
 import flixel.util.FlxDestroyUtil;
+import flixel.util.FlxDirectionFlags;
 import kludge.BetterFlxRandom;
 
 /**
@@ -31,9 +30,9 @@ class CritterBody extends FlxSprite
 	{
 		super();
 		this._critter = critter;
-		setFacingFlip(FlxObject.LEFT, false, false);
-		setFacingFlip(FlxObject.RIGHT, true, false);
-		facing = FlxG.random.getObject([FlxObject.LEFT, FlxObject.RIGHT]);
+		setFacingFlip(FlxDirectionFlags.LEFT, false, false);
+		setFacingFlip(FlxDirectionFlags.RIGHT, true, false);
+		facing = FlxG.random.getObject([FlxDirectionFlags.LEFT, FlxDirectionFlags.RIGHT]);
 	}
 
 	override public function update(elapsed:Float):Void
@@ -49,7 +48,7 @@ class CritterBody extends FlxSprite
 		super.update(elapsed);
 		_critter._eventStack.update(elapsed);
 
-		var dirVector:FlxVector = FlxVector.get(_critter._targetSprite.x - _critter._soulSprite.x, _critter._targetSprite.y - _critter._soulSprite.y);
+		var dirVector:FlxPoint = FlxPoint.get(_critter._targetSprite.x - _critter._soulSprite.x, _critter._targetSprite.y - _critter._soulSprite.y);
 
 		// seemingly redundant check, but it avoids a bug if elapsed is 0
 		var moveSpeed:Float = _critter.isMidAir() ? _jumpSpeed : _walkSpeed;
@@ -211,14 +210,14 @@ class CritterBody extends FlxSprite
 				// update graphics...
 				var oldPosition:FlxPoint = getPosition();
 				setPosition(_critter._soulSprite.x, _critter._soulSprite.y);
-				var movementDir:FlxVector;
+				var movementDir:FlxPoint;
 				if (_critter.isMidAir())
 				{
-					movementDir = FlxVector.get(_critter._targetSprite.x - oldPosition.x, _critter._targetSprite.y - oldPosition.y);
+					movementDir = FlxPoint.get(_critter._targetSprite.x - oldPosition.x, _critter._targetSprite.y - oldPosition.y);
 				}
 				else
 				{
-					movementDir = FlxVector.get(x - oldPosition.x, y - oldPosition.y);
+					movementDir = FlxPoint.get(x - oldPosition.x, y - oldPosition.y);
 				}
 				if (movementDir.length > 1)
 				{
@@ -260,7 +259,7 @@ class CritterBody extends FlxSprite
 
 		if (animation.name == "grab")
 		{
-			facing = FlxObject.LEFT;
+			facing = FlxDirectionFlags.LEFT;
 		}
 
 		_critter._headSprite.moveHead();
@@ -304,11 +303,11 @@ class CritterBody extends FlxSprite
 
 		if (newX > oldX)
 		{
-			facing = FlxObject.RIGHT;
+			facing = FlxDirectionFlags.RIGHT;
 		}
 		else if (newX < oldX)
 		{
-			facing = FlxObject.LEFT;
+			facing = FlxDirectionFlags.LEFT;
 		}
 		_critter._headSprite.facing = facing;
 	}

@@ -4,7 +4,6 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
-import flixel.math.FlxVector;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxDestroyUtil;
 import flixel.util.FlxDestroyUtil.IFlxDestroyable;
@@ -22,7 +21,7 @@ class TugAi implements IFlxDestroyable
 	private var tugGameState:TugGameState;
 	private var currState:Float->Void;
 	private var handSprite:FlxSprite;
-	private var handDirection:FlxVector = FlxVector.get(0, 0);
+	private var handDirection:FlxPoint = FlxPoint.get(0, 0);
 
 	private var fromRow:Int = -1;
 	private var movedCritter:Critter = null;

@@ -1,7 +1,6 @@
 package critter;
 
 import flixel.FlxG;
-import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.graphics.FlxGraphic;
 import flixel.math.FlxMath;
@@ -13,6 +12,7 @@ import flixel.tweens.misc.VarTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxDestroyUtil;
 import flixel.util.FlxDestroyUtil.IFlxDestroyable;
+import flixel.util.FlxDirectionFlags;
 import kludge.BetterFlxRandom;
 import openfl.geom.Point;
 import openfl.geom.Rectangle;
@@ -138,8 +138,8 @@ class Critter implements IFlxDestroyable
 		_headSprite = new CritterHead(this);
 
 		_frontBodySprite = new FlxSprite();
-		_frontBodySprite.setFacingFlip(FlxObject.LEFT, false, false);
-		_frontBodySprite.setFacingFlip(FlxObject.RIGHT, true, false);
+		_frontBodySprite.setFacingFlip(FlxDirectionFlags.LEFT, false, false);
+		_frontBodySprite.setFacingFlip(FlxDirectionFlags.RIGHT, true, false);
 		_frontBodySprite.facing = _bodySprite.facing;
 		_frontBodySprite.visible = false;
 
@@ -512,9 +512,9 @@ class Critter implements IFlxDestroyable
 		if (animName == "idle-vomit")
 		{
 			var vomitStamp:FlxSprite = new FlxSprite(0, 0);
-			vomitStamp.setFacingFlip(FlxObject.LEFT, false, false);
-			vomitStamp.setFacingFlip(FlxObject.RIGHT, true, false);
-			vomitStamp.facing = FlxG.random.getObject([FlxObject.LEFT, FlxObject.RIGHT]);
+			vomitStamp.setFacingFlip(FlxDirectionFlags.LEFT, false, false);
+			vomitStamp.setFacingFlip(FlxDirectionFlags.RIGHT, true, false);
+			vomitStamp.facing = FlxG.random.getObject([FlxDirectionFlags.LEFT, FlxDirectionFlags.RIGHT]);
 			vomitStamp.loadGraphic(AssetPaths.critter_vomit__png, true, 64, 64);
 			vomitStamp.animation.frameIndex = FlxG.random.int(0, 2);
 			_backdrop.stamp(vomitStamp, Std.int(_bodySprite.x - _bodySprite.offset.x + FlxG.random.int(-4, 4)), Std.int(_bodySprite.y - _bodySprite.offset.y + FlxG.random.int(-2, 2)));
@@ -536,7 +536,7 @@ class Critter implements IFlxDestroyable
 			if (animName == "idle-sleep")
 			{
 				// don't flip it
-				_frontBodySprite.facing = FlxObject.LEFT;
+				_frontBodySprite.facing = FlxDirectionFlags.LEFT;
 			}
 			_frontBodySprite.visible = true;
 			_frontBodySprite.animation.play(animName, true);
@@ -557,9 +557,9 @@ class Critter implements IFlxDestroyable
 	public function jizzStamp(x:Float, y:Float)
 	{
 		var jizzStamp:FlxSprite = new FlxSprite(0, 0);
-		jizzStamp.setFacingFlip(FlxObject.LEFT, false, false);
-		jizzStamp.setFacingFlip(FlxObject.RIGHT, true, false);
-		jizzStamp.facing = FlxG.random.getObject([FlxObject.LEFT, FlxObject.RIGHT]);
+		jizzStamp.setFacingFlip(FlxDirectionFlags.LEFT, false, false);
+		jizzStamp.setFacingFlip(FlxDirectionFlags.RIGHT, true, false);
+		jizzStamp.facing = FlxG.random.getObject([FlxDirectionFlags.LEFT, FlxDirectionFlags.RIGHT]);
 		jizzStamp.loadGraphic(AssetPaths.critter_jizz__png, true, 64, 64);
 		jizzStamp.animation.frameIndex = FlxG.random.int(0, 5);
 		_backdrop.stamp(jizzStamp, Std.int(_bodySprite.x - _bodySprite.offset.x + x + FlxG.random.int(-2, 2)), Std.int(_bodySprite.y - _bodySprite.offset.y + FlxG.random.int(-1, 1) + y));
@@ -589,7 +589,7 @@ class Critter implements IFlxDestroyable
 
 	public function ungrab():Void
 	{
-		_bodySprite.facing = FlxG.random.getObject([FlxObject.LEFT, FlxObject.RIGHT]);
+		_bodySprite.facing = FlxG.random.getObject([FlxDirectionFlags.LEFT, FlxDirectionFlags.RIGHT]);
 		if (outCold)
 		{
 			if (_bodySprite.animation.curAnim.name == "idle-outcold0")

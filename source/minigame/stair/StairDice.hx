@@ -1,7 +1,7 @@
 package minigame.stair;
 import flixel.FlxG;
-import flixel.FlxObject;
 import flixel.FlxSprite;
+import flixel.util.FlxDirectionFlags;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 
 /**
@@ -53,8 +53,8 @@ class StairDice extends FlxSprite
 		loadGraphic(graphic, true, 60, 60);
 		width = 38;
 		height = 14;
-		setFacingFlip(FlxObject.LEFT, false, false);
-		setFacingFlip(FlxObject.RIGHT, true, false);
+		setFacingFlip(FlxDirectionFlags.LEFT, false, false);
+		setFacingFlip(FlxDirectionFlags.RIGHT, true, false);
 	}
 	
 	private function resetSfxTimer() {
@@ -110,7 +110,7 @@ class StairDice extends FlxSprite
 				// cock it randomly
 				angle = FlxG.random.getObject([0, 90, 180, 270]);
 			}
-			facing = FlxG.random.bool() ? FlxObject.LEFT : FlxObject.RIGHT;
+			facing = FlxG.random.bool() ? FlxDirectionFlags.LEFT : FlxDirectionFlags.RIGHT;
 			//super.update(0);
 		}
 		if (y < 310) {
@@ -118,7 +118,7 @@ class StairDice extends FlxSprite
 			y += 2 * (310 - y);
 			velocity.y = -velocity.y;
 			animation.frameIndex = (animation.frameIndex + FlxG.random.int(0, 3)) % 4;
-			facing = FlxG.random.bool() ? FlxObject.LEFT : FlxObject.RIGHT;
+			facing = FlxG.random.bool() ? FlxDirectionFlags.LEFT : FlxDirectionFlags.RIGHT;
 			playDiceSfx(0.6);
 		}
 		
@@ -128,8 +128,8 @@ class StairDice extends FlxSprite
 	
 	public function tossDice()
 	{
-		animation.frameIndex = FlxG.random.int(0, animation.frames);
-		facing = FlxG.random.bool() ? FlxObject.LEFT : FlxObject.RIGHT;
+		animation.frameIndex = FlxG.random.int(0, animation.numFrames);
+		facing = FlxG.random.bool() ? FlxDirectionFlags.LEFT : FlxDirectionFlags.RIGHT;
 		angle = FlxG.random.getObject([0, 90, 180, 270]);
 		z = 120;
 		zVelocity = FlxG.random.float(120, 180);

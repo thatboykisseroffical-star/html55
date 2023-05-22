@@ -1,8 +1,8 @@
 package critter;
 
 import flixel.FlxG;
-import flixel.FlxObject;
 import flixel.math.FlxPoint;
+import flixel.util.FlxDirectionFlags;
 import poke.sexy.SexyState;
 
 /**
@@ -48,7 +48,7 @@ class SexyMultiBlowJob extends SexyCritterAnim
 			{
 				var jumpTargetAngle:Float = jumpTargetAngles.pop();
 				masturbateCritterPositions[critter] = sexyDoggy0.rotateFromJumpTarget(jumpTargetAngle, 50);
-				masturbateCritterFacings[critter] = botCritter._bodySprite.x < masturbateCritterPositions[critter].x ? FlxObject.LEFT : FlxObject.RIGHT;
+				masturbateCritterFacings[critter] = botCritter._bodySprite.x < masturbateCritterPositions[critter].x ? FlxDirectionFlags.LEFT : FlxDirectionFlags.RIGHT;
 			}
 
 			for (critter in initialWatchers)

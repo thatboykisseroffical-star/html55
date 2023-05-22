@@ -6,7 +6,6 @@ import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
-import flixel.math.FlxVector;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
@@ -350,20 +349,20 @@ class RhydonBeadInterface extends FlxSpriteGroup
 			// draw ass meter...
 			_purpleCanvas.stamp(_assMeter, Std.int(201 - _assMeter.width / 2), Std.int(69 - _assMeter.height / 2));
 			var _meterNeedleEnd:FlxPoint = FlxPoint.get( -25, 0);
-			_meterNeedleEnd.rotate(FlxPoint.weak(0, 0), _visualAssMeterAngle);
+			_meterNeedleEnd.pivotDegrees(FlxPoint.weak(0, 0), _visualAssMeterAngle);
 			FlxSpriteUtil.drawLine(_purpleCanvas, 201, 69, 201 + _meterNeedleEnd.x, 69 + _meterNeedleEnd.y, {thickness: 4, color: SHADOW_COLOR});
 			for (i in 0..._meterNeedleHead.length)
 			{
-				_meterNeedleHead[i].set(_meterNeedleHeadTemplate[i].x, _meterNeedleHeadTemplate[i].y).rotate(FlxPoint.weak(0, 0), _visualAssMeterAngle);
+				_meterNeedleHead[i].set(_meterNeedleHeadTemplate[i].x, _meterNeedleHeadTemplate[i].y).pivotDegrees(FlxPoint.weak(0, 0), _visualAssMeterAngle);
 				_meterNeedleHead[i].set(_meterNeedleHead[i].x + 201 + _meterNeedleEnd.x, _meterNeedleHead[i].y + 69 + _meterNeedleEnd.y);
 			}
 			FlxSpriteUtil.drawPolygon(_purpleCanvas, _meterNeedleHead, SHADOW_COLOR, {thickness:2, color: SHADOW_COLOR});
 		}
 		else {
-			var stringVector:FlxVector;
+			var stringVector:FlxPoint;
 			if (isInteractive())
 			{
-				stringVector = FlxVector.get(BEAD_ORIGIN.x - _currPoint.x, BEAD_ORIGIN.y - _currPoint.y);
+				stringVector = FlxPoint.get(BEAD_ORIGIN.x - _currPoint.x, BEAD_ORIGIN.y - _currPoint.y);
 				if (stringVector.x == 0 && stringVector.y == 0)
 				{
 					stringVector.x = 1;
@@ -373,7 +372,7 @@ class RhydonBeadInterface extends FlxSpriteGroup
 				lineAngle = FlxMath.bound(1 - 2 * (MAX_LINE_ANGLE - Math.atan2(stringVector.y, stringVector.x)) / (MAX_LINE_ANGLE - MIN_LINE_ANGLE), -1, 1);
 			}
 			else {
-				stringVector = FlxVector.get(BEAD_ORIGIN.x - HANDLE_ORIGIN.x, BEAD_ORIGIN.y - HANDLE_ORIGIN.y);
+				stringVector = FlxPoint.get(BEAD_ORIGIN.x - HANDLE_ORIGIN.x, BEAD_ORIGIN.y - HANDLE_ORIGIN.y);
 				stringVector.length = DIST_BETWEEN_BEADS;
 				lineAngle = 0;
 			}

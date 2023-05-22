@@ -1,9 +1,9 @@
 package critter;
 
 import flixel.FlxG;
-import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.math.FlxRandom;
+import flixel.util.FlxDirectionFlags;
 
 /**
  * A bug is made of a head and body sprite which animate separately.
@@ -46,8 +46,8 @@ class CritterHead extends FlxSprite
 		this._critter = critter;
 		this._blinkElapsed = FlxG.random.float(2, 5);
 		_blinkFrames = new Map<Int, Int>();
-		setFacingFlip(FlxObject.LEFT, false, false);
-		setFacingFlip(FlxObject.RIGHT, true, false);
+		setFacingFlip(FlxDirectionFlags.LEFT, false, false);
+		setFacingFlip(FlxDirectionFlags.RIGHT, true, false);
 	}
 
 	public function moveHead():Void

@@ -4,7 +4,6 @@ import flixel.util.FlxDestroyUtil;
 import minigame.MinigameState.denNerf;
 import critter.Critter;
 import flixel.FlxG;
-import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.effects.particles.FlxEmitter.FlxEmitterMode;
 import flixel.effects.particles.FlxEmitter.FlxTypedEmitter;
@@ -15,6 +14,7 @@ import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
+import flixel.util.FlxDirectionFlags;
 import kludge.LateFadingFlxParticle;
 import minigame.FinalScoreboard;
 import minigame.MinigameState;
@@ -892,7 +892,7 @@ class TugGameState extends MinigameState
 
 		var leftShadow:FlxSprite = new FlxSprite(235, tugRows[row].y - 70);
 		leftShadow.loadGraphic(AssetPaths.tentnum_shadow__png, true, 80, 100);
-		leftShadow.animation.frameIndex = FlxG.random.int(0, leftShadow.animation.frames - 1);
+		leftShadow.animation.frameIndex = FlxG.random.int(0, leftShadow.animation.numFrames - 1);
 		rowResultGroup.add(leftShadow);
 
 		var leftNum:FlxSprite = new FlxSprite(235, tugRows[row].y - 70);
@@ -908,7 +908,7 @@ class TugGameState extends MinigameState
 
 		var rightShadow:FlxSprite = new FlxSprite(460, tugRows[row].y - 70);
 		rightShadow.loadGraphic(AssetPaths.tentnum_shadow__png, true, 80, 100);
-		rightShadow.animation.frameIndex = FlxG.random.int(0, rightShadow.animation.frames - 1);
+		rightShadow.animation.frameIndex = FlxG.random.int(0, rightShadow.animation.numFrames - 1);
 		rowResultGroup.add(rightShadow);
 
 		var rightNum:FlxSprite = new FlxSprite(460, tugRows[row].y - 70);
@@ -1257,7 +1257,7 @@ class TugGameState extends MinigameState
 		if (col <= 3)
 		{
 			critter.playAnim(FlxG.random.getObject(["tug-good", "tug-bad"]));
-			critter._bodySprite.facing = isLeftTeam(critter) ? FlxObject.RIGHT : FlxObject.LEFT;
+			critter._bodySprite.facing = isLeftTeam(critter) ? FlxDirectionFlags.RIGHT : FlxDirectionFlags.LEFT;
 		}
 
 		if (model.isInTent(critter))
@@ -1382,7 +1382,7 @@ class TugGameState extends MinigameState
 		var alliedRowCritters:Array<Critter> = isLeftTeam(critter) ? tugRows[critterRow].leftCritters : tugRows[critterRow].rightCritters;
 
 		// adopt tugging pose
-		critter._bodySprite.facing = isLeftTeam(critter) ? FlxObject.RIGHT : FlxObject.LEFT; // might have gotten turned around
+		critter._bodySprite.facing = isLeftTeam(critter) ? FlxDirectionFlags.RIGHT : FlxDirectionFlags.LEFT; // might have gotten turned around
 		critter.playAnim(FlxG.random.getObject(["tug-good", "tug-bad"]));
 	}
 
@@ -1576,7 +1576,7 @@ class TugGameState extends MinigameState
 		else
 		{
 			critter.playAnim(FlxG.random.getObject(["tug-good", "tug-bad"]));
-			critter._bodySprite.facing = isLeftTeam(critter) ? FlxObject.RIGHT : FlxObject.LEFT;
+			critter._bodySprite.facing = isLeftTeam(critter) ? FlxDirectionFlags.RIGHT : FlxDirectionFlags.LEFT;
 		}
 		critter.setPosition(targetPos.x, targetPos.y);
 

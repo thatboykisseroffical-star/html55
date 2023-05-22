@@ -3,7 +3,6 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
-import flixel.math.FlxVector;
 import flixel.util.FlxColor;
 import flixel.util.FlxDestroyUtil;
 import flixel.util.FlxDestroyUtil.IFlxDestroyable;
@@ -59,7 +58,7 @@ class WispLine implements IFlxDestroyable
 		this.y1 = y1;
 		this.w1 = w1;
 
-		var d:FlxVector = FlxVector.get();
+		var d:FlxPoint = FlxPoint.get();
 		d.set(x1 - x0, y1 - y0);
 		d.length = 1;
 

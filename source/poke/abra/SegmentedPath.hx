@@ -1,6 +1,5 @@
 package poke.abra;
 import flixel.math.FlxPoint;
-import flixel.math.FlxVector;
 import flixel.util.FlxDestroyUtil;
 import flixel.util.FlxDestroyUtil.IFlxDestroyable;
 
@@ -11,7 +10,7 @@ import flixel.util.FlxDestroyUtil.IFlxDestroyable;
 class SegmentedPath implements IFlxDestroyable
 {
 	public var nodes:Array<FlxPoint> = [];
-	private var _point:FlxVector = FlxVector.get();
+	private var _point:FlxPoint = FlxPoint.get();
 
 	public function new() {}
 
@@ -36,7 +35,7 @@ class SegmentedPath implements IFlxDestroyable
 			var segmentDistance:Float = Math.sqrt(dx * dx + dy * dy);
 			if (distTmp <= segmentDistance)
 			{
-				var vector:FlxVector = _point.set(dx, dy).normalize();
+				var vector:FlxPoint = _point.set(dx, dy).normalize();
 				return target.set(nodes[nodeIndex - 1].x + distTmp * vector.x, nodes[nodeIndex - 1].y + distTmp * vector.y);
 			}
 			distTmp -= segmentDistance;

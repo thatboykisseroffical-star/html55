@@ -2,7 +2,7 @@ package poke.grov;
 
 import demo.SexyDebugState;
 import flixel.math.FlxMath;
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 import flixel.util.FlxColor;
 import flixel.util.FlxDestroyUtil;
 import kludge.FlxSoundKludge;

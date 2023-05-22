@@ -1,8 +1,8 @@
 package critter;
 import flixel.FlxG;
-import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.math.FlxPoint;
+import flixel.util.FlxDirectionFlags;
 
 /**
  * An animation where two bugs masturbate with each other
@@ -38,10 +38,10 @@ class SexyMutualMasturbate extends SexyCritterAnim
 				FlxPoint.get(critters[0]._soulSprite.x + 80, critters[0]._soulSprite.y + FlxG.random.int(-20, 60)),
 			];
 			facings = [
-				FlxObject.RIGHT,
-				FlxObject.LEFT,
-				FlxObject.RIGHT,
-				FlxObject.LEFT,
+				FlxDirectionFlags.RIGHT,
+				FlxDirectionFlags.LEFT,
+				FlxDirectionFlags.RIGHT,
+				FlxDirectionFlags.LEFT,
 			];
 		}
 		else {
@@ -52,10 +52,10 @@ class SexyMutualMasturbate extends SexyCritterAnim
 				FlxPoint.get(critters[0]._soulSprite.x + -80, critters[0]._soulSprite.y + FlxG.random.int(-20, 60)),
 			];
 			facings = [
-				FlxObject.LEFT,
-				FlxObject.RIGHT,
-				FlxObject.LEFT,
-				FlxObject.RIGHT,
+				FlxDirectionFlags.LEFT,
+				FlxDirectionFlags.RIGHT,
+				FlxDirectionFlags.LEFT,
+				FlxDirectionFlags.RIGHT,
 			];
 		}
 

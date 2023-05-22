@@ -14,7 +14,6 @@ import flixel.addons.transition.TransitionData;
 import flixel.group.FlxGroup;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxPoint;
-import flixel.math.FlxVector;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.ui.FlxButton;
 import flixel.util.FlxDestroyUtil;
@@ -86,7 +85,7 @@ class LevelState extends FlxTransitionableState
 	 * needs to be tracked
 	 */
 	private var _grabbedCritterButtSprite:FlxSprite;
-	private var _grabbedCritterButtVector:FlxVector;
+	private var _grabbedCritterButtVector:FlxPoint;
 
 	public function new(?TransIn:TransitionData, ?TransOut:TransitionData)
 	{
@@ -154,7 +153,7 @@ class LevelState extends FlxTransitionableState
 		_cursorSprites.add(_thumbSprite);
 
 		_grabbedCritterButtSprite = new FlxSprite();
-		_grabbedCritterButtVector = FlxVector.get();
+		_grabbedCritterButtVector = FlxPoint.get();
 
 		_dialogger = new Dialogger();
 		_cashWindow = new CashWindow();

@@ -93,7 +93,7 @@ class ScaleGameState extends MinigameState
 			var particle:FlxParticle = new FlxParticle();
 			particle.loadGraphic(AssetPaths.poofs__png, true, 40, 40);
 			particle.flipX = FlxG.random.bool();
-			particle.animation.frameIndex = FlxG.random.int(0, particle.animation.frames);
+			particle.animation.frameIndex = FlxG.random.int(0, particle.animation.numFrames);
 			particle.exists = false;
 			_whumpClouds.add(particle);
 		}
