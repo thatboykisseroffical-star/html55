@@ -176,7 +176,7 @@ class Critter implements IFlxDestroyable
 		var graphicKey:String = graphicAsset + "-" + critterColor.englishBackup;
 		if (FlxG.bitmap.get(graphicKey) == null)
 		{
-			var graphic:FlxGraphic = FlxG.bitmap.add(graphicAsset, false, graphicKey);
+			var graphic:FlxGraphic = FlxG.bitmap.add(graphicAsset, true, graphicKey);
 			for (key in critterColor.tint.keys())
 			{
 				graphic.bitmap.threshold(graphic.bitmap, new Rectangle(0, 0, graphic.bitmap.width, graphic.bitmap.height), new Point(0, 0), '==', key, critterColor.tint[key]);
