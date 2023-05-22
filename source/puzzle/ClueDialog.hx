@@ -91,7 +91,7 @@ class ClueDialog
 		}
 		for (i in startIndex...endIndex + 1) {
 			DialogTree.replace(tree, i, "<first clue>", clueString);
-			DialogTree.replace(tree, i, "<First clue>", clueString.charAt(0).toUpperCase + clueString.substring(1));
+			DialogTree.replace(tree, i, "<First clue>", clueString.charAt(0).toUpperCase() + clueString.substring(1));
 			DialogTree.replace(tree, i, "<bugs in the correct position>", bugType);
 			DialogTree.replace(tree, i, "<e hearts>", clueSymbol);
 			DialogTree.replace(tree, i, "<e bugs in the correct position>", expectedBugType);
