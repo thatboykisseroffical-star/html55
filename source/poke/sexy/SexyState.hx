@@ -353,7 +353,8 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 		for (i in 0..._fluidEmitter.maxSize)
 		{
 			var particle:SubframeParticle = new SubframeParticle();
-			particle.makeGraphic(3, 3, 0xFFFFFFFF);
+			// these pre-blurred blobs were made by rendering a 3x3 white rectangle, then gaussian blurring it in a 6 pixel radius
+			particle.loadGraphic(AssetPaths.fuzzy_circle_6__png);
 			particle.exists = false;
 			_fluidEmitter.add(particle);
 		}
@@ -364,9 +365,7 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 		_fluidEmitter.start(false, 1.0, 0x0FFFFFFF);
 		_fluidEmitter.emitting = false;
 		_spoogeKludge = new FlxSprite();
-		_spoogeKludge.makeGraphic(3, 3, 0xFFFFFFFF);
-		_spoogeKludge.offset.x = _spoogeKludge.width / 2;
-		_spoogeKludge.offset.y = _spoogeKludge.height / 2;
+		_spoogeKludge.loadGraphic(AssetPaths.fuzzy_circle_6__png);
 		_blobbyGroup.add(_spoogeKludge);
 		_blobbyGroup.add(_fluidEmitter);
 
