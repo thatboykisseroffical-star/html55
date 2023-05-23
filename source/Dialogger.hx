@@ -120,11 +120,13 @@ class Dialogger extends FlxGroup
 
 		_selectedChoiceRect = new FlxSprite();
 		_selectedChoiceRect.visible = false;
+		_selectedChoiceRect.makeGraphic(FlxG.width, FlxG.height);
 		#if flash
 		_selectedChoiceRect.blend = BlendMode.INVERT;
-		#end
-		_selectedChoiceRect.makeGraphic(FlxG.width, FlxG.height);
 		add(_selectedChoiceRect);
+		#else
+		_promptGroup.add(_selectedChoiceRect);
+		#end
 
 		_skipButton = SexyState.newBackButton(skip, AssetPaths.skip_button__png);
 		_skipButton.y -= 76;
@@ -237,6 +239,7 @@ class Dialogger extends FlxGroup
 
 	public function promptingDialog(elapsed:Float):Void
 	{
+		var oldChoiceIndex:Int = _promptRectangles.indexOf(clickedPromptRectangle);
 		if (FlxG.mouse.justPressed && _clickEnableTimer >= 0 && _clickEnabled)
 		{
 			_handledClick = true;
@@ -244,6 +247,7 @@ class Dialogger extends FlxGroup
 			_selectedChoiceRect.visible = true;
 			clickedPromptRectangle = findClickedPromptRectangle();
 		}
+		var choiceIndex:Int = _promptRectangles.indexOf(clickedPromptRectangle);
 		if (FlxG.mouse.pressed && _selectedChoiceRect.visible && clickedPromptRectangle != null)
 		{
 			_mouseHoldTime += elapsed;
@@ -253,14 +257,20 @@ class Dialogger extends FlxGroup
 			var width = Math.min(maxWidth, maxWidth * _mouseHoldTime / MAX_CLICK_TIME);
 			var selectedChoiceRectColor = FlxColor.BLACK;
 			#if flash
-			_selectedChoiceRect.blend = BlendMode.INVERT;
 			selectedChoiceRectColor = FlxColor.WHITE;
+			#else
+			// BlendMode.INVERT is not supported by non-flash targets, so we use grey text in front of a black
+			// background, '_selectedChoiceRect'. We relocate the background sprite behind the selected text option.
+			if (choiceIndex != oldChoiceIndex)
+			{
+				_promptGroup.remove(_selectedChoiceRect);
+				_promptGroup.insert(_promptGroup.members.indexOf(clickedPromptRectangle) + 1, _selectedChoiceRect);
+			}
 			#end
 			FlxSpriteUtil.drawRect(_selectedChoiceRect, Std.int(clickedPromptRectangle.x + 2), Std.int(clickedPromptRectangle.y + 2), Std.int(width), Std.int(clickedPromptRectangle.height - 4), selectedChoiceRectColor);
 
 			if (_mouseHoldTime >= MAX_CLICK_TIME && _canDismiss)
 			{
-				var choiceIndex:Int = _promptRectangles.indexOf(clickedPromptRectangle);
 				dismissDialog(choiceIndex);
 			}
 		}
@@ -268,6 +278,15 @@ class Dialogger extends FlxGroup
 			_mouseHoldTime = 0;
 			_selectedChoiceRect.visible = false;
 		}
+
+		#if !flash
+		// BlendMode.INVERT is not supported by non-flash targets, so we use grey text in front of a black
+		// background. We update the text color as the player clicks different options.
+		if (clickedPromptRectangle != null && _promptTexts.length > 0)
+		{
+			_promptTexts[choiceIndex].color = _selectedChoiceRect.visible ? FlxColor.GRAY : FlxColor.BLACK;
+		}
+		#end
 	}
 
 	/**
