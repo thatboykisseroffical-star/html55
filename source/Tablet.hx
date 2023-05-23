@@ -387,6 +387,16 @@ class Tablet extends FlxGroup
 					// TODO: Need to handle non-flash targets, possibly by using PixelFilterUtils
 					#if flash
 					pokeCamera.pixels.copyPixels(FlxG.camera.buffer, new Rectangle(cameraPosition.x, cameraPosition.y, 183, 181), new Point());
+					#else
+					// This code is adapted from FlxScreenGrab.grab()
+					// https://github.com/HaxeFlixel/flixel-addons/blob/95296191b4a583d3ce1e61383f4cde63dbda729c/flixel/addons/plugin/screengrab/FlxScreenGrab.hx
+					//
+					// Unfortunately it is slightly buggy, and draws parts of the screen with the wrong colors. This is possibly
+					// due to shortcomings in OpenFL, see Flixel Addons issue #82; FlxScreenGrab doesn't match PrintScreen results
+					// https://github.com/HaxeFlixel/flixel-addons/issues/82
+					var bounds:Rectangle = new Rectangle(cameraPosition.x, cameraPosition.y, 183, 181);
+					var m:Matrix = new Matrix(1, 0, 0, 1, -bounds.x, -bounds.y);
+					pokeCamera.pixels.draw(FlxG.stage, m);
 					#end
 					pokeCamera.dirty = true;
 					pokeCameras.insert(0, pokeCamera);
