@@ -384,7 +384,6 @@ class Tablet extends FlxGroup
 					cameraPosition.x = FlxMath.bound(cameraPosition.x, sexyState._activePokeWindow._canvas.x, sexyState._activePokeWindow._canvas.x + sexyState._activePokeWindow._canvas.width - 183 - 3);
 					cameraPosition.y = FlxMath.bound(cameraPosition.y, sexyState._activePokeWindow._canvas.y, sexyState._activePokeWindow._canvas.y + sexyState._activePokeWindow._canvas.height - 181 - 3);
 
-					// TODO: Need to handle non-flash targets, possibly by using PixelFilterUtils
 					#if flash
 					pokeCamera.pixels.copyPixels(FlxG.camera.buffer, new Rectangle(cameraPosition.x, cameraPosition.y, 183, 181), new Point());
 					#else
