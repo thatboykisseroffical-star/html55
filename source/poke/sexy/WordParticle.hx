@@ -49,7 +49,7 @@ class WordParticle extends LateFadingFlxParticle
 		FlxSpriteUtil.drawRect(this, textAppearX, 0, width, height, FlxColor.BLACK, null, {blendMode:BlendMode.ERASE});
 		#else
 		var data:BitmapData = pixels.clone();
-		data.colorTransform(new Rectangle(textAppearX, 0, width, height), new ColorTransform(0,0,0,-1,0,0,0,255));
+		data.colorTransform(new Rectangle(textAppearX, 0, width, height), new ColorTransform(0,0,0,0));
 		pixels = data;
 		#end
 		super.update(elapsed);
