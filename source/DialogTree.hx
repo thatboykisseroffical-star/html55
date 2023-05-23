@@ -202,7 +202,10 @@ class DialogTree implements IFlxDestroyable
 				if (_tree[cast (choice, Int)] == null)
 				{
 					// error; dialog tree has a bad link in it
-					choices.push("(" + choice+")");
+
+					// The explicit 'Std.string()' call is a workaround for Haxe issue #11235; generated .cpp files have conversion errors, "cannot convert from 'String' to 'Float'"
+					// https://github.com/HaxeFoundation/haxe/issues/11235
+					choices.push("(" + Std.string(choice)+")");
 				}
 				else
 				{
