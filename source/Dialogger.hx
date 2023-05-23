@@ -282,9 +282,12 @@ class Dialogger extends FlxGroup
 		#if !flash
 		// BlendMode.INVERT is not supported by non-flash targets, so we use grey text in front of a black
 		// background. We update the text color as the player clicks different options.
-		if (clickedPromptRectangle != null && _promptTexts.length > 0)
+		if (clickedPromptRectangle != null)
 		{
-			_promptTexts[choiceIndex].color = _selectedChoiceRect.visible ? FlxColor.GRAY : FlxColor.BLACK;
+			if (choiceIndex < _promptTexts.length && _promptTexts[choiceIndex] != null)
+			{
+				_promptTexts[choiceIndex].color = _selectedChoiceRect.visible ? FlxColor.GRAY : FlxColor.BLACK;
+			}
 		}
 		#end
 	}
