@@ -1,7 +1,6 @@
 package;
 
-import flixel.addons.text.FlxTypeText;
-import flixel.graphics.FlxGraphic;
+import kludge.BetterFlxTypeText;
 import openfl.geom.ColorTransform;
 import openfl.geom.Point;
 import poke.abra.AbraResource;
@@ -11,6 +10,7 @@ import flash.geom.Rectangle;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.graphics.FlxGraphic;
 import flixel.group.FlxGroup;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxPoint;
@@ -52,7 +52,7 @@ class Dialogger extends FlxGroup
 	private var _character:FlxSprite;
 	private var _gloveSprite:FlxSprite;
 	public var _textRect:RoundedRectangle;
-	private var _typeText:FlxTypeText;
+	private var _typeText:BetterFlxTypeText;
 	public var _state:Dynamic;
 	private var _selectedChoiceRect:FlxSprite;
 	private var _promptGroup:FlxTypedGroup<FlxSprite>;
@@ -107,7 +107,7 @@ class Dialogger extends FlxGroup
 		_textRect.relocate(82, FlxG.height - 78, FlxG.width - 85, 75, 0xff000000, 0xeeffffff);
 		add(_textRect);
 
-		_typeText = new FlxTypeText(_textRect.x + 4, _textRect.y - 1, FlxG.width - 106 - 8, "", 20);
+		_typeText = new BetterFlxTypeText(_textRect.x + 4, _textRect.y - 1, FlxG.width - 106 - 8, "", 20);
 		_typeText.visible = false;
 		_typeText.color = FlxColor.BLACK;
 		_typeText.font = AssetPaths.hardpixel__otf;
