@@ -4149,7 +4149,10 @@ class AbraDialog
 				tree[61] = ["#abra06#Too easy? Too easy even for you? ...Really?"];
 			}
 			tree[62] = ["#abra04#So, you want something just a little harder... Hmmm.... Hmmm... Okay, I think I've got one."];
-			tree[63] = ["#abra05#Three of us find a box with " + variations[0][0] + ". How many ways can we divide the candy?"];
+
+			// The explicit 'Std.string()' call is a workaround for Haxe issue #11235; generated .cpp files have conversion errors, "cannot convert from 'String' to 'Float'"
+			// https://github.com/HaxeFoundation/haxe/issues/11235
+			tree[63] = ["#abra05#Three of us find a box with " + Std.string(variations[0][0]) + ". How many ways can we divide the candy?"];
 
 			appendQuiz(tree, [[rightAnswer, 140], [ selectedWrongAnswers[0], 100], [selectedWrongAnswers[1], 110], [selectedWrongAnswers[2], 120], [selectedWrongAnswers[3], 130]], 64, 104);
 

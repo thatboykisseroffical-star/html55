@@ -1092,28 +1092,42 @@ class GrovyleDialog
 			tree[0] = ["#grov06#So you're "];
 			if (PlayerData.gender == PlayerData.Gender.Boy)
 			{
-				tree[0][0] += "a boy";
+				// The explicit 'Std.string()' call is a workaround for Haxe issue #11235; generated .cpp files have conversion errors, "cannot convert from 'String' to 'Float'"
+				// https://github.com/HaxeFoundation/haxe/issues/11235
+				tree[0][0] = Std.string(tree[0][0]) + "a boy";
 			}
 			else if (PlayerData.gender == PlayerData.Gender.Girl)
 			{
-				tree[0][0] += "a girl";
+				// The explicit 'Std.string()' call is a workaround for Haxe issue #11235; generated .cpp files have conversion errors, "cannot convert from 'String' to 'Float'"
+				// https://github.com/HaxeFoundation/haxe/issues/11235
+				tree[0][0] = Std.string(tree[0][0]) + "a girl";
 			}
 			else
 			{
-				tree[0][0] += "someone";
+				// The explicit 'Std.string()' call is a workaround for Haxe issue #11235; generated .cpp files have conversion errors, "cannot convert from 'String' to 'Float'"
+				// https://github.com/HaxeFoundation/haxe/issues/11235
+				tree[0][0] = Std.string(tree[0][0]) + "someone";
 			}
-			tree[0][0] += "... ";
+			// The explicit 'Std.string()' call is a workaround for Haxe issue #11235; generated .cpp files have conversion errors, "cannot convert from 'String' to 'Float'"
+			// https://github.com/HaxeFoundation/haxe/issues/11235
+			tree[0][0] = Std.string(tree[0][0]) + "... ";
 			if (PlayerData.sexualPreference == PlayerData.SexualPreference.Boys)
 			{
-				tree[0][0] += "who fancies boys?";
+				// The explicit 'Std.string()' call is a workaround for Haxe issue #11235; generated .cpp files have conversion errors, "cannot convert from 'String' to 'Float'"
+				// https://github.com/HaxeFoundation/haxe/issues/11235
+				tree[0][0] = Std.string(tree[0][0]) + "who fancies boys?";
 			}
 			else if (PlayerData.sexualPreference == PlayerData.SexualPreference.Girls)
 			{
-				tree[0][0] += "who fancies girls?";
+				// The explicit 'Std.string()' call is a workaround for Haxe issue #11235; generated .cpp files have conversion errors, "cannot convert from 'String' to 'Float'"
+				// https://github.com/HaxeFoundation/haxe/issues/11235
+				tree[0][0] = Std.string(tree[0][0]) + "who fancies girls?";
 			}
 			else
 			{
-				tree[0][0] += "who's aroused by all sorts of things?";
+				// The explicit 'Std.string()' call is a workaround for Haxe issue #11235; generated .cpp files have conversion errors, "cannot convert from 'String' to 'Float'"
+				// https://github.com/HaxeFoundation/haxe/issues/11235
+				tree[0][0] = Std.string(tree[0][0]) + "who's aroused by all sorts of things?";
 			}
 			DialogTree.replace(tree, 0, "boy... who fancies boys", "boy... who fancies other boys");
 			DialogTree.replace(tree, 0, "girl... who fancies girls", "girl... who fancies other girls");
