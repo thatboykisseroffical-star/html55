@@ -442,8 +442,11 @@ class PlayerData
 	 */
 	public static function storeChatHistory()
 	{
-		chatHistory = chatHistory.concat(chatHistoryTmp);
-		chatHistory.splice(0, chatHistory.length - 2000);
+		if (chatHistoryTmp != null && chatHistoryTmp.length > 0)
+		{
+			chatHistory = chatHistory.concat(chatHistoryTmp);
+			chatHistory.splice(0, chatHistory.length - 2000);
+		}
 		chatHistoryTmp = null;
 	}
 
