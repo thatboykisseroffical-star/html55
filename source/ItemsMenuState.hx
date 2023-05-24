@@ -179,7 +179,7 @@ class ItemsMenuState extends FlxState
 
 		_menuItems = new FlxGroup();
 		_menuSprite = new FlxSprite(0, 0);
-		_menuSprite.makeGraphic(FlxG.width, FlxG.height, FlxColor.TRANSPARENT);
+		_menuSprite.makeGraphic(FlxG.width, FlxG.height, FlxColor.TRANSPARENT, true);
 		paintMenuSprite();
 		_menuItems.add(_menuSprite);
 

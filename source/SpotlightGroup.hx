@@ -22,7 +22,7 @@ class SpotlightGroup extends FlxSprite
 	public function new()
 	{
 		super(0, 0);
-		makeGraphic(FlxG.width, FlxG.height, 0xFF000022);
+		makeGraphic(FlxG.width, FlxG.height, 0xFF000022, true);
 		blend = BlendMode.MULTIPLY;
 	}
 

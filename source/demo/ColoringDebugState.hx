@@ -51,7 +51,7 @@ class ColoringDebugState extends FlxState
 		sprite.y = Math.round(spritePoint.y / FIDELITY) * FIDELITY;
 
 		overlaySprite = new FlxSprite(0, 0);
-		overlaySprite.makeGraphic(sprite.pixels.width, sprite.pixels.height, FlxColor.TRANSPARENT);
+		overlaySprite.makeGraphic(sprite.pixels.width, sprite.pixels.height, FlxColor.TRANSPARENT, true);
 		overlaySprite.scale.x = FIDELITY;
 		overlaySprite.scale.y = FIDELITY;
 		overlaySprite.updateHitbox();
