@@ -28,7 +28,7 @@ class Rope extends FlxSprite
 		this.tugRow = tugRow;
 		bounds = new Rectangle(0, 0, 768, 18);
 		offset.y = 3;
-		makeGraphic(Std.int(bounds.width), Std.int(bounds.height), FlxColor.TRANSPARENT);
+		makeGraphic(Std.int(bounds.width), Std.int(bounds.height), FlxColor.TRANSPARENT, true);
 	}
 
 	override public function draw():Void

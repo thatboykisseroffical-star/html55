@@ -87,7 +87,7 @@ class OptionsMenuState extends FlxState
 		_initialTimePlayed = PlayerData.timePlayed;
 
 		_screenSprite = new FlxSprite(0, 0);
-		_screenSprite.makeGraphic(FlxG.width, FlxG.height);
+		_screenSprite.makeGraphic(FlxG.width, FlxG.height, FlxColor.WHITE, true);
 		add(_screenSprite);
 		paintScreenSprite();
 

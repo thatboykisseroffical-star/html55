@@ -120,7 +120,7 @@ class Dialogger extends FlxGroup
 
 		_selectedChoiceRect = new FlxSprite();
 		_selectedChoiceRect.visible = false;
-		_selectedChoiceRect.makeGraphic(FlxG.width, FlxG.height);
+		_selectedChoiceRect.makeGraphic(FlxG.width, FlxG.height, FlxColor.WHITE, true);
 		#if flash
 		_selectedChoiceRect.blend = BlendMode.INVERT;
 		add(_selectedChoiceRect);

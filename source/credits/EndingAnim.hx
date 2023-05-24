@@ -101,7 +101,7 @@ class EndingAnim extends FlxState
 		if (screenshot == null)
 		{
 			screenshot = new FlxSprite();
-			screenshot.makeGraphic(FlxG.width, FlxG.height, FlxColor.TRANSPARENT);
+			screenshot.makeGraphic(FlxG.width, FlxG.height, FlxColor.TRANSPARENT, true);
 		}
 		else {
 			var maskSprite:FlxSprite = new FlxSprite(0, 0);
