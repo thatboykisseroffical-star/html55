@@ -166,7 +166,7 @@ class Scale extends FlxGroup
 			var text:FlxText = new FlxText(0, 0, 40, Std.string(_puzzle._weights[i]), 22);
 			text.alignment = "center";
 			text.color = ItemsMenuState.DARK_BLUE;
-			text.font = MmTools.just_sayin_font;
+			text.font = AssetPaths.just_sayin__otf;
 			_notes[i].stamp(text, 0, 10);
 			var tape:FlxSprite = new FlxSprite(0, 0);
 			tape.loadGraphic(AssetPaths.scale_tape__png, true, 20, 20);
