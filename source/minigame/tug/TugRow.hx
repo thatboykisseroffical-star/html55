@@ -146,28 +146,28 @@ class TugRow implements IFlxDestroyable
 			// big sign
 			text.setFormat(AssetPaths.just_sayin__otf, 22);
 			text.color = 0xfffaf7f0;
-			text.y = 10;
+			text.y = 7;
 		}
 		else if (signStamp.animation.frameIndex == 2)
 		{
 			// medium sign
 			text.setFormat(AssetPaths.just_sayin__otf, 19);
 			text.color = 0xffd85e5a;
-			text.y = 16;
+			text.y = 14;
 		}
 		else if (signStamp.animation.frameIndex == 1)
 		{
 			// small sign
 			text.setFormat(AssetPaths.just_sayin__otf, 16);
 			text.color = 0xff7171a8;
-			text.y = 22;
+			text.y = 20;
 		}
 		else if (signStamp.animation.frameIndex == 0)
 		{
 			// tiny sign
 			text.setFormat(AssetPaths.just_sayin__otf, 13);
 			text.color = 0xff7171a8;
-			text.y = 28;
+			text.y = 26;
 		}
 
 		sign.stamp(text, Std.int(sign.offset.x), Std.int(text.y));

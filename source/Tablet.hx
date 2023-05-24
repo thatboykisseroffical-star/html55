@@ -277,11 +277,11 @@ class Tablet extends FlxGroup
 			pokeCameras.push(pokeCamera);
 		}
 
-		thumbText = new FlxText(30, 208, 195, commaSeparatedNumber(thumbCount), 30);
+		thumbText = new FlxText(30, 205, 195, commaSeparatedNumber(thumbCount), 30);
 		thumbText.color = 0xff6b6174;
 		thumbText.font = AssetPaths.just_sayin__otf;
 
-		visitorText = new FlxText(130, 208, 195, commaSeparatedNumber(visitorCount), 30);
+		visitorText = new FlxText(130, 205, 195, commaSeparatedNumber(visitorCount), 30);
 		visitorText.color = 0xff6b6174;
 		visitorText.bold = true;
 		visitorText.font = AssetPaths.just_sayin__otf;

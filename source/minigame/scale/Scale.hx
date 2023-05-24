@@ -167,7 +167,7 @@ class Scale extends FlxGroup
 			text.alignment = "center";
 			text.color = ItemsMenuState.DARK_BLUE;
 			text.font = AssetPaths.just_sayin__otf;
-			_notes[i].stamp(text, 0, 10);
+			_notes[i].stamp(text, 0, 7);
 			var tape:FlxSprite = new FlxSprite(0, 0);
 			tape.loadGraphic(AssetPaths.scale_tape__png, true, 20, 20);
 			tape.animation.frameIndex = FlxG.random.int(0, noteSprite.animation.numFrames - 1);
