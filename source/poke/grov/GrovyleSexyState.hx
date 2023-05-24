@@ -559,7 +559,7 @@ class GrovyleSexyState extends SexyState<GrovyleWindow>
 					// perfect deduction; immediate orgasm
 					_remainingOrgasms++;
 					generateCumshots();
-					_activePokeWindow.setArousal(_cumShots[0].arousal);						
+					refreshArousalFromCumshots();
 					_newHeadTimer = FlxG.random.float(2, 4) * _headTimerFactor;
 				} else {
 					maybeEmitWords(pleasureWords);
