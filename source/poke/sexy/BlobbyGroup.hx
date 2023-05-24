@@ -76,12 +76,25 @@ class BlobbyGroup extends FlxGroup
 	private function _postProcess():Void
 	{
 		_targetBuffer.graphic.bitmap.fillRect(_targetBuffer.graphic.bitmap.rect, FlxColor.TRANSPARENT);
+		
 		_targetBuffer.graphic.bitmap.threshold(_sourceBuffer.graphic.bitmap, _sourceBuffer.graphic.bitmap.rect, _zeroPoint, '>', _blobThreshold << 24, _blobOpacity << 24 | _blobColour, 0xFF000000, false);
+
+		#if hl
+		// HashLink's threshold() function is broken, and draws translucent bright colors as black. We manually
+		// recolor them using a ColorTransform.
+		var redOffset:Int = (_blobColour & 0x00FF0000) >> 16;
+		var greenOffset:Int = (_blobColour & 0x0000FF00) >> 8;
+		var blueOffset:Int = (_blobColour & 0x000000FF) >> 0;
+		var hashlinkColorTransform: ColorTransform = new ColorTransform(0, 0, 0, 1, redOffset, greenOffset, blueOffset);
+		
+		_targetBuffer.graphic.bitmap.colorTransform(_targetBuffer.graphic.bitmap.rect, hashlinkColorTransform);
+		#end
 
 		#if flash
 		// Flash premultiplies the alpha, and supports the 'subtract'
 		// BlendMode. We render highlights by rendering the blob shapes, and
 		// erasing the unhighlighted sections with the 'Subtract' blend mode.
+		
 		_highlightBuffer.graphic.bitmap.copyPixels(_sourceBuffer.graphic.bitmap, _highlightBuffer.graphic.bitmap.rect, _zeroPoint);
 		_highlightBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap, _highlightMatrix, null, BlendMode.SUBTRACT);
 		_targetBuffer.graphic.bitmap.threshold(_highlightBuffer.graphic.bitmap, _sourceBuffer.graphic.bitmap.rect, _zeroPoint, '>', _shineThreshold << 16, _shineOpacity << 24 | _shineColour, 0x00FF0000, false);
@@ -90,6 +103,7 @@ class BlobbyGroup extends FlxGroup
 		// 'subtract' BlendMode. We render highlights by rendering the blob
 		// shapes against a black background, drawing over the unhighlighted
 		// sections with black.
+		
 		_highlightBuffer.graphic.bitmap.fillRect(_highlightBuffer.graphic.bitmap.rect, FlxColor.BLACK);
 		_highlightBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap, null, new ColorTransform(1, 1, 1, 0.75));
 		_highlightBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap, _highlightMatrix, new ColorTransform(0, 0, 0, 2));
