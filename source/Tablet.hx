@@ -279,12 +279,12 @@ class Tablet extends FlxGroup
 
 		thumbText = new FlxText(30, 208, 195, commaSeparatedNumber(thumbCount), 30);
 		thumbText.color = 0xff6b6174;
-		thumbText.font = MmTools.just_sayin_font;
+		thumbText.font = AssetPaths.just_sayin__otf;
 
 		visitorText = new FlxText(130, 208, 195, commaSeparatedNumber(visitorCount), 30);
 		visitorText.color = 0xff6b6174;
 		visitorText.bold = true;
-		visitorText.font = MmTools.just_sayin_font;
+		visitorText.font = AssetPaths.just_sayin__otf;
 
 		add(tabletShadow);
 		add(tabletScreen);

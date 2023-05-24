@@ -6,12 +6,6 @@ import haxe.Timer;
  */
 class MmTools
 {
-	#if html5
-	public static var just_sayin_font:String = AssetPaths.just_sayin__woff;
-	#else
-	public static var just_sayin_font:String = AssetPaths.just_sayin__ttf;
-	#end
-
 	/**
 	 * Returns the system time in milliseconds.
 	 *

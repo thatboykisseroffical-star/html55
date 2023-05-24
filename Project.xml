@@ -34,8 +34,7 @@
 
 	<!-- _________________________________ Assets _______________________________ -->
 
-	<assets path="assets/fonts" include="*.otf|*.woff" if="html5"/>
-	<assets path="assets/fonts" include="*.otf|*.ttf" unless="html5"/>
+	<assets path="assets/fonts" include="*.otf"/>
 	<assets path="assets/images" include="*.png" />
 	<assets path="assets/sounds" include="*.wav|*.mp3" if="flash"/>
 	<assets path="assets/sounds" include="*.wav|*.ogg" unless="flash"/>
