@@ -812,7 +812,7 @@ class LucarioSexyState extends SexyState<LucarioSexyWindow>
 						bonusDildoOrgasmTimer = -1;
 						_remainingOrgasms++;
 						generateCumshots();
-						_activePokeWindow.setArousal(_cumShots[0].arousal);
+						refreshArousalFromCumshots();
 						_newHeadTimer = FlxG.random.float(2, 4) * _headTimerFactor;
 					}
 				}

@@ -2043,14 +2043,14 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 			}
 			if (isEjaculating())
 			{
-				_activePokeWindow.setArousal(_cumShots[0].arousal);
+				refreshArousalFromCumshots();
 			}
 			else if (_gameState == 200)
 			{
 				if (!_isOrgasming && shouldOrgasm())
 				{
 					generateCumshots();
-					_activePokeWindow.setArousal(_cumShots[0].arousal);
+					refreshArousalFromCumshots();
 				}
 				else if (_heartBank.getDickPercent() > _cumThreshold)
 				{
@@ -2067,6 +2067,14 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 			{
 				_activePokeWindow.nudgeArousal(0);
 			}
+		}
+	}
+
+	public function refreshArousalFromCumshots():Void
+	{
+		if (_cumShots.length > 0)
+		{
+			_activePokeWindow.setArousal(_cumShots[0].arousal);
 		}
 	}
 
