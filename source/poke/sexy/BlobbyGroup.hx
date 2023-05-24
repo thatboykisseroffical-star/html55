@@ -79,7 +79,7 @@ class BlobbyGroup extends FlxGroup
 		
 		_targetBuffer.graphic.bitmap.threshold(_sourceBuffer.graphic.bitmap, _sourceBuffer.graphic.bitmap.rect, _zeroPoint, '>', _blobThreshold << 24, _blobOpacity << 24 | _blobColour, 0xFF000000, false);
 
-		#if hl
+		#if (hl || windows)
 		// HashLink's threshold() function is broken, and draws translucent bright colors as black. We manually
 		// recolor them using a ColorTransform.
 		var redOffset:Int = (_blobColour & 0x00FF0000) >> 16;
