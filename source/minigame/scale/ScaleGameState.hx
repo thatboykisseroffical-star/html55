@@ -1114,9 +1114,9 @@ class ScaleGameState extends MinigameState
 	function updateClock(elapsed:Float):Void
 	{
 		if (Std.int(_scalePlayerStatus._remainingPuzzleTime) != Std.int(_scalePlayerStatus._remainingPuzzleTime + elapsed) ||
-		_scalePlayerStatus._remainingPuzzleTime < _clockToggle[_clockToggle.length - 1])
+			(_clockToggle.length >= 1 && _scalePlayerStatus._remainingPuzzleTime < _clockToggle[_clockToggle.length - 1]))
 		{
-			if (_scalePlayerStatus._remainingPuzzleTime < _clockToggle[_clockToggle.length - 1])
+			if (_clockToggle.length >= 1 && _scalePlayerStatus._remainingPuzzleTime < _clockToggle[_clockToggle.length - 1])
 			{
 				_clockToggle.pop();
 				SoundStackingFix.play(_clockToggle.length % 2 == 1 ? AssetPaths.beep_0065__wav : AssetPaths.beep_hi_0065__wav);
