@@ -53,10 +53,12 @@ class Hologram extends FlxSprite
 			disruption1 = FlxG.random.float(disruption0 - 5, disruption0 + 5);
 		}
 		#if flash
-		// for Flash targets, we erase a diagonal line through the hologram
+		// For Flash targets, we erase a diagonal line through the hologram
 		FlxSpriteUtil.drawLine(this, 0, disruption0, pixels.width, disruption1, { color:FlxColor.WHITE, thickness: 3 }, { blendMode: BlendMode.ERASE } );
 		#else
-		// for non-Flash targets, BlendMode.ERASE is not supported so we erase two rows from the hologram
+		// For non-Flash targets, BlendMode.ERASE is not supported so we erase two rows from the
+		// hologram. Our usual approach of erasing the drawn lines with a threshold() call doesn't
+		// work because the lines leave anti-aliased edges around them.
 		pixels.fillRect(new Rectangle(0, disruption0, pixels.width, 2), FlxColor.TRANSPARENT);
 		pixels.fillRect(new Rectangle(0, disruption1, pixels.width, 1), FlxColor.TRANSPARENT);
 		#end

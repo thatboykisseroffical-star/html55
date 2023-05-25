@@ -13,6 +13,7 @@ import flixel.util.FlxSpriteUtil;
 import kludge.FlxSoundKludge;
 import kludge.LateFadingFlxParticle;
 import openfl.display.BlendMode;
+import openfl.geom.Point;
 import poke.magn.MagnWindow;
 import poke.sexy.RandomPolygonPoint;
 import poke.sexy.SexyState;
@@ -346,7 +347,7 @@ class VibeInterface extends FlxSpriteGroup
 			poly.push(FlxPoint.get(254, 188 - 1));
 			poly.push(FlxPoint.get(49, 250 - 1));
 			poly.push(FlxPoint.get(0, 200 - 1));
-			FlxSpriteUtil.drawPolygon(canvas, poly, FlxColor.WHITE, null, {blendMode:BlendMode.ERASE});
+			FlxSpriteUtil.drawPolygon(canvas, poly, 0xFF80684E, null, {blendMode:BlendMode.ERASE});
 			FlxDestroyUtil.putArray(poly);
 		}
 		{
@@ -357,9 +358,15 @@ class VibeInterface extends FlxSpriteGroup
 			poly.push(FlxPoint.get(254, 42 + 1));
 			poly.push(FlxPoint.get(200, 0 + 1));
 			poly.push(FlxPoint.get(0, 100 + 1));
-			FlxSpriteUtil.drawPolygon(canvas, poly, FlxColor.WHITE, null, {blendMode:BlendMode.ERASE});
+			FlxSpriteUtil.drawPolygon(canvas, poly, 0xFF80684E, null, {blendMode:BlendMode.ERASE});
 			FlxDestroyUtil.putArray(poly);
 		}
+
+		#if !flash
+		// BlendMode.ERASE is not supported by non-flash targets, so we manually erase the pixels
+		// with a threshold() call
+		canvas.pixels.threshold(canvas.pixels, canvas.pixels.rect, new Point(0, 0), "==", 0xFF80684E);
+		#end
 
 		// draw border...
 		{

@@ -1141,9 +1141,16 @@ class RhydonBeadWindow extends PokeWindow
 			poly.push(FlxPoint.get(_canvas.width, CORNER_SIZE));
 			poly.push(FlxPoint.get(_canvas.width, 0));
 			poly.push(FlxPoint.get(_canvas.width - CORNER_SIZE, 0));
-			FlxSpriteUtil.drawPolygon(_canvas, poly, FlxColor.WHITE, null, {blendMode:BlendMode.ERASE});
+			FlxSpriteUtil.drawPolygon(_canvas, poly, 0xFF80684E, null, {blendMode:BlendMode.ERASE});
 			FlxDestroyUtil.putArray(poly);
 		}
+
+		#if !flash
+		// BlendMode.ERASE is not supported by non-flash targets, so we manually erase the pixels
+		// with a threshold() call
+		_canvas.pixels.threshold(_canvas.pixels, _canvas.pixels.rect, new Point(0, 0), "==", 0xFF80684E);
+		#end
+
 		{
 			// draw pentagon around character frame
 			var poly:Array<FlxPoint> = [];
