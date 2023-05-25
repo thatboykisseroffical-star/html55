@@ -386,9 +386,15 @@ class DildoInterface extends FlxSpriteGroup
 			poly.push(FlxPoint.get(92, 130));
 			poly.push(FlxPoint.get(0, 308));
 			poly.push(FlxPoint.get(0, 0));
-			FlxSpriteUtil.drawPolygon(canvas, poly, FlxColor.WHITE, null, {blendMode:BlendMode.ERASE});
+			FlxSpriteUtil.drawPolygon(canvas, poly, 0xFF80684E, null, {blendMode:BlendMode.ERASE});
 			FlxDestroyUtil.putArray(poly);
 		}
+
+		#if !flash
+		// BlendMode.ERASE is not supported by non-flash targets, so we manually erase the pixels
+		// with a threshold() call
+		canvas.pixels.threshold(canvas.pixels, canvas.pixels.rect, new Point(0, 0), "==", 0xFF80684E);
+		#end
 
 		// draw border...
 		{

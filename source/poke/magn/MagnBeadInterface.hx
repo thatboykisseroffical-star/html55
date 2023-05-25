@@ -7,6 +7,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxDestroyUtil;
 import flixel.util.FlxSpriteUtil;
 import openfl.display.BlendMode;
+import openfl.geom.Point;
 import poke.sexy.SexyState;
 
 /**
@@ -120,7 +121,7 @@ class MagnBeadInterface extends FlxSpriteGroup
 			poly.push(FlxPoint.get(254, 243));
 			poly.push(FlxPoint.get(254 - 60 - 1, 243));
 			poly.push(FlxPoint.get(254, 243 - 32 - 1));
-			FlxSpriteUtil.drawPolygon(canvas, poly, FlxColor.WHITE, null, {blendMode:BlendMode.ERASE});
+			FlxSpriteUtil.drawPolygon(canvas, poly, 0xFF80684E, null, {blendMode:BlendMode.ERASE});
 			FlxDestroyUtil.putArray(poly);
 		}
 		{
@@ -128,9 +129,15 @@ class MagnBeadInterface extends FlxSpriteGroup
 			poly.push(FlxPoint.get(0, 0));
 			poly.push(FlxPoint.get(2 + 60, 0));
 			poly.push(FlxPoint.get(0, 32 + 2));
-			FlxSpriteUtil.drawPolygon(canvas, poly, FlxColor.WHITE, null, {blendMode:BlendMode.ERASE});
+			FlxSpriteUtil.drawPolygon(canvas, poly, 0xFF80684E, null, {blendMode:BlendMode.ERASE});
 			FlxDestroyUtil.putArray(poly);
 		}
+
+		#if !flash
+		// BlendMode.ERASE is not supported by non-flash targets, so we manually erase the pixels
+		// with a threshold() call
+		canvas.pixels.threshold(canvas.pixels, canvas.pixels.rect, new Point(0, 0), "==", 0xFF80684E);
+		#end
 
 		// draw border...
 		{

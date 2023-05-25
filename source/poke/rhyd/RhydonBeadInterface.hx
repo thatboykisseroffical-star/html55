@@ -11,6 +11,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxSpriteUtil;
 import openfl.display.BlendMode;
+import openfl.geom.Point;
 import openfl.geom.Rectangle;
 import poke.sexy.SexyState;
 
@@ -427,7 +428,7 @@ class RhydonBeadInterface extends FlxSpriteGroup
 			poly.push(FlxPoint.get(253, 426));
 			poly.push(FlxPoint.get(253, 188));
 			poly.push(FlxPoint.get(171, 426));
-			FlxSpriteUtil.drawPolygon(_canvas, poly, FlxColor.WHITE, null, {blendMode:BlendMode.ERASE});
+			FlxSpriteUtil.drawPolygon(_canvas, poly, 0xFF80684E, null, {blendMode:BlendMode.ERASE});
 			FlxDestroyUtil.putArray(poly);
 		}
 		{
@@ -435,9 +436,15 @@ class RhydonBeadInterface extends FlxSpriteGroup
 			poly.push(FlxPoint.get(0, 0));
 			poly.push(FlxPoint.get(153, 0));
 			poly.push(FlxPoint.get(0, 269));
-			FlxSpriteUtil.drawPolygon(_canvas, poly, FlxColor.WHITE, null, {blendMode:BlendMode.ERASE});
+			FlxSpriteUtil.drawPolygon(_canvas, poly, 0xFF80684E, null, {blendMode:BlendMode.ERASE});
 			FlxDestroyUtil.putArray(poly);
 		}
+
+		#if !flash
+		// BlendMode.ERASE is not supported by non-flash targets, so we manually erase the pixels
+		// with a threshold() call
+		_canvas.pixels.threshold(_canvas.pixels, _canvas.pixels.rect, new Point(0, 0), "==", 0xFF80684E);
+		#end
 
 		// draw border...
 		{

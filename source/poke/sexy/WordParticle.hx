@@ -10,6 +10,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxSpriteUtil;
 import kludge.LateFadingFlxParticle;
 import openfl.display.BlendMode;
+import openfl.geom.Point;
 
 /**
  * WordParticle represents a single row of text which appears during the sex
@@ -45,13 +46,14 @@ class WordParticle extends LateFadingFlxParticle
 			textAppearX += chunkSize;
 		}
 		stamp(wordGraphics);
-		#if flash
-		FlxSpriteUtil.drawRect(this, textAppearX, 0, width, height, FlxColor.BLACK, null, {blendMode:BlendMode.ERASE});
-		#else
-		var data:BitmapData = pixels.clone();
-		data.colorTransform(new Rectangle(textAppearX, 0, width, height), new ColorTransform(0,0,0,0));
-		pixels = data;
+		FlxSpriteUtil.drawRect(this, textAppearX, 0, width, height, 0xFF80684E, null, {blendMode:BlendMode.ERASE});
+
+		#if !flash
+		// BlendMode.ERASE is not supported by non-flash targets, so we manually erase the pixels
+		// with a threshold() call
+		pixels.threshold(pixels, pixels.rect, new Point(0, 0), "==", 0xFF80684E);
 		#end
+
 		super.update(elapsed);
 	}
 
