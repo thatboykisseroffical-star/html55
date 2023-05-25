@@ -396,6 +396,18 @@ class MainMenuState extends FlxTransitionableState
 		#end
 		if (PlayerData.cheatsEnabled)
 		{
+			/*
+			 * Cheats in the form 'PPLSS'
+			 *
+			 *   PP: A 2-character pokemon prefix, such as 'ab' for abra or 'bu' for buizel
+			 *   L: The desired level; level 0-2 correspond to the sequential puzzles, and level 3
+			 *     is the sex scene
+			 *   SS: A 2-digit chat index; low values like 00 or 01 are fixed chats which happen
+			 *     once. High values like 78 or 81 are random chats which happen frequently.
+			 *
+			 * GR200: Skip to Grovyle's third puzzle, and use their first fixed chat sequence
+			 * SM399: Skip to Smeargle's sex scene, use their current dialog
+			 */
 			if (fiveCode.substring(0, 2) == "AB"
 					|| fiveCode.substring(0, 2) == "BU"
 					|| fiveCode.substring(0, 2) == "CH"
@@ -646,6 +658,8 @@ class MainMenuState extends FlxTransitionableState
 					var itemIndex:Int = ItemDatabase._warehouseItemIndexes.splice(0, 1)[0];
 					ItemDatabase._playerItemIndexes.push(itemIndex);
 				}
+				// open enough mystery boxes to grant elekid vibrator
+				ItemDatabase._mysteryBoxStatus = Std.int(Math.max(ItemDatabase._mysteryBoxStatus, 25));
 				for (itemType in ItemDatabase._itemTypes)
 				{
 					if (!ItemDatabase.playerHasItem(itemType.index))

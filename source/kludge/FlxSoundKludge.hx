@@ -13,10 +13,12 @@ import openfl.media.Sound;
 import openfl.media.SoundChannel;
 
 /**
- * Workaround for seamless sound looping.
+ * Workaround for seamless sound looping in Flash.
  *
  * The built in FlxSound class can not loop sound seamlessly, it has a
- * noticable pause on each loop.
+ * noticable pause on each loop. We can work around this for Flash with a
+ * custom class, although there is still an unavoidable pause for HTML5 and
+ * Windows targets.
  */
 class FlxSoundKludge implements IFlxDestroyable
 {
