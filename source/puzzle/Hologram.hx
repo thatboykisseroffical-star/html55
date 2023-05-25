@@ -1,5 +1,7 @@
 package puzzle;
 
+import openfl.geom.Rectangle;
+import openfl.geom.ColorTransform;
 import critter.Critter;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -50,8 +52,14 @@ class Hologram extends FlxSprite
 			}
 			disruption1 = FlxG.random.float(disruption0 - 5, disruption0 + 5);
 		}
-		// Erase a little stripe of the hologram to make it look more hologrammy
+		#if flash
+		// for Flash targets, we erase a diagonal line through the hologram
 		FlxSpriteUtil.drawLine(this, 0, disruption0, pixels.width, disruption1, { color:FlxColor.WHITE, thickness: 3 }, { blendMode: BlendMode.ERASE } );
+		#else
+		// for non-Flash targets, BlendMode.ERASE is not supported so we erase two rows from the hologram
+		pixels.fillRect(new Rectangle(0, disruption0, pixels.width, 2), FlxColor.TRANSPARENT);
+		pixels.fillRect(new Rectangle(0, disruption1, pixels.width, 1), FlxColor.TRANSPARENT);
+		#end
 	}
 	
 	override public function destroy():Void {
