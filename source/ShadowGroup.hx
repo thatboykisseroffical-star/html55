@@ -11,7 +11,7 @@ import openfl.display.BitmapData;
 /**
  * A group of shadows which track different objects around on the screen
  */
-class ShadowGroup extends FlxTypedGroup<Shadow>
+class ShadowGroup extends FlxTypedGroup<Shadow> implements CustomDrawnFlxGroup
 {
 	// Buffer which this group is rendered to, prior to rendering it to the camera
 	private var _groupBuffer:FlxSprite;
@@ -61,6 +61,11 @@ class ShadowGroup extends FlxTypedGroup<Shadow>
 
 	override public function draw():Void
 	{
+		customDrawToBuffer().draw();
+	}
+
+	public function customDrawToBuffer():FlxSprite
+	{
 		// clear the groupBuffer
 		FlxSpriteUtil.fill(_groupBuffer, FlxColor.TRANSPARENT);
 
@@ -83,8 +88,7 @@ class ShadowGroup extends FlxTypedGroup<Shadow>
 		_groupBuffer.graphic.bitmap.colorTransform(_groupBuffer.graphic.bitmap.rect, new ColorTransform(1, 1, 1, SHADOW_ALPHA));
 		_groupBuffer.dirty = true;
 
-		// draw groupBuffer to camera
-		_groupBuffer.draw();
+		return _groupBuffer;
 	}
 
 	override public function destroy():Void
