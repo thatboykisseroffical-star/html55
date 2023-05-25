@@ -373,7 +373,14 @@ class LevelIntroDialog
 			if (chats.length > 0)
 			{
 				var index1:Int = pseudoRandom[playerChats[0] - fixedChats.length + PlayerData.level] % chats.length;
+				#if hl
+				// workaround for Haxe #10628; HashLink throws a runtime error 'Missing argument:
+				// 3 expected but 2 passed' if you call 'indexOf' without an explicit cast
+				// https://github.com/HaxeFoundation/haxe/issues/10628
+				var chatHistoryStr:String = prefix + "." + chatType + "." + index0 + "." + cast(randomChats[index0], Array<Dynamic>).indexOf(chats[index1]);
+				#else
 				var chatHistoryStr:String = prefix + "." + chatType + "." + index0 + "." + randomChats[index0].indexOf(chats[index1]);
+				#end
 				PlayerData.appendChatHistory(chatHistoryStr);
 				chat = chats[index1];
 			}
