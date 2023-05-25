@@ -17,6 +17,7 @@ class VibeSfx implements IFlxDestroyable
 
 	public function new()
 	{
+		#if flash
 		sounds = [
 					 new FlxSoundKludge(AssetPaths.vibe0__wav, 0.300),
 					 new FlxSoundKludge(AssetPaths.vibe1__wav, 0.227),
@@ -24,6 +25,17 @@ class VibeSfx implements IFlxDestroyable
 					 new FlxSoundKludge(AssetPaths.vibe3__wav, 0.132),
 					 new FlxSoundKludge(AssetPaths.vibe4__wav, 0.100)
 				 ];
+		#else
+		// non-flash targets do not support seamless looping of wavs, so we use longer samples
+		// which will loop less frequently
+		sounds = [
+			new FlxSoundKludge(AssetPaths.vibe0_long__ogg, 0.300),
+			new FlxSoundKludge(AssetPaths.vibe1_long__ogg, 0.227),
+			new FlxSoundKludge(AssetPaths.vibe2_long__ogg, 0.173),
+			new FlxSoundKludge(AssetPaths.vibe3_long__ogg, 0.132),
+			new FlxSoundKludge(AssetPaths.vibe4_long__ogg, 0.100)
+		];
+		#end
 	}
 
 	/**
