@@ -813,6 +813,10 @@ class RhydonBeadWindow extends PokeWindow
 
 	private function drawBeadLine(targetSprite:FlxSprite, x0:Float, y0:Float, x1:Float, y1:Float)
 	{
+		if (FlxMath.vectorLength(x1 - x0, y1 - y0) < 1.0) {
+			return;
+		}
+
 		var slope:FlxPoint = FlxPoint.get(x1 - x0, y1 - y0);
 		slope.length = LINE_THICKNESS / 2;
 
