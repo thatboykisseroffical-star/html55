@@ -821,6 +821,10 @@ class AbraBeadWindow extends PokeWindow
 
 	private function drawBeadLine(x0:Float, y0:Float, x1:Float, y1:Float):Void
 	{
+		if (FlxMath.vectorLength(x1 - x0, y1 - y0) < 1.0) {
+			return;
+		}
+
 		FlxSpriteUtil.drawLine(_beads, x0, y0, x1, y1, {color:lineColor, thickness:beadStringThickness});
 		if (greyBeads)
 		{
