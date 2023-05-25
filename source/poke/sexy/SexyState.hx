@@ -18,6 +18,7 @@ import flixel.tweens.FlxTween;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import flixel.util.FlxDestroyUtil;
+import haxe.Timer;
 import kludge.AssetKludge;
 import kludge.FlxFilterFramesKludge;
 import kludge.FlxSoundKludge;
@@ -491,6 +492,14 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 		_pokeWindow.resize(248, 349);
 		_backButton.visible = false;
 		_dialogTree = new DialogTree(_dialogger, tree, dialogTreeCallback);
+
+		#if html5
+		// on HTML5 the dialog panel shows the previously displayed dialog for a few frames, so
+		// we don't show it right away
+		_dialogger.visible = false;
+		Timer.delay(() -> _dialogger.visible = true, 0);
+		#end
+
 		_dialogTree.go();
 	}
 
