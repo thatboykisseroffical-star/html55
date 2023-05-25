@@ -17,7 +17,7 @@ import openfl.geom.Rectangle;
  * Uses a threshold filter to create a blobby effect. Used for rendering
  * sexual fluids and sweat
  */
-class BlobbyGroup extends FlxGroup
+class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 {
 	private var _zeroPoint:Point;
 
@@ -113,6 +113,16 @@ class BlobbyGroup extends FlxGroup
 
 	override public function draw():Void
 	{
+		var customDrawnBuffer:FlxSprite = customDrawToBuffer();
+		#if flash
+		FlxG.camera.buffer.copyPixels(customDrawnBuffer.graphic.bitmap, _clipRect, _clipRect.topLeft, null, null, true);
+		#else
+		customDrawnBuffer.draw();
+		#end
+	}
+
+	public function customDrawToBuffer():FlxSprite
+	{
 		#if flash
 		// Swap the camera to a different screen buffer
 		_swapCameraBuffer();
@@ -134,12 +144,7 @@ class BlobbyGroup extends FlxGroup
 		
 		_postProcess();
 
-		// draw _targetBuffer to camera
-		#if flash
-		FlxG.camera.buffer.copyPixels(_targetBuffer.graphic.bitmap, _clipRect, _clipRect.topLeft, null, null, true);
-		#else
-		_targetBuffer.draw();
-		#end
+		return _targetBuffer;
 	}
 
 	override public function destroy():Void

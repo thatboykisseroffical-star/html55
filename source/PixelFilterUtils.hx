@@ -47,6 +47,12 @@ class PixelFilterUtils
 					spriteItem = cast item;
 					fastStampToBuffer(buffer, spriteItem);
 				}
+				else if (Std.isOfType(item, CustomDrawnFlxGroup))
+				{
+					var customDrawnGroupItem:CustomDrawnFlxGroup = cast item;
+					var spriteItem = customDrawnGroupItem.customDrawToBuffer();
+					fastStampToBuffer(buffer, spriteItem);
+				}
 				else if (Std.isOfType(item, FlxTypedGroup))
 				{
 					groupItem = cast item;

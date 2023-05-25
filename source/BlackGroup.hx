@@ -11,7 +11,7 @@ import openfl.geom.ColorTransform;
  * An FlxGroup extension which renders all of its children, but masks them to
  * be black. Useful for shadowy effects, or covering things up
  */
-class BlackGroup extends FlxGroup
+class BlackGroup extends FlxGroup implements CustomDrawnFlxGroup
 {
 	// Buffer which this group is rendered to, prior to rendering it to the camera
 	private var _groupBuffer:FlxSprite;
@@ -30,6 +30,11 @@ class BlackGroup extends FlxGroup
 
 	override public function draw():Void
 	{
+		customDrawToBuffer().draw();
+	}
+
+	public function customDrawToBuffer():FlxSprite
+	{
 		FlxSpriteUtil.fill(_groupBuffer, FlxColor.TRANSPARENT);
 
 		#if flash
@@ -43,7 +48,6 @@ class BlackGroup extends FlxGroup
 		_groupBuffer.graphic.bitmap.colorTransform(_groupBuffer.graphic.bitmap.rect, new ColorTransform(1 - _blackness, 1 - _blackness, 1 - _blackness));
 		_groupBuffer.dirty = true;
 
-		// draw groupBuffer to camera
-		_groupBuffer.draw();
+		return _groupBuffer;
 	}
 }

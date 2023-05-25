@@ -13,7 +13,7 @@ import openfl.geom.ColorTransform;
  * An FlxGroup extension which renders all of its children, but masks them to
  * be white. Useful for glowy/blinky effects
  */
-class WhiteGroup extends FlxGroup
+class WhiteGroup extends FlxGroup implements CustomDrawnFlxGroup
 {
 	// Buffer which this group is rendered to, prior to rendering it to the camera
 	private var _groupBuffer:FlxSprite;
@@ -27,6 +27,11 @@ class WhiteGroup extends FlxGroup
     }
 	
 	override public function draw():Void {
+		customDrawToBuffer().draw();
+	}
+
+	public function customDrawToBuffer():FlxSprite
+	{
 		FlxSpriteUtil.fill(_groupBuffer, FlxColor.TRANSPARENT);
 		
 		#if flash
@@ -40,8 +45,7 @@ class WhiteGroup extends FlxGroup
 		_groupBuffer.graphic.bitmap.colorTransform(_groupBuffer.graphic.bitmap.rect, new ColorTransform(1 - _whiteness, 1 - _whiteness, 1 - _whiteness, 1, 255 * _whiteness, 255 * _whiteness, 255 * _whiteness));
 		_groupBuffer.dirty = true;
 		
-		// draw groupBuffer to camera
-		_groupBuffer.draw();
+		return _groupBuffer;
      }
 	 
 	 public function addTeleparticles(minX:Float, minY:Float, maxX:Float, maxY:Float, particleCount:Int):Void {
