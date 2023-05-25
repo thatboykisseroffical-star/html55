@@ -303,9 +303,9 @@ class DialogTree implements IFlxDestroyable
 		while (i >= firstLine)
 		{
 			// move item down...
-			var item:Array<Object> = tree[i - amount];
-			tree[i] = tree[i - amount];
-			tree[i - amount] = null;
+			var item:Array<Object> = tree[i];
+			tree[i + amount] = tree[i];
+			tree[i] = null;
 			i--;
 
 			// update any references...
