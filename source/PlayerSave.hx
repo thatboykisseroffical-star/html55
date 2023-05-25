@@ -323,7 +323,7 @@ class PlayerSave
 		PlayerData.timePlayed = def(saveData.timePlayed, 0);
 		PlayerData.critterBonus = def(saveData.critterBonus, [5, 5, 10, 10, 20, 50]);
 		PlayerData.pokeVideos = def(saveData.pokeVideos, []);
-		PlayerData.videoCount = def(saveData.videoCount, []);
+		PlayerData.videoCount = def(saveData.videoCount, 0);
 		PlayerData.videoStatus = defEnum(PlayerData.VideoStatus, saveData.videoStatus, PlayerData.VideoStatus.Empty);
 		PlayerData.startedTaping = def(saveData.startedTaping, false);
 		PlayerData.startedMagnezone = def(saveData.startedMagnezone, false);
