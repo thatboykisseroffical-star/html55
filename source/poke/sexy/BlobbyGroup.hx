@@ -29,7 +29,7 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 	// the buffer which gets initially rendered to to
 	private var _sourceBuffer:FlxSprite;
 	private var _targetBuffer:FlxSprite;
-	private var _highlightBuffer:FlxSprite;
+	private var _tempBuffer:FlxSprite;
 
 
 	public var _blobOpacity:Int;
@@ -53,7 +53,7 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 
 		_sourceBuffer = new FlxSprite(0, 0, new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00));
 		_targetBuffer = new FlxSprite(0, 0, new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00));
-		_highlightBuffer = new FlxSprite(0, 0, new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00));
+		_tempBuffer = new FlxSprite(0, 0, new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00));
 	}
 
 	private function _clearCameraBuffer():Void
@@ -77,7 +77,13 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 	{
 		_targetBuffer.graphic.bitmap.fillRect(_targetBuffer.graphic.bitmap.rect, FlxColor.TRANSPARENT);
 		
-		_targetBuffer.graphic.bitmap.threshold(_sourceBuffer.graphic.bitmap, _sourceBuffer.graphic.bitmap.rect, _zeroPoint, '>', _blobThreshold << 24, _blobOpacity << 24 | _blobColour, 0xFF000000, false);
+		#if flash
+		_targetBuffer.graphic.bitmap.threshold(_sourceBuffer.graphic.bitmap, _sourceBuffer.graphic.bitmap.rect, _zeroPoint, '>', _blobThreshold << 16, _blobOpacity << 24 | _blobColour, 0x00FF0000, false);
+		#else
+		_tempBuffer.graphic.bitmap.fillRect(_tempBuffer.graphic.bitmap.rect, FlxColor.BLACK);
+		_tempBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap);
+		_targetBuffer.graphic.bitmap.threshold(_tempBuffer.graphic.bitmap, _tempBuffer.graphic.bitmap.rect, _zeroPoint, '>', _blobThreshold << 16, _blobOpacity << 24 | _blobColour, 0x00FF0000, false);
+		#end
 
 		#if (hl || windows)
 		// HashLink's threshold() function is broken, and draws translucent bright colors as black. We manually
@@ -95,19 +101,19 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 		// BlendMode. We render highlights by rendering the blob shapes, and
 		// erasing the unhighlighted sections with the 'Subtract' blend mode.
 		
-		_highlightBuffer.graphic.bitmap.copyPixels(_sourceBuffer.graphic.bitmap, _highlightBuffer.graphic.bitmap.rect, _zeroPoint);
-		_highlightBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap, _highlightMatrix, null, BlendMode.SUBTRACT);
-		_targetBuffer.graphic.bitmap.threshold(_highlightBuffer.graphic.bitmap, _sourceBuffer.graphic.bitmap.rect, _zeroPoint, '>', _shineThreshold << 16, _shineOpacity << 24 | _shineColour, 0x00FF0000, false);
+		_tempBuffer.graphic.bitmap.copyPixels(_sourceBuffer.graphic.bitmap, _tempBuffer.graphic.bitmap.rect, _zeroPoint);
+		_tempBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap, _highlightMatrix, null, BlendMode.SUBTRACT);
+		_targetBuffer.graphic.bitmap.threshold(_tempBuffer.graphic.bitmap, _sourceBuffer.graphic.bitmap.rect, _zeroPoint, '>', _shineThreshold << 16, _shineOpacity << 24 | _shineColour, 0x00FF0000, false);
 		#else
 		// Non-flash do not premultiply the alpha, and do not support the
 		// 'subtract' BlendMode. We render highlights by rendering the blob
 		// shapes against a black background, drawing over the unhighlighted
 		// sections with black.
 		
-		_highlightBuffer.graphic.bitmap.fillRect(_highlightBuffer.graphic.bitmap.rect, FlxColor.BLACK);
-		_highlightBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap, null, new ColorTransform(1, 1, 1, 0.75));
-		_highlightBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap, _highlightMatrix, new ColorTransform(0, 0, 0, 2));
-		_targetBuffer.graphic.bitmap.threshold(_highlightBuffer.graphic.bitmap, _sourceBuffer.graphic.bitmap.rect, _zeroPoint, '>', _shineThreshold << 16, _shineOpacity << 24 | _shineColour, 0x00FF0000, false);
+		_tempBuffer.graphic.bitmap.fillRect(_tempBuffer.graphic.bitmap.rect, FlxColor.BLACK);
+		_tempBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap, null, new ColorTransform(1, 1, 1, 0.75));
+		_tempBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap, _highlightMatrix, new ColorTransform(0, 0, 0, 2));
+		_targetBuffer.graphic.bitmap.threshold(_tempBuffer.graphic.bitmap, _sourceBuffer.graphic.bitmap.rect, _zeroPoint, '>', _shineThreshold << 16, _shineOpacity << 24 | _shineColour, 0x00FF0000, false);
 		#end
 	}
 
@@ -154,7 +160,7 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 		_zeroPoint = null;
 		_sourceBuffer = FlxDestroyUtil.destroy(_sourceBuffer);
 		_targetBuffer = FlxDestroyUtil.destroy(_targetBuffer);
-		_highlightBuffer = FlxDestroyUtil.destroy(_highlightBuffer);
+		_tempBuffer = FlxDestroyUtil.destroy(_tempBuffer);
 		_clipRect = null;
 		_highlightMatrix = null;
 	}

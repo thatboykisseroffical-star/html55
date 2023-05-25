@@ -115,6 +115,7 @@ class LucarioSexyState extends SexyState<LucarioSexyWindow>
 	private var toyWindow:LucarioDildoWindow;
 	private var toyInterface:LucarioDildoInterface;
 	private var badToyBank:Float = 0;
+	// A black shadow which erases prevents male lucario's cumshots from appearing in front of their balls in a glitchy way
 	private var toyShadowBalls:BouncySprite;
 
 	private var pleasurableDildoBank:Float = 0;
