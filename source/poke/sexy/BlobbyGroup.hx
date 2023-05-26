@@ -4,6 +4,7 @@ import openfl.geom.ColorTransform;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
+import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 import flixel.util.FlxDestroyUtil;
 import flixel.util.FlxSpriteUtil;
@@ -51,9 +52,18 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 		_highlightMatrix = new Matrix();
 		_highlightMatrix.translate(2, 4);
 
+		#if flash
+		// Flash supports software rendering. We create a source buffer as
+		// large as the camera's viewport, and swap them
 		_sourceBuffer = new FlxSprite(0, 0, new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00));
-		_targetBuffer = new FlxSprite(0, 0, new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00));
-		_tempBuffer = new FlxSprite(0, 0, new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00));
+		#else
+		// For non-flash targets, we create a small source buffer the same
+		// size as the clipRect
+		_sourceBuffer = new FlxSprite(_clipRect.x, _clipRect.y, new BitmapData(Std.int(_clipRect.width), Std.int(_clipRect.height), true, 0x00));
+		#end
+
+		_targetBuffer = new FlxSprite(_clipRect.x, _clipRect.y, new BitmapData(Std.int(_clipRect.width), Std.int(_clipRect.height), true, 0x00));
+		_tempBuffer = new FlxSprite(_clipRect.x, _clipRect.y, new BitmapData(Std.int(_clipRect.width), Std.int(_clipRect.height), true, 0x00));
 	}
 
 	private function _clearCameraBuffer():Void
@@ -78,11 +88,15 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 		_targetBuffer.graphic.bitmap.fillRect(_targetBuffer.graphic.bitmap.rect, FlxColor.TRANSPARENT);
 		
 		#if flash
-		_targetBuffer.graphic.bitmap.threshold(_sourceBuffer.graphic.bitmap, _clipRect, _clipRect.topLeft, '>', _blobThreshold << 16, _blobOpacity << 24 | _blobColour, 0x00FF0000, false);
+		_targetBuffer.graphic.bitmap.threshold(_sourceBuffer.graphic.bitmap, _clipRect, _zeroPoint, '>', _blobThreshold << 16, _blobOpacity << 24 | _blobColour, 0x00FF0000, false);
 		#else
 		_tempBuffer.graphic.bitmap.fillRect(_tempBuffer.graphic.bitmap.rect, FlxColor.BLACK);
-		_tempBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap);
-		_targetBuffer.graphic.bitmap.threshold(_tempBuffer.graphic.bitmap, _clipRect, _clipRect.topLeft, '>', _blobThreshold << 16, _blobOpacity << 24 | _blobColour, 0x00FF0000, false);
+		{
+			var m:Matrix = new Matrix();
+			m.translate(_sourceBuffer.x - _tempBuffer.x, _sourceBuffer.y - _tempBuffer.y);
+			_tempBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap, m);
+		}
+		_targetBuffer.graphic.bitmap.threshold(_tempBuffer.graphic.bitmap, _tempBuffer.graphic.bitmap.rect, _zeroPoint, '>', _blobThreshold << 16, _blobOpacity << 24 | _blobColour, 0x00FF0000, false);
 		#end
 
 		#if (hl || windows)
@@ -101,19 +115,33 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 		// BlendMode. We render highlights by rendering the blob shapes, and
 		// erasing the unhighlighted sections with the 'Subtract' blend mode.
 		
-		_tempBuffer.graphic.bitmap.copyPixels(_sourceBuffer.graphic.bitmap, _tempBuffer.graphic.bitmap.rect, _zeroPoint);
-		_tempBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap, _highlightMatrix, null, BlendMode.SUBTRACT);
-		_targetBuffer.graphic.bitmap.threshold(_tempBuffer.graphic.bitmap, _clipRect, _clipRect.topLeft, '>', _shineThreshold << 16, _shineOpacity << 24 | _shineColour, 0x00FF0000, false);
+		_tempBuffer.graphic.bitmap.copyPixels(_sourceBuffer.graphic.bitmap, _clipRect, _zeroPoint);
+		{
+			var m:Matrix = new Matrix();
+			m.copyFrom(_highlightMatrix);
+			m.translate(_sourceBuffer.x - _tempBuffer.x, _sourceBuffer.y - _tempBuffer.y);
+			_tempBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap, m, null, BlendMode.SUBTRACT);
+		}
+		_targetBuffer.graphic.bitmap.threshold(_tempBuffer.graphic.bitmap, _tempBuffer.graphic.bitmap.rect, _zeroPoint, '>', _shineThreshold << 16, _shineOpacity << 24 | _shineColour, 0x00FF0000, false);
 		#else
-		// Non-flash do not premultiply the alpha, and do not support the
-		// 'subtract' BlendMode. We render highlights by rendering the blob
-		// shapes against a black background, drawing over the unhighlighted
-		// sections with black.
+		// Non-flash targets do not premultiply the alpha, and do not support
+		// the 'subtract' BlendMode. We render highlights by rendering the
+		// blob shapes against a black background, drawing over the
+		// unhighlighted sections with black.
 		
 		_tempBuffer.graphic.bitmap.fillRect(_tempBuffer.graphic.bitmap.rect, FlxColor.BLACK);
-		_tempBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap, null, new ColorTransform(1, 1, 1, 0.75));
-		_tempBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap, _highlightMatrix, new ColorTransform(0, 0, 0, 2));
-		_targetBuffer.graphic.bitmap.threshold(_tempBuffer.graphic.bitmap, _clipRect, _clipRect.topLeft, '>', _shineThreshold << 16, _shineOpacity << 24 | _shineColour, 0x00FF0000, false);
+		{
+			var m:Matrix = new Matrix();
+			m.translate(_sourceBuffer.x - _tempBuffer.x, _sourceBuffer.y - _tempBuffer.y);
+			_tempBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap, m, new ColorTransform(1, 1, 1, 0.75));
+		}
+		{
+			var m:Matrix = new Matrix();
+			m.copyFrom(_highlightMatrix);
+			m.translate(_sourceBuffer.x - _tempBuffer.x, _sourceBuffer.y - _tempBuffer.y);
+			_tempBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap, m, new ColorTransform(0, 0, 0, 2));
+		}
+		_targetBuffer.graphic.bitmap.threshold(_tempBuffer.graphic.bitmap, _tempBuffer.graphic.bitmap.rect, _zeroPoint, '>', _shineThreshold << 16, _shineOpacity << 24 | _shineColour, 0x00FF0000, false);
 		#end
 	}
 
@@ -121,7 +149,7 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 	{
 		var customDrawnBuffer:FlxSprite = customDrawToBuffer();
 		#if flash
-		FlxG.camera.buffer.copyPixels(customDrawnBuffer.graphic.bitmap, _clipRect, _clipRect.topLeft, null, null, true);
+		FlxG.camera.buffer.copyPixels(customDrawnBuffer.graphic.bitmap, customDrawnBuffer.graphic.bitmap.rect, _clipRect.topLeft, null, null, true);
 		#else
 		customDrawnBuffer.draw();
 		#end

@@ -46,9 +46,22 @@ import openfl.geom.Rectangle;
 		_maskMatrix = new Matrix();
 		_maskMatrix.translate(_clipRect.x, _clipRect.y);
 
+		#if flash
+		// Flash supports software rendering. We create a source buffer as
+		// large as the camera's viewport, and swap them
 		_sourceBuffer = new FlxSprite(0, 0, new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00));
-		_targetBuffer = new FlxSprite(0, 0, new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00));
-		_tempBuffer = new FlxSprite(0, 0, new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00));
+		#else
+		// For non-flash targets, we create a small source buffer the same
+		// size as the clipRect
+
+		// _sourceBuffer = new FlxSprite(_clipRect.x, _clipRect.y, new BitmapData(Std.int(_clipRect.width), Std.int(_clipRect.height), true, 0x00));
+		_sourceBuffer = new FlxSprite(0, 0, new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00));
+		#end
+
+		_targetBuffer = new FlxSprite(_clipRect.x, _clipRect.y, new BitmapData(Std.int(_clipRect.width), Std.int(_clipRect.height), true, 0x00));
+		_tempBuffer = new FlxSprite(_clipRect.x, _clipRect.y, new BitmapData(Std.int(_clipRect.width), Std.int(_clipRect.height), true, 0x00));
+		// _targetBuffer = new FlxSprite(_clipRect.x, _clipRect.y, new BitmapData(Std.int(_clipRect.width), Std.int(_clipRect.height), true, 0x00));
+		// _tempBuffer = new FlxSprite(_clipRect.x, _clipRect.y, new BitmapData(Std.int(_clipRect.width), Std.int(_clipRect.height), true, 0x00));
 	}
 
 	private function _clearCameraBuffer():Void
@@ -70,27 +83,31 @@ import openfl.geom.Rectangle;
 
 	private function _postProcess():Void
 	{
-		_targetBuffer.graphic.bitmap.fillRect(_clipRect, 0xFF2084A0);
+		_targetBuffer.graphic.bitmap.fillRect(_targetBuffer.graphic.bitmap.rect, 0xFF2084A0);
 		
 		#if flash
-		_targetBuffer.graphic.bitmap.threshold(_sourceBuffer.graphic.bitmap, _sourceBuffer.graphic.bitmap.rect, _zeroPoint, '>', _blobThreshold << 16, _blobOpacity << 24 | _blobColour, 0x00FF0000, false);
-		_targetBuffer.graphic.bitmap.threshold(_sourceBuffer.graphic.bitmap, _sourceBuffer.graphic.bitmap.rect, _zeroPoint, '>', _shineThreshold << 16, _blobOpacity << 24 | _shineColour, 0x00FF0000, false);
+		_targetBuffer.graphic.bitmap.threshold(_sourceBuffer.graphic.bitmap, _clipRect, _zeroPoint, '>', _blobThreshold << 16, _blobOpacity << 24 | _blobColour, 0x00FF0000, false);
+		_targetBuffer.graphic.bitmap.threshold(_sourceBuffer.graphic.bitmap, _clipRect, _zeroPoint, '>', _shineThreshold << 16, _blobOpacity << 24 | _shineColour, 0x00FF0000, false);
 		#else
 		_tempBuffer.graphic.bitmap.fillRect(_tempBuffer.graphic.bitmap.rect, FlxColor.BLACK);
-		_tempBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap);
+		{
+			var m:Matrix = new Matrix();
+			m.translate(_sourceBuffer.x - _tempBuffer.x, _sourceBuffer.y - _tempBuffer.y);
+			_tempBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap, m);
+		}
 		_targetBuffer.graphic.bitmap.threshold(_tempBuffer.graphic.bitmap, _tempBuffer.graphic.bitmap.rect, _zeroPoint, '>', _blobThreshold << 16, _blobOpacity << 24 | _blobColour, 0x00FF0000, false);
 		_targetBuffer.graphic.bitmap.threshold(_tempBuffer.graphic.bitmap, _tempBuffer.graphic.bitmap.rect, _zeroPoint, '>', _shineThreshold << 16, _blobOpacity << 24 | _shineColour, 0x00FF0000, false);
 		#end
 
-		_targetBuffer.graphic.bitmap.draw(_maskGraphic.bitmap, _maskMatrix);
-		_targetBuffer.graphic.bitmap.threshold(_targetBuffer.graphic.bitmap, new Rectangle(0, 0, _targetBuffer.width, _targetBuffer.height), new Point(0, 0), "==", 0xffff00ff, 0x00000000);
+		_targetBuffer.graphic.bitmap.draw(_maskGraphic.bitmap);
+		_targetBuffer.graphic.bitmap.threshold(_targetBuffer.graphic.bitmap, _targetBuffer.graphic.bitmap.rect, _zeroPoint, "==", 0xffff00ff, 0x00000000);
 	}
 
 	override public function draw():Void
 	{
 		var customDrawnBuffer:FlxSprite = customDrawToBuffer();
 		#if flash
-		FlxG.camera.buffer.copyPixels(customDrawnBuffer.graphic.bitmap, _clipRect, _clipRect.topLeft, null, null, true);
+		FlxG.camera.buffer.copyPixels(customDrawnBuffer.graphic.bitmap, customDrawnBuffer.graphic.bitmap.rect, _clipRect.topLeft, null, null, true);
 		#else
 		customDrawnBuffer.draw();
 		#end
