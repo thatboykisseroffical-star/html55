@@ -60,7 +60,7 @@ class ItemDatabase
 	/**
 	 * When's the last time we last restocked?
 	 */
-	public static var _prevRefillTime:Date;
+	public static var _prevRefillTime:Float;
 
 	public static var _itemTypes:Array<ItemType> =
 	{
@@ -153,14 +153,14 @@ class ItemDatabase
 		var shouldRefillItems:Bool;
 		var shouldRotateStaff:Bool;
 
-		if (_prevRefillTime == null)
+		if (_prevRefillTime == 0)
 		{
 			// first time; fill the shop with its initial stock
 			shouldRefillItems = true;
 			shouldRotateStaff = true;
 		}
 		else {
-			var timeSinceLastRestock:Float = MmTools.time() - _prevRefillTime.getTime();
+			var timeSinceLastRestock:Float = MmTools.time() - _prevRefillTime;
 			if (timeSinceLastRestock < 0)
 			{
 				/*
@@ -168,7 +168,7 @@ class ItemDatabase
 				 * scenario where a player might cheat their clock into the
 				 * future, and then never see any new items again
 				 */
-				_prevRefillTime = Date.now();
+				_prevRefillTime = MmTools.time();
 			}
 			shouldRotateStaff = _solvedPuzzle;
 			shouldRefillItems = _solvedPuzzle && timeSinceLastRestock >= MIN_REFILL_TIME;
@@ -301,7 +301,7 @@ class ItemDatabase
 		// if items have been unlocked, we unlock them
 		PlayerDataNormalizer.normalizeItems();
 
-		_prevRefillTime = Date.now();
+		_prevRefillTime = MmTools.time();
 		var prunedInventory:Bool = false;
 		var i:Int = 0;
 		while (i < _shopItems.length)

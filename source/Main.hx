@@ -127,9 +127,9 @@ class Main extends Sprite
 		FlxTransitionableState.defaultTransIn = new TransitionData(TransitionType.NONE);
 		FlxTransitionableState.defaultTransOut = new TransitionData(TransitionType.NONE);
 
-		if (PlayerData.clickDate == null)
+		if (PlayerData.clickTime == 0)
 		{
-			PlayerData.clickDate = Date.now();
+			PlayerData.clickTime = MmTools.time();
 		}
 
 		CursorUtils.initializeSystemCursor();

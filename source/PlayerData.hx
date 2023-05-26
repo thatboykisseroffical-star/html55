@@ -260,7 +260,7 @@ class PlayerData
 	public static var minigameCount:Array<Int>;
 	public static var luckyProfSchedules:Array<Int> = [];
 
-	public static var clickDate:Date;
+	public static var clickTime:Float;
 	public static var rankChance:Bool; // has the player had a "rank chance" event before?
 	public static var rankDefend:Bool; // has the player had a "rank defend" event before?
 
@@ -282,7 +282,7 @@ class PlayerData
 
 	public static function isPlayerDoingStuff():Bool
 	{
-		return clickDate != null && (clickDate.getTime() > MmTools.time() - 180 * 1000);
+		return clickTime != 0 && (clickTime > MmTools.time() - 180 * 1000);
 	}
 
 	public static function updateCursorVisible()
@@ -322,10 +322,10 @@ class PlayerData
 		{
 			// if someone's AFK for an hour, or skips their clock ahead, we only count 3 minutes of that hour
 			var oldTimePlayed = timePlayed;
-			var amount:Float = FlxMath.bound((MmTools.time() - clickDate.getTime()) / 1000, 0, 180);
+			var amount:Float = FlxMath.bound((MmTools.time() - clickTime) / 1000, 0, 180);
 			timePlayed += amount;
 			rewardTime += amount;
-			clickDate = Date.now();
+			clickTime = MmTools.time();
 		}
 		if (rewardTime > 60)
 		{

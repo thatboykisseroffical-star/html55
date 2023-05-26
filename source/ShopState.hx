@@ -1116,7 +1116,7 @@ class ShopState extends FlxTransitionableState
 			if (threeCode == "ZXC")
 			{
 				// cheat
-				ItemDatabase._prevRefillTime = null;
+				ItemDatabase._prevRefillTime = 0;
 				ItemDatabase.refillShop();
 				FlxG.switchState(new ShopState());
 			}
