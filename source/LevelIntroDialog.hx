@@ -329,7 +329,7 @@ class LevelIntroDialog
 		var clazz:Dynamic = puzzleState._pokeWindow._dialogClass;
 		var prefix:String = puzzleState._pokeWindow._prefix;
 		var playerChats:Array<Int> = Reflect.field(PlayerData, prefix + "Chats");
-		var randomChats:Array<Dynamic> = Reflect.field(clazz, RANDOM_CHATS);
+		var randomChats:Array<Array<Dynamic>> = Reflect.field(clazz, RANDOM_CHATS);
 		var fixedChats:Array<Dynamic> = Reflect.field(clazz, FIXED_CHATS);
 		var unlockedChats:Map<String, Bool> = getUnlockedChats(clazz);
 
