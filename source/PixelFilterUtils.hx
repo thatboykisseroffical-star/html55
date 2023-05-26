@@ -91,6 +91,7 @@ class PixelFilterUtils
 		else // complex render
 		{
 			_matrix.identity();
+			_matrix.translate(-buffer.x, -buffer.y);
 			_matrix.translate(-brush.origin.x, -brush.origin.y);
 			_matrix.scale(brush.scale.x, brush.scale.y);
 			if (brush.angle != 0)
