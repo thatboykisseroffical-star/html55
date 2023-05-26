@@ -384,5 +384,5 @@ typedef CameraButton =
 	x:Int,
 	y:Int,
 	image:FlxGraphicAsset,
-	callback:Dynamic,
+	callback:Void->Void,
 }

@@ -152,8 +152,8 @@ class MagnWindow extends PokeWindow
 		_dialogClass = MagnDialog;
 		FlxG.random.shuffle(_buttonDurations);
 
-		_cameraButtons.push({x:202, y:3, image:AssetPaths.camera_button_left__png, callback:cameraLeft});
-		_cameraButtons.push({x:234, y:3, image:AssetPaths.camera_button__png, callback:cameraRight});
+		_cameraButtons.push({x:202, y:3, image:AssetPaths.camera_button_left__png, callback:() -> cameraLeft()});
+		_cameraButtons.push({x:234, y:3, image:AssetPaths.camera_button__png, callback:() -> cameraRight()});
 
 		var bgSprite:FlxSprite = new FlxSprite( -188, -54, AssetPaths.magn_bg__png);
 		_frontSprites.push(bgSprite);

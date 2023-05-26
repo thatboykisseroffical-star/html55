@@ -45,7 +45,7 @@ class LucarioWindow extends PokeWindow
 		_victorySound = AssetPaths.luca__mp3;
 		_dialogClass = LucarioDialog;
 
-		_cameraButtons.push({x:234, y:3, image:AssetPaths.camera_button__png, callback:toggleCamera});
+		_cameraButtons.push({x:234, y:3, image:AssetPaths.camera_button__png, callback:() -> toggleCamera()});
 
 		add(new FlxSprite( -54, -54, AssetPaths.luca_bg__png));
 

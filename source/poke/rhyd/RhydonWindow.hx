@@ -60,7 +60,7 @@ class RhydonWindow extends PokeWindow
 		_victorySound = AssetPaths.rhyd__mp3;
 		_dialogClass = RhydonDialog;
 
-		_cameraButtons.push({x:234, y:3, image:AssetPaths.camera_button__png, callback:toggleCamera});
+		_cameraButtons.push({x:234, y:3, image:AssetPaths.camera_button__png, callback:() -> toggleCamera()});
 
 		add(new FlxSprite( -54, MIN_Y, AssetPaths.rhydon_bg__png));
 
