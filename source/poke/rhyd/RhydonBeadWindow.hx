@@ -94,7 +94,7 @@ class RhydonBeadWindow extends PokeWindow
 	public function new(X:Float=0, Y:Float=0, Width:Int=248, Height:Int = 349)
 	{
 		super(X, Y, Width, Height);
-		_cameraButtons.push({x:234, y:3, image:AssetPaths.camera_button__png, callback:toggleCamera});
+		_cameraButtons.push({x:234, y:3, image:AssetPaths.camera_button__png, callback:() -> toggleCamera()});
 		add(new FlxSprite( -54, MIN_Y, AssetPaths.rhydon_bg__png));
 
 		_headDown = new BouncySprite( -54, -54, 4, BOUNCE_DURATION, 0.12, _age);

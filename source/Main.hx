@@ -1,5 +1,6 @@
 package;
 
+import poke.magn.MagnSexyState;
 import poke.abra.AbraSexyState;
 import lime.tools.SplashScreen;
 import credits.CreditsState;
