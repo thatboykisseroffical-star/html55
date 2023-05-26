@@ -78,11 +78,11 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 		_targetBuffer.graphic.bitmap.fillRect(_targetBuffer.graphic.bitmap.rect, FlxColor.TRANSPARENT);
 		
 		#if flash
-		_targetBuffer.graphic.bitmap.threshold(_sourceBuffer.graphic.bitmap, _sourceBuffer.graphic.bitmap.rect, _zeroPoint, '>', _blobThreshold << 16, _blobOpacity << 24 | _blobColour, 0x00FF0000, false);
+		_targetBuffer.graphic.bitmap.threshold(_sourceBuffer.graphic.bitmap, _clipRect, _clipRect.topLeft, '>', _blobThreshold << 16, _blobOpacity << 24 | _blobColour, 0x00FF0000, false);
 		#else
 		_tempBuffer.graphic.bitmap.fillRect(_tempBuffer.graphic.bitmap.rect, FlxColor.BLACK);
 		_tempBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap);
-		_targetBuffer.graphic.bitmap.threshold(_tempBuffer.graphic.bitmap, _tempBuffer.graphic.bitmap.rect, _zeroPoint, '>', _blobThreshold << 16, _blobOpacity << 24 | _blobColour, 0x00FF0000, false);
+		_targetBuffer.graphic.bitmap.threshold(_tempBuffer.graphic.bitmap, _clipRect, _clipRect.topLeft, '>', _blobThreshold << 16, _blobOpacity << 24 | _blobColour, 0x00FF0000, false);
 		#end
 
 		#if (hl || windows)
@@ -103,7 +103,7 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 		
 		_tempBuffer.graphic.bitmap.copyPixels(_sourceBuffer.graphic.bitmap, _tempBuffer.graphic.bitmap.rect, _zeroPoint);
 		_tempBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap, _highlightMatrix, null, BlendMode.SUBTRACT);
-		_targetBuffer.graphic.bitmap.threshold(_tempBuffer.graphic.bitmap, _sourceBuffer.graphic.bitmap.rect, _zeroPoint, '>', _shineThreshold << 16, _shineOpacity << 24 | _shineColour, 0x00FF0000, false);
+		_targetBuffer.graphic.bitmap.threshold(_tempBuffer.graphic.bitmap, _clipRect, _clipRect.topLeft, '>', _shineThreshold << 16, _shineOpacity << 24 | _shineColour, 0x00FF0000, false);
 		#else
 		// Non-flash do not premultiply the alpha, and do not support the
 		// 'subtract' BlendMode. We render highlights by rendering the blob
@@ -113,7 +113,7 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 		_tempBuffer.graphic.bitmap.fillRect(_tempBuffer.graphic.bitmap.rect, FlxColor.BLACK);
 		_tempBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap, null, new ColorTransform(1, 1, 1, 0.75));
 		_tempBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap, _highlightMatrix, new ColorTransform(0, 0, 0, 2));
-		_targetBuffer.graphic.bitmap.threshold(_tempBuffer.graphic.bitmap, _sourceBuffer.graphic.bitmap.rect, _zeroPoint, '>', _shineThreshold << 16, _shineOpacity << 24 | _shineColour, 0x00FF0000, false);
+		_targetBuffer.graphic.bitmap.threshold(_tempBuffer.graphic.bitmap, _clipRect, _clipRect.topLeft, '>', _shineThreshold << 16, _shineOpacity << 24 | _shineColour, 0x00FF0000, false);
 		#end
 	}
 
