@@ -1,6 +1,7 @@
 package puzzle;
 
 import flixel.FlxG;
+import flixel.FlxSprite;
 import flixel.graphics.FlxGraphic;
 import flixel.group.FlxGroup;
 import flixel.util.FlxColor;
@@ -14,7 +15,7 @@ import openfl.geom.Rectangle;
  * Graphics for the blue blobs which glow and move around the brain when
  * synching
  */
-class BrainBlobbyGroup extends FlxGroup
+ class BrainBlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 {
 	private var _zeroPoint:Point;
 
@@ -24,9 +25,9 @@ class BrainBlobbyGroup extends FlxGroup
 	public var _shineThreshold:Int = 0x40;
 
 	// the buffer which gets drawn to
-	private var _sourceBuffer:BitmapData;
-	public var _targetBuffer:BitmapData;
-	private var _highlightBuffer:BitmapData;
+	private var _sourceBuffer:FlxSprite;
+	private var _targetBuffer:FlxSprite;
+	private var _tempBuffer:FlxSprite;
 
 	public var _blobOpacity:Int = 0xFF;
 	private var _clipRect:Rectangle;
@@ -38,64 +39,87 @@ class BrainBlobbyGroup extends FlxGroup
 	public function new(x:Float, y:Float, maskGraphic:FlxGraphic)
 	{
 		super(0);
-
+	
 		_clipRect = new Rectangle(x, y, maskGraphic.width, maskGraphic.height);
 		_maskGraphic = maskGraphic;
 		_zeroPoint = new Point(0, 0);
 		_maskMatrix = new Matrix();
 		_maskMatrix.translate(_clipRect.x, _clipRect.y);
-		_sourceBuffer = new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00);
-		_targetBuffer = new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00);
-		_highlightBuffer = new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00);
+
+		_sourceBuffer = new FlxSprite(0, 0, new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00));
+		_targetBuffer = new FlxSprite(0, 0, new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00));
+		_tempBuffer = new FlxSprite(0, 0, new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00));
 	}
 
 	private function _clearCameraBuffer():Void
 	{
-		FlxG.camera.buffer.fillRect(FlxG.camera.buffer.rect, FlxColor.TRANSPARENT);
+		FlxG.camera.fill(FlxColor.TRANSPARENT, false);
+	}
+
+	private function _clearSourceBuffer():Void
+	{
+		_sourceBuffer.graphic.bitmap.fillRect(_sourceBuffer.graphic.bitmap.rect, FlxColor.TRANSPARENT);
 	}
 
 	private function _swapCameraBuffer():Void
 	{
 		var tmpBuffer:BitmapData = FlxG.camera.buffer;
-		FlxG.camera.buffer = _sourceBuffer;
-		_sourceBuffer = tmpBuffer;
+		FlxG.camera.buffer = _sourceBuffer.graphic.bitmap;
+		_sourceBuffer.graphic.bitmap = tmpBuffer;
 	}
 
 	private function _postProcess():Void
 	{
-		_targetBuffer.fillRect(_targetBuffer.rect, 0xFF2084A0);
+		_targetBuffer.graphic.bitmap.fillRect(_clipRect, 0xFF2084A0);
+		
+		#if flash
+		_targetBuffer.graphic.bitmap.threshold(_sourceBuffer.graphic.bitmap, _sourceBuffer.graphic.bitmap.rect, _zeroPoint, '>', _blobThreshold << 16, _blobOpacity << 24 | _blobColour, 0x00FF0000, false);
+		_targetBuffer.graphic.bitmap.threshold(_sourceBuffer.graphic.bitmap, _sourceBuffer.graphic.bitmap.rect, _zeroPoint, '>', _shineThreshold << 16, _blobOpacity << 24 | _shineColour, 0x00FF0000, false);
+		#else
+		_tempBuffer.graphic.bitmap.fillRect(_tempBuffer.graphic.bitmap.rect, FlxColor.BLACK);
+		_tempBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap);
+		_targetBuffer.graphic.bitmap.threshold(_tempBuffer.graphic.bitmap, _tempBuffer.graphic.bitmap.rect, _zeroPoint, '>', _blobThreshold << 16, _blobOpacity << 24 | _blobColour, 0x00FF0000, false);
+		_targetBuffer.graphic.bitmap.threshold(_tempBuffer.graphic.bitmap, _tempBuffer.graphic.bitmap.rect, _zeroPoint, '>', _shineThreshold << 16, _blobOpacity << 24 | _shineColour, 0x00FF0000, false);
+		#end
 
-		_targetBuffer.threshold(_sourceBuffer, _sourceBuffer.rect, _zeroPoint, '>', _blobThreshold << 16, _blobOpacity << 24 | _blobColour, 0x00FF0000, false);
-
-		_targetBuffer.threshold(_sourceBuffer, _sourceBuffer.rect, _zeroPoint, '>', _shineThreshold << 16, _shineOpacity << 24 | _shineColour, 0x00FF0000, false);
-
-		_targetBuffer.draw(_maskGraphic.bitmap, _maskMatrix);
-		_targetBuffer.threshold(_targetBuffer, new Rectangle(0, 0, _targetBuffer.width, _targetBuffer.height), new Point(0, 0), "==", 0xffff00ff, 0x00000000);
-
-		FlxG.camera.buffer.copyPixels(_targetBuffer, _clipRect, _clipRect.topLeft, null, null, true);
+		_targetBuffer.graphic.bitmap.draw(_maskGraphic.bitmap, _maskMatrix);
+		_targetBuffer.graphic.bitmap.threshold(_targetBuffer.graphic.bitmap, new Rectangle(0, 0, _targetBuffer.width, _targetBuffer.height), new Point(0, 0), "==", 0xffff00ff, 0x00000000);
 	}
 
 	override public function draw():Void
 	{
-		// TODO: Need to handle non-flash targets, possibly by using PixelFilterUtils
+		var customDrawnBuffer:FlxSprite = customDrawToBuffer();
 		#if flash
-        // Swap the camera to a different screen buffer
-         _swapCameraBuffer();
-       
-        // then empty the camera buffer
-        _clearCameraBuffer();
+		FlxG.camera.buffer.copyPixels(customDrawnBuffer.graphic.bitmap, _clipRect, _clipRect.topLeft, null, null, true);
+		#else
+		customDrawnBuffer.draw();
 		#end
-       
-        // then render using the parent code
-        super.draw();
-       
+	}
+
+	public function customDrawToBuffer():FlxSprite
+	{
 		#if flash
-        // then restore the camera buffer
-        _swapCameraBuffer();
+		// Swap the camera to a different screen buffer
+		_swapCameraBuffer();
+
+		// then empty the camera buffer
+		_clearCameraBuffer();
+
+		// then render using the parent code
+		super.draw();
+
+		// then restore the camera buffer
+		_swapCameraBuffer();
+		#else
+		_clearSourceBuffer();
 		
-		// and draw the new one over the top
-		_postProcess();
+		// render using the parent code
+		PixelFilterUtils.drawToBuffer(_sourceBuffer, this);
 		#end
+		
+		_postProcess();
+
+		return _targetBuffer;
 	}
 
 	override public function destroy():Void
@@ -103,9 +127,9 @@ class BrainBlobbyGroup extends FlxGroup
 		super.destroy();
 
 		_zeroPoint = null;
-		_sourceBuffer = FlxDestroyUtil.dispose(_sourceBuffer);
-		_targetBuffer = FlxDestroyUtil.dispose(_targetBuffer);
-		_highlightBuffer = FlxDestroyUtil.dispose(_highlightBuffer);
+		_sourceBuffer = FlxDestroyUtil.destroy(_sourceBuffer);
+		_targetBuffer = FlxDestroyUtil.destroy(_targetBuffer);
+		_tempBuffer = FlxDestroyUtil.destroy(_tempBuffer);
 		_clipRect = null;
 	}
 }
