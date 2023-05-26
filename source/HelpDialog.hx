@@ -367,7 +367,7 @@ class HelpDialog
 		branch.push(hintCounter);
 		var tmp:Int = hintCounter; // 160
 		hintCounter = hint.writeHint(tree, hintCounter);
-		DialogTree.shift(tree, tmp + 2, hintCounter, 1);
+		DialogTree.shift(tree, tmp + 1, hintCounter, 1);
 		hintCounter++;
 		tree[tmp + 1] = ["%hint-given%"];
 		tree[hintCounter++] = [300];
