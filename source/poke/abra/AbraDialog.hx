@@ -4491,7 +4491,6 @@ class AbraDialog
 		else if (PlayerData.gender == PlayerData.Gender.Complicated)
 		{
 			DialogTree.replace(tree, 51, "he says", "they say");
-			Date.now().getDate();
 		}
 	}
 

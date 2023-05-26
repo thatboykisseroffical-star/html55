@@ -741,9 +741,9 @@ class MainMenuState extends FlxTransitionableState
 				{
 					FlxSoundKludge.play(AssetPaths.cash_get_0037__mp3, 0.7);
 					PlayerData.rewardTime += 60 * howManyMinutes;
-					if (ItemDatabase._prevRefillTime != null)
+					if (ItemDatabase._prevRefillTime != 0)
 					{
-						ItemDatabase._prevRefillTime = Date.fromTime(ItemDatabase._prevRefillTime.getTime() - 1000 * 60 * howManyMinutes);
+						ItemDatabase._prevRefillTime = ItemDatabase._prevRefillTime - 1000 * 60 * howManyMinutes;
 					}
 					PlayerData.updateTimePlayed();
 				}
