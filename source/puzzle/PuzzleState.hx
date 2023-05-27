@@ -3450,7 +3450,7 @@ class PuzzleState extends LevelState
 			}
 			if (_minigameChance)
 			{
-				var minChest:Int;
+				var minChest:Int = 0;
 				if (_finalChest._reward >= 1000)
 				{
 					minChest = 1000;
@@ -4096,7 +4096,7 @@ class PuzzleState extends LevelState
 				// can't reactivate clicked chests
 				continue;
 			}
-			var distance:Float;
+			var distance:Float = 0;
 			if (chest._critter != null)
 			{
 				distance = chest._chestSprite.getMidpoint().distanceTo(critterClickPoint);
@@ -4290,8 +4290,8 @@ class PuzzleState extends LevelState
 				}
 				else
 				{
-					var runToX:Float;
-					var runToY:Float;
+					var runToX:Float = 0;
+					var runToY:Float = 0;
 					if (Std.isOfType(cell, BigCell))
 					{
 						runToX = cell.getSprite().x - critter._soulSprite.width / 2 + cell.getSprite().width / 2 + distX;

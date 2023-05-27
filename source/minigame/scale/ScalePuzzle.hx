@@ -5,8 +5,8 @@ package minigame.scale;
  */
 class ScalePuzzle
 {
-	public var _totalPegCount:Int;
-	public var _sum:Int;
+	public var _totalPegCount:Int = 0;
+	public var _sum:Int = 0;
 	public var _weights:Array<Int>;
 	public var _answer:Array<Int>;
 

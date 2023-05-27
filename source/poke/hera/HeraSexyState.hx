@@ -1900,7 +1900,7 @@ class HeraSexyState extends SexyState<HeraWindow>
 				justHitTheSpot();
 				lucky *= 2;
 			}
-			var amount:Float;
+			var amount:Float = 0;
 			if (verySpecialSpotIndex == 0 && niceThings[0] || verySpecialSpotIndex == 1 && niceThings[1])
 			{
 				// just brushing past an undiscovered sensitive spot...?

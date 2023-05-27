@@ -30,7 +30,7 @@ class PokeWindow extends MysteryWindow
 	public var _arousal = 0;
 	public var _prefix = "abra";
 	public var _name = "Abra";
-	public var nudity:Int;
+	public var nudity:Int = 0;
 	public var _partAlpha:Float = 1;
 
 	public var _breakTime:Float = -1;

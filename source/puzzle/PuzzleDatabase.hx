@@ -3763,7 +3763,7 @@ class PuzzleDatabase
 	public static function initializePuzzle(puzzleArray:Array<Array<Int>>, min:Int, max:Int)
 	{
 		var puzzleIndex:Int = Puzzle.PUZZLE_RANDOM.int(min, max);
-		var pegCount:Int;
+		var pegCount:Int = 0;
 		if (puzzleArray == _7Peg)
 		{
 			pegCount = 7;

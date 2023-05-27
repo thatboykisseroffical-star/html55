@@ -1553,7 +1553,7 @@ class BuizelSexyState extends SexyState<BuizelWindow>
 		}
 		_heartEmitTimer = 0;
 
-		var amount:Float;
+		var amount:Float = 0;
 		if (specialRub == "jack-off" || _male && specialRub == "ass1" && specialSpotCount == 7)
 		{
 			var lucky:Float = lucky(0.7, 1.43, sensitivityArray[0]);

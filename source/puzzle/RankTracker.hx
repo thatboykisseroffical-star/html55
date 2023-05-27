@@ -54,7 +54,7 @@ class RankTracker
 	private var _rankStart:Float = MmTools.time();
 	private var _rankTimer:Float = 0;
 	private var _now:Float = MmTools.time();
-	public var _oldRank:Int;
+	public var _oldRank:Int = 0;
 	private var _rankChance:RankChance;
 
 	public function new(puzzleState:PuzzleState)

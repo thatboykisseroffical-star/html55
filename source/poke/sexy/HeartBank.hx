@@ -8,14 +8,14 @@ import flixel.math.FlxMath;
  */
 class HeartBank
 {
-	public var _totalReservoirCapacity:Float;
-	public var _defaultForeplayHeartReservoir:Float;
-	public var _foreplayHeartReservoir:Float;
-	public var _foreplayHeartReservoirCapacity:Float;
-	public var _defaultDickHeartReservoir:Float;
-	public var _dickHeartReservoir:Float;
-	public var _dickHeartReservoirCapacity:Float;
-	public var _libido:Int;
+	public var _totalReservoirCapacity:Float = 0;
+	public var _defaultForeplayHeartReservoir:Float = 0;
+	public var _foreplayHeartReservoir:Float = 0;
+	public var _foreplayHeartReservoirCapacity:Float = 0;
+	public var _defaultDickHeartReservoir:Float = 0;
+	public var _dickHeartReservoir:Float = 0;
+	public var _dickHeartReservoirCapacity:Float = 0;
+	public var _libido:Int = 0;
 
 	public function new(TotalReservoirCapacity:Float, ForeplayPercent:Float):Void
 	{

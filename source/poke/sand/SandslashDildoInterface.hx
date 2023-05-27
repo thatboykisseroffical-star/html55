@@ -50,7 +50,7 @@ class SandslashDildoInterface extends DildoInterface
 	 */
 	public function getMaxAnimPct():Float
 	{
-		var maxDist:Float;
+		var maxDist:Float = 0;
 		if (ass)
 		{
 			maxDist = assTightness * 40;

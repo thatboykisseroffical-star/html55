@@ -43,7 +43,7 @@ class LevelState extends FlxTransitionableState
 	public var _thumbSprite:FlxSprite;
 	public var _clickedMidpoint:FlxPoint;
 	private var _mousePressedPosition:FlxPoint;
-	private var _mousePressedDuration:Float;
+	private var _mousePressedDuration:Float = 0;
 	private var _clickGrabbed:Bool = false;
 
 	public var _cursorSprites:FlxTypedGroup<FlxSprite>;
@@ -71,8 +71,8 @@ class LevelState extends FlxTransitionableState
 	 * things like giving each other blowjobs. These timers count down to
 	 * trigger those events.
 	 */
-	public var _globalIdleTimer:Float;
-	public var _globalSexyTimer:Float;
+	public var _globalIdleTimer:Float = 0;
+	public var _globalSexyTimer:Float = 0;
 
 	public var _chests:Array<Chest>;
 	private var _gemIndex:Int = 0;

@@ -1629,7 +1629,7 @@ class SmeargleSexyState extends SexyState<SmeargleWindow>
 	override public function determineArousal():Int
 	{
 		var pct:Float = (_heartBank._dickHeartReservoir + _heartBank._foreplayHeartReservoir) / (_heartBank._dickHeartReservoirCapacity + _heartBank._foreplayHeartReservoirCapacity);
-		var baseArousal:Int;
+		var baseArousal:Int = 0;
 		if (pct < 0.55 || _heartBank.getDickPercent() < _cumThreshold + 0.2)
 		{
 			baseArousal = _pokeWindow._vibe.vibeSfx.isVibratorOn() ? 4 : 4;

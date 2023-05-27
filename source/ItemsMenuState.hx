@@ -358,7 +358,7 @@ private class Spinner
 	public var _itemText:FlxText;
 	public var _rightArrow:FlxText;
 	public var _options:Array<String>;
-	public var _optionIndex:Int;
+	public var _optionIndex:Int = 0;
 	public var _state:ItemsMenuState;
 	public var _onChange:Dynamic;
 	public var _justPressed:Bool = false;
@@ -760,10 +760,10 @@ private class ViPuzzleKeys extends VisualItem
 private class ViSimple extends VisualItem
 {
 	private var spriteGraphic:String;
-	private var x:Int;
-	private var y:Int;
-	private var w:Int;
-	private var h:Int;
+	private var x:Int = 0;
+	private var y:Int = 0;
+	private var w:Int = 0;
+	private var h:Int = 0;
 
 	public function new(state:ItemsMenuState, SpriteGraphic:String, x:Int, y:Int, w:Int=160, h:Int=160)
 	{
@@ -1170,7 +1170,7 @@ private class ViGloveColors extends VisualItem
 		for (i in 0...gloveColors.length)
 		{
 			var gloveSprite:FlxSprite = new FlxSprite();
-			var gloveIndex:Int;
+			var gloveIndex:Int = 0;
 			if (i <= 10)
 			{
 				gloveSprite.setPosition(99, 119);

@@ -936,7 +936,7 @@ class ScaleGameState extends MinigameState
 			critter._bodySprite.y = critter._soulSprite.y;
 			critter._headSprite.moveHead();
 
-			var dir:Float;
+			var dir:Float = 0;
 			if (critter._soulSprite.x < 100)
 			{
 				dir = 1.75 * Math.PI;

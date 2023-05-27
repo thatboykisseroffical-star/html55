@@ -15,7 +15,7 @@ import flixel.effects.particles.FlxParticle;
  */
 class LateFadingFlxParticle extends FlxParticle
 {
-	private var lateFade:Float;
+	private var lateFade:Float = 0;
 
 	override public function update(elapsed:Float):Void
 	{

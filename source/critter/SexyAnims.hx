@@ -747,7 +747,7 @@ class SexyAnims
 
 				botCritter._eventStack.addEvent({time:_eventTime += FlxG.random.float(0.5, 2.0), callback:sexyBlowJob.botNotice});
 
-				var whichEnd:Int;
+				var whichEnd:Int = 0;
 				if (botCritter.isMale())
 				{
 					// definitely anal sex; more objectionable outcomes

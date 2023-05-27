@@ -1236,7 +1236,7 @@ class MagnDialog
 			tree[1] = [35, 20, 40, 10];
 
 			tree[10] = ["Yeah! I'd\nlike a hint"];
-			var permCount:Int;
+			var permCount:Int = 0;
 			if (puzzleState._puzzle._easy)
 			{
 				// nth tetrahedral number

@@ -23,10 +23,10 @@ class ScaleAgent implements IFlxDestroyable
 	// physical; how quickly can you hit the keys on the keyboard and click the mouse
 	private static var PHYSICAL:Array<Float> = [4.180, 3.234, 2.488, 1.584, 1.200, 1.000, 0.833, 0.757, 0.688, 0.625];
 
-	private var _reflexes:Int;
-	private var _cleverness:Int;
-	private var _reliability:Int;
-	private var _physical:Int;
+	private var _reflexes:Int = 0;
+	private var _cleverness:Int = 0;
+	private var _reliability:Int = 0;
+	private var _physical:Int = 0;
 	public var _time:Float = 1000000;
 	public var _finishedOrder:Int = UNFINISHED;
 	public var _soundAsset:String;
@@ -71,8 +71,8 @@ class ScaleAgent implements IFlxDestroyable
 	 */
 	public function computeTime(difficulty:Int, puzzleSolution:Int)
 	{
-		var cMin:Float;
-		var cMax:Float;
+		var cMin:Float = 0;
+		var cMax:Float = 0;
 
 		if (difficulty == 3)
 		{

@@ -11,9 +11,9 @@ import kludge.BetterFlxRandom;
  */
 class Gem extends FlxParticle
 {
-	public var z:Float;
+	public var z:Float = 0;
 	public var groundZ:Float = 0;
-	public var zVelocity:Float;
+	public var zVelocity:Float = 0;
 	public var zAccel:Float = -720;
 
 	public function new()

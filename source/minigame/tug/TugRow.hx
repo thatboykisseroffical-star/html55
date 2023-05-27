@@ -17,8 +17,8 @@ import flixel.FlxG;
 class TugRow implements IFlxDestroyable
 {
 	private var tugGameState:TugGameState;
-	public var y:Float;
-	public var rowReward:Int;
+	public var y:Float = 0;
+	public var rowReward:Int = 0;
 
 	public var row:Int = 0;
 

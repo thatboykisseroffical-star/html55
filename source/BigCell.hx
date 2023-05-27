@@ -16,7 +16,7 @@ class BigCell extends EllipseCritterHolder implements Cell.ICell
 
 	public var _assignedCritters:Array<Critter> = [];
 	public var _frontSprite:FlxSprite;
-	public var _clueIndex:Int;
+	public var _clueIndex:Int = 0;
 
 	public function new(X:Float, Y:Float)
 	{

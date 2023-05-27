@@ -77,7 +77,7 @@ class TugGameState extends MinigameState
 	private var opponentFrame:RoundedRectangle;
 	public var opponentChatFace:FlxSprite;
 
-	public var tutorial:Bool;
+	public var tutorial:Bool = false;
 	private var tutorialMovedAnything:Bool = false;
 	private var tutorialIdleTime:Float = 0;
 
@@ -245,7 +245,7 @@ class TugGameState extends MinigameState
 		// create critters
 		while (_critters.length < critterCount * 2)
 		{
-			var critterY:Float;
+			var critterY:Float = 0;
 
 			// create critter sprite
 			var critter:Critter = new Critter(0, 0, _backdrop);

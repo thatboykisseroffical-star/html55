@@ -22,10 +22,10 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 {
 	private var _zeroPoint:Point;
 
-	public var _blobColour:Int;
-	public var _blobThreshold:Int;
+	public var _blobColour:Int = 0;
+	public var _blobThreshold:Int = 0;
 	public var _shineColour:Int = 0xFFFFFF;
-	public var _shineThreshold:Int;
+	public var _shineThreshold:Int = 0;
 
 	// the buffer which gets initially rendered to to
 	private var _sourceBuffer:FlxSprite;
@@ -33,7 +33,7 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 	private var _tempBuffer:FlxSprite;
 
 
-	public var _blobOpacity:Int;
+	public var _blobOpacity:Int = 0;
 	private var _clipRect:Rectangle;
 	private var _highlightMatrix:Matrix;
 	public var _shineOpacity:Int = 0xFF;

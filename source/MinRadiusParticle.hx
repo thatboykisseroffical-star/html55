@@ -8,7 +8,7 @@ import flixel.math.FlxMath;
  */
 class MinRadiusParticle extends FlxParticle
 {
-	private var _radius:Float;
+	private var _radius:Float = 0;
 
 	public function new(radius:Float)
 	{

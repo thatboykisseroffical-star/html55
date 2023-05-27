@@ -75,7 +75,7 @@ class Critter implements IFlxDestroyable
 	public var _headSprite:CritterHead;
 	public var _frontBodySprite:FlxSprite;
 	public var _critterColor:CritterColor;
-	public var outCold:Bool;
+	public var outCold:Bool = false;
 	public var _runToCallback:Critter->Void;
 	// Z coordinate; if creature is jumping or carried
 	public var z:Float = 0;
@@ -1354,8 +1354,8 @@ typedef CritterColor =
 
 class RunToWaypoint
 {
-	var x:Float;
-	var y:Float;
+	var x:Float = 0;
+	var y:Float = 0;
 	var callback:Critter->Void;
 
 	public function new(x:Float, y:Float, callback:Critter->Void)

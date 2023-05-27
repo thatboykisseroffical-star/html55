@@ -344,7 +344,7 @@ class EndingAnim extends FlxState
 			}
 		}
 
-		var zoomFactor:Float;
+		var zoomFactor:Float = 0;
 		if (a < 58)
 		{
 			zoomFactor = a;
@@ -354,7 +354,7 @@ class EndingAnim extends FlxState
 		}
 		zoomFactor = FlxMath.bound(zoomFactor, -20, 63);
 
-		var moveFactor:Float;
+		var moveFactor:Float = 0;
 		moveFactor = FlxMath.bound(a - 53, 0, 30) * 20;
 
 		terrain4.scale.x = 2000 * Math.pow(0.9, zoomFactor);

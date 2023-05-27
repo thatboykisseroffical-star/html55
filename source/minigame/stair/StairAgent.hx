@@ -11,7 +11,7 @@ class StairAgent
 	public var diminishedZeroZero:Float = 1.0;
 
 	// [0.0-1.0] How much does this agent ignore their opponent's likely decisions?
-	public var dumbness:Float = 0.0;
+	public var dumbness:Float = 0;
 
 	// [0.0-5.0] How much does this agent like picking the best option?
 	public var bias0:Float = 1.0;

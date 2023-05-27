@@ -18,7 +18,7 @@ class ReservoirMeter extends FlxSprite
 	private var mainColor:FlxColor;
 	private var shadowColor:FlxColor;
 	private var parentSprite:FlxSprite;
-	private var yOffset:Int;
+	private var yOffset:Int = 0;
 
 	public function new(ParentSprite:FlxSprite, percent:Float, reservoirStatus:ReservoirStatus, ?yOffset:Int = 158, ?width:Int = 94)
 	{

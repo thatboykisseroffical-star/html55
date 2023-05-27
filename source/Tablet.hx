@@ -569,7 +569,7 @@ class Tablet extends FlxGroup
 
 	private function generateChatMessage():Void
 	{
-		var nameIndex:Int;
+		var nameIndex:Int = 0;
 		if (visualVisitorCount == 0)
 		{
 			// no visitors; don't generate chat message

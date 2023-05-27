@@ -49,7 +49,7 @@ class PlayerData
 	public static var justFinishedMinigame:Bool = false; // some dialog changes subtly if the player just finished a minigame
 
 	public static var level:Int = 0;
-	public static var cash:Int;
+	public static var cash:Int = 0;
 	public static var timePlayed:Float = 0;
 	public static var pokeVideos:Array<PokeVideo> = [];
 	public static var videoStatus:VideoStatus = Empty; // Do the videos have poke-orgasms, are they clean, or absent?
@@ -107,12 +107,12 @@ class PlayerData
 	public static var name:String;
 
 	public static var cursorType:String;
-	public static var cursorFillColor:Int; // internal color
-	public static var cursorLineColor:Int; // outline color
-	public static var cursorMaxAlpha:Float;
-	public static var cursorMinAlpha:Float;
-	public static var cursorInsulated:Bool;
-	public static var cursorSmellTimeRemaining:Float; // number of milliseconds remaining until cursor doesn't smell anymore
+	public static var cursorFillColor:Int = 0; // internal color
+	public static var cursorLineColor:Int = 0; // outline color
+	public static var cursorMaxAlpha:Float = 0;
+	public static var cursorMinAlpha:Float = 0;
+	public static var cursorInsulated:Bool = false;
+	public static var cursorSmellTimeRemaining:Float = 0; // number of milliseconds remaining until cursor doesn't smell anymore
 
 	public static var chatHistory:Array<String>;
 	public static var chatHistoryTmp:Array<String>;
@@ -120,14 +120,14 @@ class PlayerData
 	public static var abraSexyRecords:Array<Float>;
 	public static var abra7PegChats:Array<Int>;
 	public static var abraChats:Array<Int>;
-	public static var abra7PegSexyBeforeChat:Int;
-	public static var abraSexyBeforeChat:Int;
-	public static var abraSexyAfterChat:Int;
-	public static var abraMale:Bool;
+	public static var abra7PegSexyBeforeChat:Int = 0;
+	public static var abraSexyBeforeChat:Int = 0;
+	public static var abraSexyAfterChat:Int = 0;
+	public static var abraMale:Bool = false;
 	public static inline var abraDefaultMale:Bool = false;
-	public static var abraReservoir:Int; // A reservoir of 0-210 libido points, which goes towards giving +30/+90/+210 boosts to the sexy minigames
-	public static var abraToyReservoir:Int; // A reservoir of 0-180 libido points, which goes towards giving +60/+120/+180 boosts to the toy minigames
-	public static var abraBeadCapacity:Int;
+	public static var abraReservoir:Int = 0; // A reservoir of 0-210 libido points, which goes towards giving +30/+90/+210 boosts to the sexy minigames
+	public static var abraToyReservoir:Int = 0; // A reservoir of 0-180 libido points, which goes towards giving +60/+120/+180 boosts to the toy minigames
+	public static var abraBeadCapacity:Int = 0;
 	public static var abraMainScreenTeleport:Bool = false; // Has Abra teleported onto the main screen and made noise?
 	/*
 	 * 0: hasn't started
@@ -146,72 +146,72 @@ class PlayerData
 	public static var buizChats:Array<Int>;
 	public static var buizSexyBeforeChat: Dynamic;
 	public static var buizSexyAfterChat: Dynamic;
-	public static var buizMale:Bool;
+	public static var buizMale:Bool = false;
 	public static inline var buizDefaultMale:Bool = false;
-	public static var buizReservoir:Int;
-	public static var buizToyReservoir:Int;
+	public static var buizReservoir:Int = 0;
+	public static var buizToyReservoir:Int = 0;
 
 	public static var grovSexyRecords:Array<Float>;
 	public static var grovChats:Array<Int>;
 	public static var grovSexyBeforeChat: Dynamic;
 	public static var grovSexyAfterChat: Dynamic;
-	public static var grovMale:Bool;
+	public static var grovMale:Bool = false;
 	public static inline var grovDefaultMale:Bool = false;
-	public static var grovReservoir:Int;
-	public static var grovToyReservoir:Int;
+	public static var grovReservoir:Int = 0;
+	public static var grovToyReservoir:Int = 0;
 
 	public static var sandSexyRecords:Array<Float>;
 	public static var sandChats:Array<Int>;
 	public static var sandSexyBeforeChat: Dynamic;
 	public static var sandSexyAfterChat: Dynamic;
-	public static var sandMale:Bool;
+	public static var sandMale:Bool = false;
 	public static inline var sandDefaultMale:Bool = true;
-	public static var sandReservoir:Int;
-	public static var sandToyReservoir:Int;
+	public static var sandReservoir:Int = 0;
+	public static var sandToyReservoir:Int = 0;
 
 	public static var rhydSexyRecords:Array<Float>;
 	public static var rhydChats:Array<Int>;
 	public static var rhydSexyBeforeChat: Dynamic;
 	public static var rhydSexyAfterChat: Dynamic;
-	public static var rhydMale:Bool;
+	public static var rhydMale:Bool = false;
 	public static inline var rhydDefaultMale:Bool = true;
-	public static var rhydReservoir:Int;
-	public static var rhydToyReservoir:Int;
-	public static var rhydGift:Int; // 0: hasn't purchased gift; 1: gift has been purchased; 2: gift has been received
+	public static var rhydReservoir:Int = 0;
+	public static var rhydToyReservoir:Int = 0;
+	public static var rhydGift:Int = 0; // 0: hasn't purchased gift; 1: gift has been purchased; 2: gift has been received
 
 	public static var smeaSexyRecords:Array<Float>;
 	public static var smeaChats:Array<Int>;
 	public static var smeaSexyBeforeChat: Dynamic;
 	public static var smeaSexyAfterChat: Dynamic;
-	public static var smeaMale:Bool;
+	public static var smeaMale:Bool = false;
 	public static inline var smeaDefaultMale:Bool = true;
-	public static var smeaReservoir:Int;
-	public static var smeaToyReservoir:Int;
-	public static var smeaReservoirBank:Int;
-	public static var smeaToyReservoirBank:Int;
+	public static var smeaReservoir:Int = 0;
+	public static var smeaToyReservoir:Int = 0;
+	public static var smeaReservoirBank:Int = 0;
+	public static var smeaToyReservoirBank:Int = 0;
 
-	public static var keclMale:Bool;
+	public static var keclMale:Bool = false;
 	public static inline var keclDefaultMale:Bool = true;
-	public static var keclGift:Int; // 0: hasn't purchased gift; 1: gift has been purchased; 2: gift has been received
+	public static var keclGift:Int = 0; // 0: hasn't purchased gift; 1: gift has been purchased; 2: gift has been received
 
 	public static var magnSexyRecords:Array<Float>;
 	public static var magnChats:Array<Int>;
 	public static var magnSexyBeforeChat: Dynamic;
 	public static var magnSexyAfterChat: Dynamic;
-	public static var magnMale:Bool;
+	public static var magnMale:Bool = false;
 	public static inline var magnDefaultMale:Bool = false;
-	public static var magnReservoir:Int;
-	public static var magnToyReservoir:Int;
-	public static var magnGift:Int; // 0: hasn't purchased gift; 1: gift has been purchased; 2: gift has been received
+	public static var magnReservoir:Int = 0;
+	public static var magnToyReservoir:Int = 0;
+	public static var magnGift:Int = 0; // 0: hasn't purchased gift; 1: gift has been purchased; 2: gift has been received
 
 	public static var grimSexyRecords:Array<Float>;
 	public static var grimChats:Array<Int>;
 	public static var grimSexyBeforeChat: Dynamic;
 	public static var grimSexyAfterChat: Dynamic;
-	public static var grimMale:Bool;
+	public static var grimMale:Bool = false;
 	public static inline var grimDefaultMale:Bool = false;
-	public static var grimReservoir:Int;
-	public static var grimToyReservoir:Int;
+	public static var grimReservoir:Int = 0;
+	public static var grimToyReservoir:Int = 0;
 	public static var grimTouched:Bool = false; // has the player touched grimer?
 
 	/*
@@ -238,19 +238,19 @@ class PlayerData
 	public static var heraChats:Array<Int>;
 	public static var heraSexyBeforeChat: Dynamic;
 	public static var heraSexyAfterChat: Dynamic;
-	public static var heraMale:Bool;
+	public static var heraMale:Bool = false;
 	public static inline var heraDefaultMale:Bool = true;
-	public static var heraReservoir:Int;
-	public static var heraToyReservoir:Int;
+	public static var heraReservoir:Int = 0;
+	public static var heraToyReservoir:Int = 0;
 
 	public static var lucaSexyRecords:Array<Float>;
 	public static var lucaChats:Array<Int>;
 	public static var lucaSexyBeforeChat: Dynamic;
 	public static var lucaSexyAfterChat: Dynamic;
-	public static var lucaMale:Bool;
+	public static var lucaMale:Bool = false;
 	public static inline var lucaDefaultMale:Bool = false;
-	public static var lucaReservoir:Int;
-	public static var lucaToyReservoir:Int;
+	public static var lucaReservoir:Int = 0;
+	public static var lucaToyReservoir:Int = 0;
 
 	public static var professors:Array<Int>;
 	public static var prevProfPrefix:String;
@@ -260,9 +260,9 @@ class PlayerData
 	public static var minigameCount:Array<Int>;
 	public static var luckyProfSchedules:Array<Int> = [];
 
-	public static var clickTime:Float;
-	public static var rankChance:Bool; // has the player had a "rank chance" event before?
-	public static var rankDefend:Bool; // has the player had a "rank defend" event before?
+	public static var clickTime:Float = 0;
+	public static var rankChance:Bool = false; // has the player had a "rank chance" event before?
+	public static var rankDefend:Bool = false; // has the player had a "rank defend" event before?
 
 	public static var pokemonLibido:Int = 4; // [1-7]
 	public static var pegActivity:Int = 4; // [1-7]
@@ -535,7 +535,7 @@ class PlayerData
 		sexualPreference = pref;
 		for (prefix in PROF_PREFIXES)
 		{
-			var male:Bool;
+			var male:Bool = false;
 			if (pref == SexualPreference.Boys)
 			{
 				male = true;

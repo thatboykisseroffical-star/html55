@@ -100,7 +100,7 @@ class LucarioSexyState extends SexyState<LucarioSexyWindow>
 	private var lucarioMood0:Int = FlxG.random.int(0, 5); // which body parts does lucario want rubbed?
 	private var lucarioMood1:Int = FlxG.random.int(0, 4); // how fast does lucario want you rubbing his genitals
 
-	private var targetJackoffSpeed:Float;
+	private var targetJackoffSpeed:Float = 0;
 	private var jackoffPaceDeviance:Float = 1.0; // 1.0 = perfect; 0.5 = 2xtoo fast, 2.0 = 2xtoo slow
 
 	private var specialSpotTimeTaken:Int = 0;
@@ -2335,10 +2335,10 @@ class LucarioSexyState extends SexyState<LucarioSexyWindow>
 			}
 		}
 
-		var amount:Float;
+		var amount:Float = 0;
 		if (specialRub == "jack-off")
 		{
-			var lucky:Float;
+			var lucky:Float = 0;
 
 			if (almostWords.timer > 0)
 			{
@@ -2417,7 +2417,7 @@ class LucarioSexyState extends SexyState<LucarioSexyWindow>
 		}
 		else if (specialRub == "rub-dick")
 		{
-			var lucky:Float;
+			var lucky:Float = 0;
 
 			if (almostWords.timer > 0)
 			{

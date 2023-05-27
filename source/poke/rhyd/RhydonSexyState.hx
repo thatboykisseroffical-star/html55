@@ -83,7 +83,7 @@ class RhydonSexyState extends SexyState<RhydonWindow>
 
 	private var _neededKnotRubCount:Int = 2;
 	private var _knotPart:FlxSprite;
-	private var _knotIndex:Int;
+	private var _knotIndex:Int = 0;
 	private var _secondaryKnotIndexes:Array<Int>;
 	private var _knotBank:Float = 0;
 	private var dickTiming:Array<Int> = [];
@@ -121,8 +121,8 @@ class RhydonSexyState extends SexyState<RhydonWindow>
 	// rhydon only reports boredom if he gets bored twice in succession
 	private var _rhydonBoredTimer:Float = 0;
 	private var _orgasmPenalty:Float = 0;
-	private var _dickheadCount:Int;
-	private var _dickshaftCount:Int;
+	private var _dickheadCount:Int = 0;
+	private var _dickshaftCount:Int = 0;
 
 	private var _beadPushRewards:Array<Float> = [];
 	private var _beadPullRewards:Array<Float> = [];
@@ -2165,9 +2165,9 @@ class RhydonSexyState extends SexyState<RhydonWindow>
 			_beadNudgePullCount.push(0);
 		}
 
-		var beadPushBank:Float;
-		var beadNudgeBank:Float;
-		var beadPullBank:Float;
+		var beadPushBank:Float = 0;
+		var beadNudgeBank:Float = 0;
+		var beadPullBank:Float = 0;
 
 		if (_toyWindow.greyBeads)
 		{

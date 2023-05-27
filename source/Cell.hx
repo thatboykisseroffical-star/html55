@@ -13,8 +13,8 @@ import flixel.util.FlxDestroyUtil;
 class Cell extends SingleCritterHolder implements ICell
 {
 	public var _frontSprite:FlxSprite;
-	public var _clueIndex:Int;
-	public var _pegIndex:Int;
+	public var _clueIndex:Int = 0;
+	public var _pegIndex:Int = 0;
 	private var _assignedCritters:Array<Critter> = [];
 
 	public function new(X:Float, Y:Float)
@@ -94,12 +94,12 @@ interface ICell extends IFlxDestroyable
 	public function getCritters():Array<Critter>;
 	public function open():Void;
 	public function close():Void;
-	public function isClosed():Bool;
-	public function addCritter(critter:Critter):Bool;
-	public function removeCritter(critter:Critter):Bool;
+	public function isClosed():Bool = false;
+	public function addCritter(critter:Critter):Bool = false;
+	public function removeCritter(critter:Critter):Bool = false;
 	public function getSprite():FlxSprite;
 	public function getFrontSprite():FlxSprite;
-	public function getClueIndex():Int;
+	public function getClueIndex():Int = 0;
 	public function assignCritter(critter:Critter):Void;
 	public function unassignCritter(critter:Critter):Void;
 	public function getAssignedCritters():Array<Critter>;

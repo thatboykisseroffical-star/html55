@@ -21,7 +21,7 @@ import minigame.scale.ScaleGameState;
  */
 class ScaleScoreboard extends FlxGroup
 {
-	private var _accumulationPerSecond:Float;
+	private var _accumulationPerSecond:Float = 0;
 
 	private var _scoreboardBg:FlxSprite;
 	private var _scaleGameState:ScaleGameState;

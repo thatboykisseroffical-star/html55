@@ -152,12 +152,12 @@ class SandslashSexyState extends SexyState<SandslashWindow>
 	private var defaultAmbientDildoBankCapacity:Float = 0;
 	private var ambientDildoBankCapacity:Float = 0;
 	private var ambientDildoBankTimer:Float = 0;
-	private var targetDildoDuration:Float;
-	private var targetDildoDepth:Float;
-	private var goodDepth:Bool;
-	private var badDepth:Bool;
-	private var goodDildoCounter:Int;
-	private var maxGoodDildoCounter:Int;
+	private var targetDildoDuration:Float = 0;
+	private var targetDildoDepth:Float = 0;
+	private var goodDepth:Bool = false;
+	private var badDepth:Bool = false;
+	private var goodDildoCounter:Int = 0;
+	private var maxGoodDildoCounter:Int = 0;
 	private var bonusDildoOrgasmTimer:Int = -1;
 	private var ambientDildoBankFillCount:Int = 0;
 	private var dildoDepthWrongness:Float = 0;
@@ -909,7 +909,7 @@ class SandslashSexyState extends SexyState<SandslashWindow>
 	{
 		if (displayingToyWindow())
 		{
-			var arousal:Int;
+			var arousal:Int = 0;
 			if (maxGoodDildoCounter >= 4 || _heartBank.getDickPercent() < 0.77)
 			{
 				arousal = 3;
@@ -2066,7 +2066,7 @@ class SandslashSexyState extends SexyState<SandslashWindow>
 			}
 		}
 
-		var amount:Float;
+		var amount:Float = 0;
 		var factor:Float = 0.08;
 		if (kelvMiss.length > 3)
 		{

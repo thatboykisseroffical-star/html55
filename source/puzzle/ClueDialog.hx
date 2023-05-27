@@ -19,9 +19,9 @@ class ClueDialog
 	public var clueSymbol:String;
 	public var bugType:String;
 	public var expectedBugType:String;
-	public var expectedCount:Int;
+	public var expectedCount:Int = 0;
 	public var actualBugType:String;
-	public var actualCount:Int;
+	public var actualCount:Int = 0;
 	public var greetings:Array<String>;
 	private var _lightsOnIndex:Int = 31;
 	
