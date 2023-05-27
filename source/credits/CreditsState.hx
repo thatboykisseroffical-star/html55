@@ -146,11 +146,11 @@ class CreditsState extends FlxTransitionableState
 		credits.push([]);
 		credits.push([]);
 		credits.push([]);
-		credits.push(["#okay so in a way i kind of did everything by myself i guess. " +
-		"but really all i did was steal a bunch of stuff from a lot of people who are way more talented than i am. " +
-		"i'm sorry. i'm really, really sorry to everyone i stole from. " +
-		"i promise i'm not going to sell this game or try to make any money from it. " +
-		"i hope you're not mad but you probably should be mad and i'm an asshole and i'm really sorry."]);
+		credits.push(["#words do not exist to express my feelings toward the monster mind players and the monster"
+				+ " mind community. thank you all so much. making this game was a ton of work and i'm grateful that"
+				+ " you enjoyed it enough to play it and finish it. i'm sorry to everyone whose assets i stole to"
+				+ " make it. i promise i won't sell it or make money off it or anything. i'm just happy i got to make"
+				+ " a cool game."]);
 		credits.push([]);
 		credits.push([]);
 		credits.push([]);
