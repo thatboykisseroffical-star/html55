@@ -67,7 +67,7 @@ class WordManager extends FlxTypedGroup<WordParticle> {
 		
 		var leftX:Int = 256 + FlxG.random.int(0, 20);
 		var rightX:Int = 504 - ((words[0].width == null) ? 128 : words[0].width) - FlxG.random.int(0, 20);
-		var wordX:Int;
+		var wordX:Int = 0;
 		if (words[0].width >= 256) {
 			// no such thing as "left" or "right"; just drop it in the middle
 			wordX = Std.int(384 - words[0].width / 2 + FlxG.random.int( -40, 40));

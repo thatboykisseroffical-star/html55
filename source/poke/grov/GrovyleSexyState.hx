@@ -1538,7 +1538,7 @@ class GrovyleSexyState extends SexyState<GrovyleWindow>
 			}
 		}		
 		
-		var amount:Float;
+		var amount:Float = 0;
 		if ((desiredRub == "balls" || !_male) && niceThings[0] == false && niceThings[1] == false && niceThings[2] == false && rubbingIt) {
 			var lucky:Float = lucky(0.7, 1.43, 0.05);
 			lucky = Math.min(1.0, lucky * speedBoost);

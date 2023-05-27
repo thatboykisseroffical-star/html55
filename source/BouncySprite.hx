@@ -8,10 +8,10 @@ import flixel.FlxSprite;
  */
 class BouncySprite extends FlxSprite
 {
-	public var _bouncePhase:Float;
-	public var _bounceAmount:Int;
+	public var _bouncePhase:Float = 0;
+	public var _bounceAmount:Int = 0;
 	public var _age:Float = 0;
-	public var _bounceDuration:Float;
+	public var _bounceDuration:Float = 0;
 	public var _baseOffsetY:Float = 0;
 
 	/**

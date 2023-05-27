@@ -1681,7 +1681,7 @@ class AbraSexyState extends SexyState<AbraWindow>
 		}
 		_heartEmitTimer = 0;
 
-		var amount:Float;
+		var amount:Float = 0;
 		if (specialRub == "jack-off")
 		{
 			var lucky:Float = lucky(0.7, 1.43, 0.1);

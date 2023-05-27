@@ -152,7 +152,7 @@ class RewardCritter extends Critter
 		{
 			_rewardTimer = 150;
 		}
-		var y:Float;
+		var y:Float = 0;
 		if (_targetSprite.y > FlxG.height / 2 || _puzzleState._gameState == 300)
 		{
 			y = FlxG.height + 100;

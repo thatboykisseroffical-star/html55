@@ -22,7 +22,7 @@ class TugAiPlanner implements IFlxDestroyable
 	private var winPlans:Array<Array<ShouldWin>> = [];
 	private var winPlanRewards:Map<Array<ShouldWin>, Int>;
 	private var rowCount:Int = 0;
-	private var scoreSum:Int;
+	private var scoreSum:Int = 0;
 
 	private var memoryDeviancePerRow:Array<Float>;
 	private var observationDeviancePerRow:Array<Float>;

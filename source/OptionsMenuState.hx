@@ -52,7 +52,7 @@ class OptionsMenuState extends FlxState
 	private var _bigRedX:FlxSprite;
 	private var _explosionGroup:FlxTypedGroup<FlxParticle>;
 
-	private var _initialTimePlayed:Float;
+	private var _initialTimePlayed:Float = 0;
 
 	private var _mouseClickTime:Float = 100;
 	private var _saveDatas:Array<Dynamic> = [];
@@ -61,7 +61,7 @@ class OptionsMenuState extends FlxState
 	 * the "delete" button beeps when clicking and unclicking. but it unclicks when the user deletes, and we don't want it to beep then.
 	 */
 	private var _suppressBeep = false;
-	private var _initialSaveSlot:Int;
+	private var _initialSaveSlot:Int = 0;
 
 	private var rects:Array<FlxRect> = [
 										   new FlxRect(67, 109, 200, 104),

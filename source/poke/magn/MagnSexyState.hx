@@ -1746,8 +1746,8 @@ class MagnSexyState extends SexyState<MagnWindow>
 			var rightIndex:Int = _pokeWindow._beadsFrontR.animation.frameIndex;
 			var symmetrical:Bool = leftIndex == rightIndex;
 
-			var aesthetics:Float;
-			var aestheticsVariability:Float;
+			var aesthetics:Float = 0;
+			var aestheticsVariability:Float = 0;
 			if (!symmetrical)
 			{
 				aesthetics = [ -3, -2, -1, 1, 3, 5][BEAD_AESTHETICS[(leftIndex + rightIndex) % 5][centerIndex]];

@@ -19,8 +19,8 @@ using flixel.util.FlxSpriteUtil;
 class Hologram extends FlxSprite
 {
 	public var _holopad:Holopad;
-	var disruption0:Float;
-	var disruption1:Float;
+	var disruption0:Float = 0;
+	var disruption1:Float = 0;
 	var delay:Float = 0;
 	public var _pegIndex:Int = 0;
 

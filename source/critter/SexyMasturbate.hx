@@ -8,7 +8,7 @@ import flixel.math.FlxPoint;
 class SexyMasturbate extends SexyCritterAnim
 {
 	public var critter:Critter;
-	private var facing:Int;
+	private var facing:Int = 0;
 
 	public function new(critter:Critter, facing:Int)
 	{

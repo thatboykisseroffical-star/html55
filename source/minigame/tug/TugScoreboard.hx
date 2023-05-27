@@ -17,7 +17,7 @@ import minigame.tug.TugGameState;
  */
 class TugScoreboard extends FlxGroup
 {
-	private var accumulationPerSecond:Float;
+	private var accumulationPerSecond:Float = 0;
 	private var accumulatingTotalScores:Bool = false;
 	private var accumulateSfx:FlxSound;
 	private var accumulationTimer:Float = 0;

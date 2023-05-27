@@ -57,7 +57,7 @@ class RhydonBeadInterface extends FlxSpriteGroup
 	public var _actualBeadPosition:Float = 0;
 	public var _visualActualBeadPosition:Float = 0;
 
-	public var lineAngle:Float; // number ranging from [-1.0, 1.0] for left/right
+	public var lineAngle:Float = 0; // number ranging from [-1.0, 1.0] for left/right
 	public var handleBlinkTimer:Float = 0.8;
 	private var beadBlinkTimer:Float = 0.8;
 	public var _interacting:Bool = false;

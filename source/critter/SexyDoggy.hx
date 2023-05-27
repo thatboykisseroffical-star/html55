@@ -10,7 +10,7 @@ import flixel.util.FlxDirectionFlags;
  */
 class SexyDoggy extends SexyCritterAnim
 {
-	public var facing:Int;
+	public var facing:Int = 0;
 	private var topCritter:Critter; // critter doing the fucking
 	private var botCritter:Critter; // critter being fucked
 	private var jumpTarget:FlxPoint; // if the top were to jump, this is where he'd jump to
@@ -177,7 +177,7 @@ class SexyDoggy extends SexyCritterAnim
 		while (bodyAnim.length < targetFrameCount)
 		{
 			var abc:Float = bodyAnim.length / 3 * (humpCount / humpSeconds) * Math.PI;
-			var frame:Int;
+			var frame:Int = 0;
 			var pow:Float = 1;
 			if (Math.sin(abc) < 0)
 			{

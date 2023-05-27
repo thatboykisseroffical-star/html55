@@ -8,9 +8,9 @@ import flixel.FlxG;
  */
 class ArmsAndLegsArranger
 {
-	private var _min:Float;
-	private var _max:Float;
-	public var _armsAndLegsTimer:Float;
+	private var _min:Float = 0;
+	private var _max:Float = 0;
+	public var _armsAndLegsTimer:Float = 0;
 	private var _pokeWindow:PokeWindow;
 
 	public function new(pokeWindow:PokeWindow, min:Float = 8, max:Float = 12)

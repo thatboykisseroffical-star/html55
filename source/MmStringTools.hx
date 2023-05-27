@@ -67,7 +67,7 @@ class MmStringTools
 	 */
 	public static function capitalize(str:String):String
 	{
-		var strLen:Int;
+		var strLen:Int = 0;
 		if (str == null || (strLen = str.length) == 0)
 		{
 			return str;

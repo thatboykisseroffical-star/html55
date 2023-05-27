@@ -162,7 +162,7 @@ class GrimerSexyState extends SexyState<GrimerWindow>
 	 * hearts-over-time effect rather than them all coming out at once. Those
 	 * hearts-over-time are stored in this field
 	 */
-	private var soonHeartEmitCount:Float = 0.0;
+	private var soonHeartEmitCount:Float = 0;
 	private var slowHeartEmitFrequency:Float = 0.6;
 	private var slowHeartEmitTimer:Float = 0;
 
@@ -1134,7 +1134,7 @@ class GrimerSexyState extends SexyState<GrimerWindow>
 
 	override public function determineArousal():Int
 	{
-		var arousal:Int;
+		var arousal:Int = 0;
 		if (_heartBank.getDickPercent() < 0.64)
 		{
 			arousal = 4;
@@ -1273,7 +1273,7 @@ class GrimerSexyState extends SexyState<GrimerWindow>
 			}
 		}
 
-		var amount:Float;
+		var amount:Float = 0;
 		if (specialRub == "jack-off")
 		{
 			var lucky:Float = lucky(0.7, 1.43, 0.1);

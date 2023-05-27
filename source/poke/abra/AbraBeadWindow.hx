@@ -202,7 +202,7 @@ class AbraBeadWindow extends PokeWindow
 				var beadRadius:Float = getBeadRadius(Std.int(beadPosition));
 				var beadBpRadius:Float = beadRadius * BEAD_BP_RADIUS;
 
-				var abraPullSpeed:Float;
+				var abraPullSpeed:Float = 0;
 				if (beadPosition > Std.int(beadPosition) + BEAD_BP_CENTER - beadBpRadius)
 				{
 					// take it slow

@@ -16,17 +16,17 @@ class Puzzle implements IFlxDestroyable
 	public static var PUZZLE_RANDOM:FlxRandom = FlxG.random;
 	public static var REWARDS:Array<Int> = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 70, 80, 90, 100, 115, 135, 150, 175, 200, 230, 270, 300, 350, 400, 450, 500, 575, 675, 750, 875, 1000, 1150, 1350, 1500, 1750, 2000, 2300, 2700, 3000, 3500, 4000, 4500, 5000, 5750, 6750, 7500, 8750, 10000, 11500, 13500, 15000, 17500, 20000, 23000, 27000, 30000, 35000, 40000, 45000, 50000, 57500, 67500, 75000, 87500, 100000];
 
-	public var _reward:Int;
-	public var _pegCount:Int;
-	public var _colorCount:Int;
-	public var _clueCount:Int;
-	public var _difficulty:Int;
+	public var _reward:Int = 0;
+	public var _pegCount:Int = 0;
+	public var _colorCount:Int = 0;
+	public var _clueCount:Int = 0;
+	public var _difficulty:Int = 0;
 	public var _answer:Array<Int>;
 	public var _guesses:Array<Array<Int>> = [];
 	public var _markers:Array<Int> = [];
-	public var _puzzleIndex:Int;
-	public var _puzzlePercentile:Float; // on a scale of 0-1, how hard is it
-	public var _easy:Bool;
+	public var _puzzleIndex:Int = 0;
+	public var _puzzlePercentile:Float = 0; // on a scale of 0-1, how hard is it
+	public var _easy:Bool = false;
 
 	/**
 	 * Initializes a puzzle from an input array. The input array contains the

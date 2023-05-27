@@ -26,7 +26,7 @@ class FlxSoundKludge implements IFlxDestroyable
 	public var _sound:Sound;
 	public var _channel:SoundChannel;
 	public var _transform:SoundTransform = new SoundTransform();
-	public var fadeSeconds:Float;
+	public var fadeSeconds:Float = 0;
 
 	/**
 	 * Internal tracker for volume.
@@ -36,7 +36,7 @@ class FlxSoundKludge implements IFlxDestroyable
 	/**
 	 * Set volume to a value between 0 and 1 to change how this sound is.
 	 */
-	public var volume(get, set):Float;
+	public var volume(get, set):Float = 0;
 	private var _volumeTween:FlxTween;
 	private var _volumeWarbleTween0:FlxTween;
 	private var maxVolume:Float = 0;

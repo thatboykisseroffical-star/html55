@@ -29,8 +29,8 @@ class FancyAnim
 	private var _mouseDownTime:Float = DEFAULT_MOUSE_TIME;
 	private var _mouseUpTime:Float = DEFAULT_MOUSE_TIME;
 
-	private var _curRadians:Float;
-	private var _targetRadians:Float;
+	private var _curRadians:Float = 0;
+	private var _targetRadians:Float = 0;
 	private var _rate:Float = 0;
 
 	private var prevFrame:Float = 0;
@@ -44,7 +44,7 @@ class FancyAnim
 	 * We usually just play sound effects on frame #0. forceSfx is a kludge to ensure we don't miss
 	 * a sound effect for animations that surprisingly start or transition on frame #1.
 	 */
-	private var forceSfx:Bool;
+	private var forceSfx:Bool = false;
 	private var needsRefresh:Bool = false;
 
 	private var animNames:Array<String>;

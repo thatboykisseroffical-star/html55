@@ -11,7 +11,7 @@ class SexyRimming extends SexyCritterAnim
 	public static var JUMP_DIST:Float = 60;
 	private var topCritter:Critter; // the critter doing the rimming
 	private var botCritter:Critter; // the critter being rimmed
-	public var facing:Int;
+	public var facing:Int = 0;
 	private var jumpTarget:FlxPoint; // if the top were to jump, this is where he'd jump to
 	private var jumpSource:FlxPoint; // if the top were to jump, this is where he'd jump from
 

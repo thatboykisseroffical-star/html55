@@ -107,12 +107,12 @@ class BetterFlxTypeText extends FlxText
 	/**
 	 * This is incremented every frame by elapsed, and when greater than delay, adds the next letter.
 	 */
-	var _timer:Float = 0.0;
+	var _timer:Float = 0;
 
 	/**
 	 * A timer that is used while waiting between typing and erasing.
 	 */
-	var _waitTimer:Float = 0.0;
+	var _waitTimer:Float = 0;
 
 	/**
 	 * Internal tracker for current string length, not counting the prefix.
@@ -137,7 +137,7 @@ class BetterFlxTypeText extends FlxText
 	/**
 	 * Internal tracker for cursor blink time.
 	 */
-	var _cursorTimer:Float = 0.0;
+	var _cursorTimer:Float = 0;
 
 	/**
 	 * Whether or not to add a "natural" uneven rhythm to the typing speed.

@@ -1866,7 +1866,7 @@ class StairStatus implements IFlxDestroyable
 	public static var chest1Positions:Array<FlxPoint> = [FlxPoint.get(522, 34 + 15 * 9), FlxPoint.get(552, 11 + 15 * 9)];
 	public static var dicePositions:Array<FlxPoint> = [FlxPoint.get(668, 462), FlxPoint.get(60, 462)];
 
-	var playerIndex:Int;
+	var playerIndex:Int = 0;
 	var state:StairGameState;
 	public var critter:Critter;
 	public var stairIndex:Int = 0;

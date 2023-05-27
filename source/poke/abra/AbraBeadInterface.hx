@@ -56,7 +56,7 @@ class AbraBeadInterface extends FlxSpriteGroup
 	public var canEndPushMode:Bool = false;
 
 	public var pulledBeads:Int = 1000;
-	public var lineAngle:Float; // number ranging from [-1.0, 1.0] for left/right
+	public var lineAngle:Float = 0; // number ranging from [-1.0, 1.0] for left/right
 	private var pushPath:SegmentedPath;
 	private var _meterNeedleHeadTemplate:Array<FlxPoint> = [FlxPoint.get( -4, 0), FlxPoint.get(4, -6), FlxPoint.get(4, 6)];
 	private var _meterNeedleHead:Array<FlxPoint> = [FlxPoint.get(), FlxPoint.get(), FlxPoint.get()];

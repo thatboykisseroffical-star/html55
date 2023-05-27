@@ -29,18 +29,18 @@ class ClueFactory implements IFlxDestroyable
 {
 	private var _puzzleState:PuzzleState;
 
-	public var _offsetX:Float;
-	public var _gridX:Float;
-	public var _gridY:Float;
-	public var _gridWidth:Float;
-	public var _gridHeight:Float;
+	public var _offsetX:Float = 0;
+	public var _gridX:Float = 0;
+	public var _gridY:Float = 0;
+	public var _gridWidth:Float = 0;
+	public var _gridHeight:Float = 0;
 
-	private var _oldClueCount:Int;
-	private var _oldColorCount:Int;
+	private var _oldClueCount:Int = 0;
+	private var _oldColorCount:Int = 0;
 
-	private var _newClueCount:Int;
-	private var _newPegCount:Int;
-	private var _newColorCount:Int;
+	private var _newClueCount:Int = 0;
+	private var _newPegCount:Int = 0;
+	private var _newColorCount:Int = 0;
 
 	private var _markerSprites:Array<FlxSprite> = [];
 

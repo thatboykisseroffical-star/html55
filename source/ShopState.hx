@@ -56,7 +56,7 @@ class ShopState extends FlxTransitionableState
 
 	private var _crackerSprite:FlxSprite;
 	private var _crumbSprite:FlxSprite;
-	private var _crackerClickCount:Int;
+	private var _crackerClickCount:Int = 0;
 
 	private var _abraSprites:Array<FlxSprite> = [];
 	private var _sandSprites:Array<FlxSprite> = [];

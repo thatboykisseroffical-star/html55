@@ -116,7 +116,7 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 	private var _newHeadTimer:Float = 1.5; // when this counts down to 0, the pokemon will move their head
 	public var _headTimerFactor = 1.0; // if this is set to 2.0 or 3.0, the pokemon will only move their head one-half or one-third as often.
 	private var _rubCheckTimer:Float = 0; // when this counts down to 0, we will check where the player's mouse is and what they're clicking. (it's expensive to check, we don't want to do it that often)
-	private var _clickedDuration:Float;
+	private var _clickedDuration:Float = 0;
 	private var _clickedSpot:FlxPoint;
 
 	private var _fancyRub:Bool = false;
@@ -279,7 +279,7 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 	private var _streamButton:FlxButton;
 	private var _streamCloseButton:FlxSprite;
 	private var _tablet:Tablet;
-	public var popularity:Float = 0.0; // ranges from -1.0 (very unpopular) to 1.0 (very popular) and affects tablet numbers
+	public var popularity:Float = 0; // ranges from -1.0 (very unpopular) to 1.0 (very popular) and affects tablet numbers
 
 	override public function create():Void
 	{
@@ -2267,7 +2267,7 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 			{
 				if (_cumShots[0].duration - elapsed <= 0 && _cumShots[0].rate == 0)
 				{
-					var amount:Float;
+					var amount:Float = 0;
 					var lucky:Float = lucky(0.6, 1.0, cumTraits4[cumTrait4]);
 					lucky /= (_remainingOrgasms + 1);
 					amount = roundUpToQuarter(lucky * _heartBank._foreplayHeartReservoir);
@@ -2370,7 +2370,7 @@ class SexyState<T:PokeWindow> extends FlxTransitionableState
 	 */
 	function doMeanThing(amount:Float = 1):Void
 	{
-		var oldCapacity:Float;
+		var oldCapacity:Float = 0;
 		if (_heartBank._foreplayHeartReservoirCapacity > _heartBank._defaultForeplayHeartReservoir)
 		{
 			oldCapacity = _heartBank._foreplayHeartReservoirCapacity;

@@ -10,7 +10,7 @@ class SexyBlowJob extends SexyCritterAnim
 {
 	private var topCritter:Critter; // the critter doing the rimming
 	private var botCritter:Critter; // the critter being rimmed
-	public var facing:Int; // is the critter receiving the blowjob facing right or left?
+	public var facing:Int = 0; // is the critter receiving the blowjob facing right or left?
 	private var jumpTarget:FlxPoint; // where the bottom needs to be, to blow the top
 	private var isTopHandOnHead:Bool = false;
 

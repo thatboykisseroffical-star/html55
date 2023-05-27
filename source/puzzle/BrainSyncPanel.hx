@@ -120,7 +120,7 @@ class BrainSyncPanel extends FlxGroup
 		setPlayerRank(RankTracker.computeAggregateRank());
 
 		var finalTrialCount:Int = Std.int(FlxMath.bound(AbraDialog.getFinalTrialCount(), 0, 4));
-		var abraRank:Int;
+		var abraRank:Int = 0;
 		if (puzzleState._gameState >= 300)
 		{
 			// after puzzle solved
@@ -175,7 +175,7 @@ class BrainHemisphere implements IFlxDestroyable
 {
 	private var x:Float = 0;
 	private var y:Float = 0;
-	public var activityPct:Float = 0.0;
+	public var activityPct:Float = 0;
 	public var emitter:FlxTypedEmitter<GlowyParticle>;
 	private var emitTimer:Float = 0;
 	private var emitFrequency:Float = 1.6;

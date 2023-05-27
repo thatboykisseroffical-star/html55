@@ -55,7 +55,7 @@ class Scale extends FlxGroup
 	
 	private var _leftRange:Float = -1;
 	private var _rightRange:Float = 1;
-	public var _shortScale:Bool;
+	public var _shortScale:Bool = false;
 
 	public function new() {
 		super();

@@ -38,7 +38,7 @@ class CritterHead extends FlxSprite
 
 	private var _blinkFrames:Map<Int, Int>;
 	private var _critter:Critter;
-	private var _blinkElapsed:Float;
+	private var _blinkElapsed:Float = 0;
 
 	public function new(critter:Critter)
 	{

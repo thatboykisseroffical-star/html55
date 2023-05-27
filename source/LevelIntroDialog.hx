@@ -186,7 +186,7 @@ class LevelIntroDialog
 			}
 			if (chats.length > 0)
 			{
-				var index:Int;
+				var index:Int = 0;
 				if (sexyBeforeChat == 99)
 				{
 					// special value; default to the 'intro' sexyBeforeChat
@@ -271,7 +271,7 @@ class LevelIntroDialog
 			}
 			if (chats.length > 0)
 			{
-				var index:Int;
+				var index:Int = 0;
 				if (sexyAfterChat == 99)
 				{
 					// special value; default to the 'intro' sexyAfterChat
@@ -635,7 +635,7 @@ class LevelIntroDialog
 			if (profPrefixes[i] == "smea")
 			{
 				// reduce libido given to smeargle
-				var limit:Int;
+				var limit:Int = 0;
 				if (reservoir >= 55)
 				{
 					limit = 2;
@@ -673,7 +673,7 @@ class LevelIntroDialog
 			if (profPrefix == "smea")
 			{
 				// reduce libido given to smeargle
-				var limit:Int;
+				var limit:Int = 0;
 				if (toyReservoir >= 45)
 				{
 					limit = 2;
@@ -870,7 +870,7 @@ class LevelIntroDialog
 		}
 		else {
 			var index:Int = FlxG.random.int(0, Std.int(Math.max(3, badThings == null ? 0 : badThings.length)));
-			var newChat:Int;
+			var newChat:Int = 0;
 			if (badThings != null && index < badThings.length)
 			{
 				newChat = badThings[index];

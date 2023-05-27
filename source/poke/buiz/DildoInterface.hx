@@ -53,12 +53,12 @@ class DildoInterface extends FlxSpriteGroup
 				FlxPoint.get(260, 435),
 				FlxPoint.get(215, 435),
 			];
-	private var arrowDist:Float;
+	private var arrowDist:Float = 0;
 	private var arrowLength:Float = 1.0;
 	private var arrowMask:FlxSprite;
 	private var arrowMaskSmall:FlxSprite;
 	private var oldMousePos:FlxPoint = FlxPoint.get();
-	private var dildoInPct:Float = 0.0;
+	private var dildoInPct:Float = 0;
 
 	public var animName:String = null;
 	public var animPct:Float = 0; // how many frames of the animation should we use? 0.0 = minimum number of frames, 1.0 = maximum number of frames

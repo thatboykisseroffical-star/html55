@@ -392,7 +392,7 @@ class Hint
 class ColorExistsHint extends Hint
 {
 	private var critterColor:CritterColor;
-	private var exists:Bool;
+	private var exists:Bool = false;
 
 	public function new(critterColor:CritterColor, exists:Bool)
 	{
@@ -416,7 +416,7 @@ class ColorExistsHint extends Hint
 
 class HowManyColorsHint extends Hint
 {
-	private var howMany:Int;
+	private var howMany:Int = 0;
 
 	public function new(howMany:Int)
 	{
@@ -440,7 +440,7 @@ class HowManyColorsHint extends Hint
 class HowManyOfAColorHint extends Hint
 {
 	private var critterColor:CritterColor;
-	private var howMany:Int;
+	private var howMany:Int = 0;
 
 	public function new(critterColor:CritterColor, howMany:Int)
 	{
@@ -469,7 +469,7 @@ class HowManyOfAColorHint extends Hint
 class WhichColorsPresentHint extends Hint
 {
 	private var critterColors:Array<CritterColor>;
-	private var maxColors:Int;
+	private var maxColors:Int = 0;
 
 	public function new(critterColors:Array<CritterColor>, maxColors:Int)
 	{
@@ -510,7 +510,7 @@ class WhichColorsPresentHint extends Hint
 class WhichColorsAbsentHint extends Hint
 {
 	private var critterColors:Array<CritterColor>;
-	private var maxColors:Int;
+	private var maxColors:Int = 0;
 
 	public function new(critterColors:Array<CritterColor>, maxColors:Int)
 	{
@@ -550,7 +550,7 @@ class WhichColorsAbsentHint extends Hint
 
 class NonsenseHint extends Hint
 {
-	private var key:Int;
+	private var key:Int = 0;
 
 	public function new(key:Int)
 	{
@@ -614,7 +614,7 @@ class NonsenseHint extends Hint
 
 class WhichColorsInWrongPosition extends Hint
 {
-	var clueIndex:Int;
+	var clueIndex:Int = 0;
 	var wrongPosition:Array<CritterColor>;
 
 	public function new(clueIndex:Int, wrongPosition:Array<CritterColor>)
@@ -678,7 +678,7 @@ class WhichColorsInWrongPosition extends Hint
 
 class WhichColorsInRightPosition extends Hint
 {
-	var clueIndex:Int;
+	var clueIndex:Int = 0;
 	var rightPosition:Array<CritterColor>;
 
 	public function new(clueIndex:Int, rightPosition:Array<CritterColor>)
@@ -881,7 +881,7 @@ class WhichColorIsHereHint extends Hint
 	private var indexNames0:Array<String>;
 	private var indexNames1:Array<String>;
 	private var indexNames2:Array<String>;
-	private var index:Int;
+	private var index:Int = 0;
 	private var color:CritterColor;
 
 	public function new(index:Int, color:CritterColor, pegCount:Int)

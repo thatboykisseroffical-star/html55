@@ -45,7 +45,7 @@ class VibeInterface extends FlxSpriteGroup
 	private var buttonsSprite:FlxSprite;
 	private var elecSprite:FlxSprite;
 	private var vibe:Vibe;
-	private var electric:Bool;
+	private var electric:Bool = false;
 
 	public var buttonDuration:Float = 0;
 	/*

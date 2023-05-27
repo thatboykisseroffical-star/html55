@@ -25,7 +25,7 @@ class SplashScreenState extends FlxTransitionableState
 {
 	private var shadowGroup:ShadowGroup;
 	private var fgGroup:FlxTypedGroup<FlxSprite>;
-	private var colorCount:Int;
+	private var colorCount:Int = 0;
 
 	private var critterCountMap:Map<Int, Int> = [
 				0 => 2,
@@ -107,7 +107,7 @@ class SplashScreenState extends FlxTransitionableState
 		super.create();
 
 		var shaderColor:FlxColor;
-		var shaderAlpha:Float;
+		var shaderAlpha:Float = 0;
 		var wealth:Int = MainMenuState.getTotalWealth();
 
 		var bgShader:FlxSprite = new FlxSprite();

@@ -39,11 +39,11 @@ class StairDice extends FlxSprite
 		[6, 4, 2, 1, 3],
 	];
 	
-	public var z:Float;
-	public var zVelocity:Float;
+	public var z:Float = 0;
+	public var zVelocity:Float = 0;
 	public var zAccel:Float = -1440;
 	
-	public var sfxTimer:Float;
+	public var sfxTimer:Float = 0;
 	public var rollTimer:Float = 0;
 	public var sfxVolume:Float = 0;
 

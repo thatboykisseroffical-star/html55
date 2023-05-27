@@ -774,7 +774,7 @@ class Noun
 class ItemQuality
 {
 	public var adjectives:Array<Adjective>;
-	public var plural:Bool;
+	public var plural:Bool = false;
 	public var successfulPurchase:Array<String> = [];
 
 	public function new(plural:Bool, adjectives:Array<Adjective>)

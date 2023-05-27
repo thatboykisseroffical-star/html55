@@ -26,7 +26,7 @@ class Vibe implements IFlxDestroyable
 	public var dickFrameToVibeFrameMap:Map<Int, Array<Int>> = new Map<Int, Array<Int>>();
 	public var vibeSfx:VibeSfx = new VibeSfx();
 	private var vibeSpeeds:Array<Float> = [5.0, 6.7, 9, 12.3, 17];
-	private var electric:Bool;
+	private var electric:Bool = false;
 
 	public function new(dick:BouncySprite, X:Float, Y:Float)
 	{

@@ -22,35 +22,35 @@ class ItemDatabase
 										   11000, 12000, 13000, 14000, 15000, 16000, 17000, 18000, 19000, 20000, 22000, 24000, 26000, 27500, 30000, 32000, 34000, 36000, 38000, 40000,
 										   42500, 45000, 47500, 50000, 55000, 60000, 65000, 70000, 75000, 80000, 85000, 90000, 95000, 99999];
 
-	public static var ITEM_COOKIES:Int;
-	public static var ITEM_CALCULATOR:Int;
-	public static var ITEM_HYDROGEN_PEROXIDE:Int;
-	public static var ITEM_ACETONE:Int;
-	public static var ITEM_INCENSE:Int;
-	public static var ITEM_GOLD_PUZZLE_KEY:Int;
-	public static var ITEM_DIAMOND_PUZZLE_KEY:Int;
-	public static var ITEM_MARS_SOFTWARE:Int;
-	public static var ITEM_VENUS_SOFTWARE:Int;
-	public static var ITEM_MAGNETIC_DESK_TOY:Int;
-	public static var ITEM_SMALL_GREY_BEADS:Int;
-	public static var ITEM_SMALL_PURPLE_BEADS:Int;
-	public static var ITEM_LARGE_GLASS_BEADS:Int;
-	public static var ITEM_LARGE_GREY_BEADS:Int;
-	public static var ITEM_FRUIT_BUGS:Int;
-	public static var ITEM_MARSHMALLOW_BUGS:Int;
-	public static var ITEM_SPOOKY_BUGS:Int;
-	public static var ITEM_RETROPIE:Int;
-	public static var ITEM_ASSORTED_GLOVES:Int;
-	public static var ITEM_INSULATED_GLOVES:Int;
-	public static var ITEM_GHOST_GLOVES:Int;
-	public static var ITEM_VANISHING_GLOVES:Int;
-	public static var ITEM_STREAMING_PACKAGE:Int;
-	public static var ITEM_VIBRATOR:Int;
-	public static var ITEM_BLUE_DILDO:Int;
-	public static var ITEM_GUMMY_DILDO:Int;
-	public static var ITEM_HUGE_DILDO:Int;
-	public static var ITEM_HAPPY_MEAL:Int;
-	public static var ITEM_PIZZA_COUPONS:Int;
+	public static var ITEM_COOKIES:Int = 0;
+	public static var ITEM_CALCULATOR:Int = 0;
+	public static var ITEM_HYDROGEN_PEROXIDE:Int = 0;
+	public static var ITEM_ACETONE:Int = 0;
+	public static var ITEM_INCENSE:Int = 0;
+	public static var ITEM_GOLD_PUZZLE_KEY:Int = 0;
+	public static var ITEM_DIAMOND_PUZZLE_KEY:Int = 0;
+	public static var ITEM_MARS_SOFTWARE:Int = 0;
+	public static var ITEM_VENUS_SOFTWARE:Int = 0;
+	public static var ITEM_MAGNETIC_DESK_TOY:Int = 0;
+	public static var ITEM_SMALL_GREY_BEADS:Int = 0;
+	public static var ITEM_SMALL_PURPLE_BEADS:Int = 0;
+	public static var ITEM_LARGE_GLASS_BEADS:Int = 0;
+	public static var ITEM_LARGE_GREY_BEADS:Int = 0;
+	public static var ITEM_FRUIT_BUGS:Int = 0;
+	public static var ITEM_MARSHMALLOW_BUGS:Int = 0;
+	public static var ITEM_SPOOKY_BUGS:Int = 0;
+	public static var ITEM_RETROPIE:Int = 0;
+	public static var ITEM_ASSORTED_GLOVES:Int = 0;
+	public static var ITEM_INSULATED_GLOVES:Int = 0;
+	public static var ITEM_GHOST_GLOVES:Int = 0;
+	public static var ITEM_VANISHING_GLOVES:Int = 0;
+	public static var ITEM_STREAMING_PACKAGE:Int = 0;
+	public static var ITEM_VIBRATOR:Int = 0;
+	public static var ITEM_BLUE_DILDO:Int = 0;
+	public static var ITEM_GUMMY_DILDO:Int = 0;
+	public static var ITEM_HUGE_DILDO:Int = 0;
+	public static var ITEM_HAPPY_MEAL:Int = 0;
+	public static var ITEM_PIZZA_COUPONS:Int = 0;
 
 	/**
 	 * Has the player solved a set of puzzles since we last restocked?
@@ -60,7 +60,7 @@ class ItemDatabase
 	/**
 	 * When's the last time we last restocked?
 	 */
-	public static var _prevRefillTime:Float;
+	public static var _prevRefillTime:Float = 0;
 
 	public static var _itemTypes:Array<ItemType> =
 	{
@@ -150,8 +150,8 @@ class ItemDatabase
 
 	public static function refillShop():Void
 	{
-		var shouldRefillItems:Bool;
-		var shouldRotateStaff:Bool;
+		var shouldRefillItems:Bool = false;
+		var shouldRotateStaff:Bool = false;
 
 		if (_prevRefillTime == 0)
 		{
@@ -497,17 +497,17 @@ typedef ItemType =
 class ShopItem
 {
 	public var _orderIndex:Int = FlxG.random.int(0, 10000);
-	public var _itemIndex:Int;
+	public var _itemIndex:Int = 0;
 
 	// A discount which fluctuates from [-4, 4]. Lower numbers are better
-	public var _discount:Int;
+	public var _discount:Int = 0;
 
 	/*
 	 * We usually select our stock by taking one of the cheaper items from the
 	 * warehouse, except for one token expensive item. Is this item our token
 	 * expensive item?
 	 */
-	public var _expensive:Bool;
+	public var _expensive:Bool = false;
 
 	public function new(ItemIndex:Int, Discount:Int=0)
 	{

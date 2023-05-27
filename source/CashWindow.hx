@@ -19,10 +19,10 @@ class CashWindow extends FlxTypedGroup<FlxSprite>
 	private var _cashWindow:FlxSprite;
 	private var _cashWindowText:FlxText;
 	private var _cashSymbol:FlxSprite;
-	public var _currentAmount:Float;
+	public var _currentAmount:Float = 0;
 	private var _cashSound:FlxSound;
 	public var _autoHide:Bool = true;
-	private var _hideTimer:Float;
+	private var _hideTimer:Float = 0;
 
 	private var _cashYTween:FlxTween;
 	private var _cashXTween:FlxTween;
