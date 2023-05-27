@@ -94,12 +94,12 @@ interface ICell extends IFlxDestroyable
 	public function getCritters():Array<Critter>;
 	public function open():Void;
 	public function close():Void;
-	public function isClosed():Bool = false;
-	public function addCritter(critter:Critter):Bool = false;
-	public function removeCritter(critter:Critter):Bool = false;
+	public function isClosed():Bool;
+	public function addCritter(critter:Critter):Bool;
+	public function removeCritter(critter:Critter):Bool;
 	public function getSprite():FlxSprite;
 	public function getFrontSprite():FlxSprite;
-	public function getClueIndex():Int = 0;
+	public function getClueIndex():Int;
 	public function assignCritter(critter:Critter):Void;
 	public function unassignCritter(critter:Critter):Void;
 	public function getAssignedCritters():Array<Critter>;
