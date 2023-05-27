@@ -1,5 +1,6 @@
 package;
 
+import haxe.Timer;
 import MmStringTools.*;
 import flixel.util.FlxDestroyUtil.IFlxDestroyable;
 import openfl.utils.Object;
@@ -124,6 +125,16 @@ class DialogTree implements IFlxDestroyable
 	 */
 	public function go()
 	{
+		#if html5
+		if (!_dialogging)
+		{
+			// on HTML5 the dialog panel shows the previously displayed dialog for a few frames, so
+			// we don't show it right away
+			_dialogger.visible = false;
+			Timer.delay(() -> _dialogger.visible = true, 0);
+		}
+		#end
+
 		_dialogger.reset(); // reset to avoid displaying two sets of dialog simultaneously
 		_dialogging = true;
 		while (_tree[_currentLine] != null && _tree[_currentLine].length == 1)
