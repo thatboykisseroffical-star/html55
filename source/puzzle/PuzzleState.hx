@@ -86,7 +86,7 @@ class PuzzleState extends LevelState
 	private var _clueFactory:ClueFactory;
 
 	private var _undoOperations:Array<UndoOperation>;
-	private var _undoIndex:Int;
+	private var _undoIndex:Int = 0;
 
 	private var _endTimer:Float = -1;
 
@@ -3737,7 +3737,8 @@ class PuzzleState extends LevelState
 
 				finishAppendingUndoOperation();
 
-				if (!_puzzle._easy && targetCritterHolder != null && targetCritterHolder == _undoOperations[_undoIndex - 1].oldCritterHolder)
+				if (!_puzzle._easy && targetCritterHolder != null && (_undoIndex - 1) < _undoOperations.length
+						&& targetCritterHolder == _undoOperations[_undoIndex - 1].oldCritterHolder)
 				{
 					// we're dropping a critter back into the same container.
 					// undoing the previous operation instead of repeating it keeps us from resetting holopads
