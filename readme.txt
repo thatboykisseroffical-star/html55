@@ -3,7 +3,7 @@
 
 This project is written in HaxeFlixel which takes some work to setup.
 
-1. Install Haxe. I am using 3.4.0, you can find the latest version at https://haxe.org/download/
+1. Install Haxe. I am using 3.4.1, you can find the latest version at https://haxe.org/download/
 
 2. Install HaxeFlixel. Open a command prompt and run the following commands:
 
@@ -13,6 +13,32 @@ This project is written in HaxeFlixel which takes some work to setup.
    haxelib run lime setup flixel
    haxelib run lime setup
    haxelib install flixel-tools
+   
+   This will retrieve a lot of libraries for openfl, flixel, and other things.
+   Here is a list of the libraries I am currently using, alongside their
+   versions. You can obtain your own list by running 'haxelib list':
+
+   actuate: 1.8.9 [1.9.0]
+   box2d: [1.2.3]
+   flixel-addons: 2.9.0 2.10.0 2.11.0 [3.1.1]
+   flixel-demos: 2.7.3 2.7.4 2.8.0 [2.9.0]
+   flixel-templates: 2.6.5 [2.6.6]
+   flixel-tools: 1.4.4 [1.5.1]
+   flixel-ui: 2.3.3 2.4.0 [2.5.0]
+   flixel: 4.8.1 4.9.0 4.10.0 [5.3.1]
+   format: [3.5.0]
+   hashlink: git [dev:C:\HaxeToolkit\haxe\lib\hashlink/git/other/haxelib/]
+   haxelib: [4.1.0]
+   hscript: 2.4.0 [2.5.0]
+   hxcpp-debug-server: 1.2.4 [dev:c:\Users\aaron\.vscode\extensions\vshaxe.hxcpp-debugger-1.2.4\hxcpp-debug-server]
+   hxcpp: 4.2.1 [4.3.2]
+   hxp: [1.2.2]
+   layout: [1.2.1]
+   lime-samples: [7.0.0]
+   lime: 7.8.0 7.9.0 [8.0.1] git
+   openfl-samples: [8.7.0]
+   openfl: 9.0.2 9.1.0 [9.2.1] git
+   systools: [1.1.0]
 
 3. Install an IDE. I am using HaxeDevelop but your IDE shouldn't matter very much.
 
