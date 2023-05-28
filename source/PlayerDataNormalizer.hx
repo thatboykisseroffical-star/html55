@@ -191,8 +191,8 @@ class PlayerDataNormalizer
 
 		for (key in expectedCounts.keys())
 		{
-			var expectedCount:Int = expectedCounts[key];
-			var actualCount:Int = actualCounts[key];
+			var expectedCount:Int = expectedCounts.exists(key) ? expectedCounts[key] : 0;
+			var actualCount:Int = actualCounts.exists(key) ? actualCounts[key] : 0;
 
 			while (actualCount < expectedCount)
 			{
