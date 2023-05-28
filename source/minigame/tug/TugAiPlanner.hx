@@ -136,7 +136,7 @@ class TugAiPlanner implements IFlxDestroyable
 		for (row in 0...rowCount)
 		{
 			// initialize menPerRow with locked bug counts...
-			menPerRow[row] += getLockedLeftCritters(row);
+			menPerRow[row] = getLockedLeftCritters(row);
 		}
 
 		if (currentWinPlan == null)
