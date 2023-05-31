@@ -112,6 +112,26 @@ class MagnSexyState extends SexyState<MagnWindow>
 		 [1, 3, 4, 4, 3],
 		 [2, 4, 5, 2, 0]];
 
+	#if windows
+	// Workaround for HaxeFlixel #1768; On Windows targets, attempting to reflect into AssetPaths
+	// fails due to dead asset elimination
+	// https://github.com/HaxeFlixel/flixel/issues/1768 
+	private static var WINDOWS_REFLECTION_WORKAROUND:Map<String, String> = [
+			"magn_lever_0063_bot_fasta__mp3" => AssetPaths.magn_lever_0063_bot_fasta__mp3,
+			"magn_lever_0063_bot_fastb__mp3" => AssetPaths.magn_lever_0063_bot_fastb__mp3,
+			"magn_lever_0063_bot_meda__mp3" => AssetPaths.magn_lever_0063_bot_meda__mp3,
+			"magn_lever_0063_bot_medb__mp3" => AssetPaths.magn_lever_0063_bot_medb__mp3,
+			"magn_lever_0063_bot_slowa__mp3" => AssetPaths.magn_lever_0063_bot_slowa__mp3,
+			"magn_lever_0063_bot_slowb__mp3" => AssetPaths.magn_lever_0063_bot_slowb__mp3,
+			"magn_lever_0063_top_fasta__mp3" => AssetPaths.magn_lever_0063_top_fasta__mp3,
+			"magn_lever_0063_top_fastb__mp3" => AssetPaths.magn_lever_0063_top_fastb__mp3,
+			"magn_lever_0063_top_meda__mp3" => AssetPaths.magn_lever_0063_top_meda__mp3,
+			"magn_lever_0063_top_medb__mp3" => AssetPaths.magn_lever_0063_top_medb__mp3,
+			"magn_lever_0063_top_slowa__mp3" => AssetPaths.magn_lever_0063_top_slowa__mp3,
+			"magn_lever_0063_top_slowb__mp3" => AssetPaths.magn_lever_0063_top_slowb__mp3,
+	];
+	#end
+
 	private var _pressedPanelButtonIndexes:Array<Int> = [];
 	private var _draggingButtons:Bool = false;
 
@@ -1265,7 +1285,17 @@ class MagnSexyState extends SexyState<MagnWindow>
 		else {
 			speed = "fast";
 		}
-		SoundStackingFix.play(Reflect.field(AssetPaths, "magn_lever_0063_" + topBot + "_" + speed + ab + "__mp3"), volume);
+		var sfxFieldName:String = "magn_lever_0063_" + topBot + "_" + speed + ab + "__mp3";
+		var embeddedSound:String;
+		#if windows
+		// Workaround for HaxeFlixel #1768; On Windows targets, attempting to reflect into AssetPaths
+		// fails due to dead asset elimination
+		// https://github.com/HaxeFlixel/flixel/issues/1768 
+		embeddedSound = WINDOWS_REFLECTION_WORKAROUND[sfxFieldName];
+		#else
+		embeddedSound = Reflect.field(AssetPaths, sfxFieldName);
+		#end
+		SoundStackingFix.play(embeddedSound, volume);
 	}
 
 	function updateBigPortAnimation()
