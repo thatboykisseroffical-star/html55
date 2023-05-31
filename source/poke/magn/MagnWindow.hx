@@ -43,6 +43,23 @@ class MagnWindow extends PokeWindow
 				"yellow", "red", "green", "yellow",
 				"green", "green", "green", "green", "yellow"
 			];
+	
+	#if windows
+	// Workaround for HaxeFlixel #1768; On Windows targets, attempting to reflect into AssetPaths
+	// fails due to dead asset elimination
+	// https://github.com/HaxeFlixel/flixel/issues/1768 
+	private static var WINDOWS_REFLECTION_WORKAROUND:Map<String, FlxGraphicAsset> = [
+			"magn_button_green_center__png" => AssetPaths.magn_button_green_center__png,
+			"magn_button_green_left__png" => AssetPaths.magn_button_green_left__png,
+			"magn_button_green_right__png" => AssetPaths.magn_button_green_right__png,
+			"magn_button_red_center__png" => AssetPaths.magn_button_red_center__png,
+			"magn_button_red_left__png" => AssetPaths.magn_button_red_left__png,
+			"magn_button_red_right__png" => AssetPaths.magn_button_red_right__png,
+			"magn_button_yellow_center__png" => AssetPaths.magn_button_yellow_center__png,
+			"magn_button_yellow_left__png" => AssetPaths.magn_button_yellow_left__png,
+			"magn_button_yellow_right__png" => AssetPaths.magn_button_yellow_right__png,
+	];
+	#end
 
 	private var _frontSprites:Array<FlxSprite> = []; // sprites from front perspective
 	private var _backSprites:Array<FlxSprite> = []; // sprites from back perspective
@@ -854,7 +871,17 @@ class MagnWindow extends PokeWindow
 			var tmpSprite:FlxSprite = new FlxSprite();
 			for (i in 0...BUTTON_POSITIONS.length)
 			{
-				tmpSprite.loadGraphic(Reflect.field(AssetPaths, "magn_button_" + BUTTON_RYG[i] + "_" + BUTTON_LCR[i] + "__png"), true, 24, 24);
+				var buttonFieldName:String = "magn_button_" + BUTTON_RYG[i] + "_" + BUTTON_LCR[i] + "__png";
+				var buttonGraphic:FlxGraphicAsset;
+				#if windows
+					// Workaround for HaxeFlixel #1768; On Windows targets, attempting to reflect into AssetPaths
+					// fails due to dead asset elimination
+					// https://github.com/HaxeFlixel/flixel/issues/1768 
+					buttonGraphic = WINDOWS_REFLECTION_WORKAROUND[buttonFieldName];
+				#else
+					buttonGraphic = Reflect.field(AssetPaths, buttonFieldName);
+				#end
+				tmpSprite.loadGraphic(buttonGraphic, true, 24, 24);
 				if (_buttonPushed[i] == true)
 				{
 					tmpSprite.animation.frameIndex += 1;
