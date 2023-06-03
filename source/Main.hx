@@ -42,7 +42,7 @@ import puzzle.PuzzleState;
  */
 class Main extends Sprite
 {
-	public static var VERSION_STRING:String = "1.10.3-UNSTABLE";
+	public static var VERSION_STRING:String = "1.10.3";
 	var gameWidth:Int = 768; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	var gameHeight:Int = 432; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	var initialState:Class<FlxState> = SplashScreenState; // The FlxState the game starts with.
