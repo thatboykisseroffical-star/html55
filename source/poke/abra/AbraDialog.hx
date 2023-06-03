@@ -1763,7 +1763,13 @@ class AbraDialog
 				tree[733] = ["#abra05#... ..."];
 				tree[734] = [770];
 
+				#if windows
+				tree[770] = ["#abra04#Wait, what the heck am I doing!? I can just check the header of the original cross-universe HTTP request you used to download the EXE file."];
+				#elseif html5
+				tree[770] = ["#abra04#Wait, what the heck am I doing!? I can just check the header of the original cross-universe HTTP request you used to download the HTML file."];
+				#else
 				tree[770] = ["#abra04#Wait, what the heck am I doing!? I can just check the header of the original cross-universe HTTP request you used to download the SWF file."];
+				#end
 				tree[771] = ["#abra05#I don't need your help for this, I just... mhmm... here we go.... mhmm... Okay! I can work with this."];
 				tree[772] = ["#abra02#Just need a DNS server and... Hey wow! First try!!"];
 				tree[773] = ["#abra04#...Okay, go ahead and work on this next puzzle! It'll give me some time to figure out where things are... Hmmm, hmmm..."];
