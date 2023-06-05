@@ -280,6 +280,24 @@ class PlayerData
 	public static var detailLevel:DetailLevel = DetailLevel.Max;
 	public static var sfw:Bool = false;
 
+	#if windows
+	// Workaround for Haxe #6630; Reflect.field on public static inline return null.
+	// https://github.com/HaxeFoundation/haxe/issues/6630
+	private static var WINDOWS_REFLECTION_WORKAROUND:Map<String, Bool> = [
+			"abraDefaultMale" => PlayerData.abraDefaultMale,
+			"buizDefaultMale" => PlayerData.buizDefaultMale,
+			"grovDefaultMale" => PlayerData.grovDefaultMale,
+			"sandDefaultMale" => PlayerData.sandDefaultMale,
+			"rhydDefaultMale" => PlayerData.rhydDefaultMale,
+			"smeaDefaultMale" => PlayerData.smeaDefaultMale,
+			"keclDefaultMale" => PlayerData.keclDefaultMale,
+			"magnDefaultMale" => PlayerData.magnDefaultMale,
+			"grimDefaultMale" => PlayerData.grimDefaultMale,
+			"heraDefaultMale" => PlayerData.heraDefaultMale,
+			"lucaDefaultMale" => PlayerData.lucaDefaultMale,
+	];
+	#end
+
 	public static function isPlayerDoingStuff():Bool
 	{
 		return clickTime != 0 && (clickTime > MmTools.time() - 180 * 1000);
@@ -530,6 +548,18 @@ class PlayerData
 		}
 	}
 
+	public static function isDefaultMale(prefix:String):Bool
+	{
+		var isMaleFieldName:String = prefix + "DefaultMale";
+		#if windows
+		// Workaround for Haxe #6630; Reflect.field on public static inline return null.
+		// https://github.com/HaxeFoundation/haxe/issues/6630
+		return WINDOWS_REFLECTION_WORKAROUND[isMaleFieldName];
+		#else
+		return Reflect.field(PlayerData, prefix + "DefaultMale");
+		#end
+	}
+
 	public static function setSexualPreference(pref:SexualPreference)
 	{
 		sexualPreference = pref;
@@ -546,7 +576,7 @@ class PlayerData
 			}
 			else
 			{
-				male = Reflect.field(PlayerData, prefix + "DefaultMale");
+				male = isDefaultMale(prefix);
 			}
 			Reflect.setField(PlayerData, prefix + "Male", male);
 		}

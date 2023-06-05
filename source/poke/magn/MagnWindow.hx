@@ -45,9 +45,8 @@ class MagnWindow extends PokeWindow
 			];
 	
 	#if windows
-	// Workaround for HaxeFlixel #1768; On Windows targets, attempting to reflect into AssetPaths
-	// fails due to dead asset elimination
-	// https://github.com/HaxeFlixel/flixel/issues/1768 
+	// Workaround for Haxe #6630; Reflect.field on public static inline return null.
+	// https://github.com/HaxeFoundation/haxe/issues/6630
 	private static var WINDOWS_REFLECTION_WORKAROUND:Map<String, FlxGraphicAsset> = [
 			"magn_button_green_center__png" => AssetPaths.magn_button_green_center__png,
 			"magn_button_green_left__png" => AssetPaths.magn_button_green_left__png,
@@ -874,12 +873,11 @@ class MagnWindow extends PokeWindow
 				var buttonFieldName:String = "magn_button_" + BUTTON_RYG[i] + "_" + BUTTON_LCR[i] + "__png";
 				var buttonGraphic:FlxGraphicAsset;
 				#if windows
-					// Workaround for HaxeFlixel #1768; On Windows targets, attempting to reflect into AssetPaths
-					// fails due to dead asset elimination
-					// https://github.com/HaxeFlixel/flixel/issues/1768 
-					buttonGraphic = WINDOWS_REFLECTION_WORKAROUND[buttonFieldName];
+				// Workaround for Haxe #6630; Reflect.field on public static inline return null.
+				// https://github.com/HaxeFoundation/haxe/issues/6630
+				buttonGraphic = WINDOWS_REFLECTION_WORKAROUND[buttonFieldName];
 				#else
-					buttonGraphic = Reflect.field(AssetPaths, buttonFieldName);
+				buttonGraphic = Reflect.field(AssetPaths, buttonFieldName);
 				#end
 				tmpSprite.loadGraphic(buttonGraphic, true, 24, 24);
 				if (_buttonPushed[i] == true)

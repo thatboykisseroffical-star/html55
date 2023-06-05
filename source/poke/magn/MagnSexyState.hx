@@ -113,9 +113,8 @@ class MagnSexyState extends SexyState<MagnWindow>
 		 [2, 4, 5, 2, 0]];
 
 	#if windows
-	// Workaround for HaxeFlixel #1768; On Windows targets, attempting to reflect into AssetPaths
-	// fails due to dead asset elimination
-	// https://github.com/HaxeFlixel/flixel/issues/1768 
+	// Workaround for Haxe #6630; Reflect.field on public static inline return null.
+	// https://github.com/HaxeFoundation/haxe/issues/6630
 	private static var WINDOWS_REFLECTION_WORKAROUND:Map<String, String> = [
 			"magn_lever_0063_bot_fasta__mp3" => AssetPaths.magn_lever_0063_bot_fasta__mp3,
 			"magn_lever_0063_bot_fastb__mp3" => AssetPaths.magn_lever_0063_bot_fastb__mp3,
@@ -1288,9 +1287,8 @@ class MagnSexyState extends SexyState<MagnWindow>
 		var sfxFieldName:String = "magn_lever_0063_" + topBot + "_" + speed + ab + "__mp3";
 		var embeddedSound:String;
 		#if windows
-		// Workaround for HaxeFlixel #1768; On Windows targets, attempting to reflect into AssetPaths
-		// fails due to dead asset elimination
-		// https://github.com/HaxeFlixel/flixel/issues/1768 
+		// Workaround for Haxe #6630; Reflect.field on public static inline return null.
+		// https://github.com/HaxeFoundation/haxe/issues/6630
 		embeddedSound = WINDOWS_REFLECTION_WORKAROUND[sfxFieldName];
 		#else
 		embeddedSound = Reflect.field(AssetPaths, sfxFieldName);

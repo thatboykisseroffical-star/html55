@@ -829,7 +829,7 @@ private class ViGenderSoftware extends VisualItem
 		var iconCount:Int = 0;
 		for (iconConfig in iconConfigs)
 		{
-			if (Reflect.field(PlayerData, iconConfig[1] + "DefaultMale"))
+			if (PlayerData.isDefaultMale(iconConfig[1]))
 			{
 				if (!ItemDatabase.playerHasItem(ItemDatabase.ITEM_VENUS_SOFTWARE))
 				{
