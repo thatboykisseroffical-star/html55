@@ -2127,7 +2127,7 @@ class AbraDialog
 				tree[232] = [255, 250, 240];
 
 				tree[240] = ["No,\nnevermind"];
-				tree[241] = [100];
+				tree[241] = [300];
 
 				tree[250] = ["Yeah, I\nreally want\nto do it"];
 				tree[251] = [256];
