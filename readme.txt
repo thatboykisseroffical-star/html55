@@ -434,8 +434,6 @@ like others to be able to expand the game in ways they see fit. If you can make
 this game better or if you have questions about this source code I can be reached
 a lot of places:
 
-Twitter: @argonvile
-Discord: 	ArgonVile#2603
-Skype: 	argon.vile
-FurAffinity: http://www.furaffinity.net/user/argonvile/
-InkBunny: http://www.inkbunny.net/argonvile
+Discord: ArgonVile#2603
+E-mail: argon.vile@gmail.com
+Telegram: https://t.me/ArgonVile
