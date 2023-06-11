@@ -576,7 +576,7 @@ class RhydonDialog
 
 		g.addStairCapturedComputer("#RHYD11#Groar? What happened? I threw out a <computerthrow> like I always do! Why didn't that work? That always works!", ["You can't be\nso predictable,\nRhydon", "Well,\ndoesn't work\nagainst me~", "Heh! Sorry,\nbuddy"]);
 		g.addStairCapturedComputer("#RHYD11#Ahh! Get up! Get up little guy!! ...I didn't hear no bell! That's it, one more round! You can do it!! Gr-roarr!", ["Bell?\nWhat bell?", "Better to go\ndown swinging,\nright?", "Sometimes you\njust gotta\nstay down..."]);
-		g.addStairCapturedComputer("#RHYD11#Grah! I really didn't think you'd have the guys to throw a <playerthrow>... How'd you know that was gonna work?", ["Good intuition,\nI guess~", "What!? It\nwas obvious...", "It was\npure luck"]);
+		g.addStairCapturedComputer("#RHYD11#Grah! I really didn't think you'd have the guts to throw a <playerthrow>... How'd you know that was gonna work?", ["Good intuition,\nI guess~", "What!? It\nwas obvious...", "It was\npure luck"]);
 		g.addStairCapturedComputer("#RHYD07#Can't... Think... Brain no work... I'm so sorry! I've let my little " + comColor + " friends down...", ["Aww, they're in\na better place.\nAt the bottom\nof the stairs~", "Don't give\nup now!", "You did\nyour best..."]);
 
 		return g;
