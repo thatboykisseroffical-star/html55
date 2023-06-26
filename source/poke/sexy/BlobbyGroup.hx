@@ -99,9 +99,10 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 		_targetBuffer.graphic.bitmap.threshold(_tempBuffer.graphic.bitmap, _tempBuffer.graphic.bitmap.rect, _zeroPoint, '>', _blobThreshold << 16, _blobOpacity << 24 | _blobColour, 0x00FF0000, false);
 		#end
 
-		#if (hl || windows)
-		// HashLink's threshold() function is broken, and draws translucent bright colors as black. We manually
-		// recolor them using a ColorTransform.
+		#if desktop
+		// For HaxeFlixel desktop targets, the threshold() function is broken
+		// and draws translucent bright colors as black. We manually recolor
+		// them using a ColorTransform.
 		var redOffset:Int = (_blobColour & 0x00FF0000) >> 16;
 		var greenOffset:Int = (_blobColour & 0x0000FF00) >> 8;
 		var blueOffset:Int = (_blobColour & 0x000000FF) >> 0;
