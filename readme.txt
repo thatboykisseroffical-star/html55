@@ -427,7 +427,14 @@ the task.
   PNG. This is why the game is 10 MB and not 30 MB, so compress your assets.
 
 ================================================================================
-5. In closing
+5. License
+
+Monster Mind's code and framework are licensed under the MIT licence. Please see the LICENSE.md file for more information. tl;dr you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.
+
+Monster Mind's sounds, music, images, fonts, and everything else are all licensed by other companies. Most are from Pokemon games, and a few are from other places. They are not mine to give away.
+
+================================================================================
+6. In closing
 
 I'm releasing this source code so that others can learn from it, and because I'd
 like others to be able to expand the game in ways they see fit. If you can make
