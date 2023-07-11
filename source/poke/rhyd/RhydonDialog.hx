@@ -35,7 +35,7 @@ import puzzle.PuzzleState;
  * feeling good together. That's how it feels when he's with Nidoking and he
  * wishes he could find that with someone else who was single.
  * 
- * Nidoking orders tons of pizza and tips very generously, especially when
+ * Rhydon orders tons of pizza and tips very generously, especially when
  * using a coupon! He understands you're supposed to tip on the pre-coupon
  * amount.
  * 
