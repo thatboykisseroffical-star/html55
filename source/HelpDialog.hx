@@ -579,7 +579,7 @@ class NonsenseHint extends Hint
 			var dumbPaintings = ["the one by the ocean with the melty clocks", "the one with the posh-looking fellow and the apple", "the one with the straight lines and fancy colored squares", "the one with the girl with the sideways nose", "the one at the picnic with all of those tiny dots"];
 			var painting:String = paintings[key % paintings.length];
 			var dumbPainting:String = dumbPaintings[key % dumbPaintings.length];
-			tree[hintCounter++] = ["#abra06#Hmm, if the answer were a a post-impressionist painting, it would definitely be " + painting + "."];
+			tree[hintCounter++] = ["#abra06#Hmm, if the answer were a post-impressionist painting, it would definitely be " + painting + "."];
 			tree[hintCounter++] = ["#abra05#"+painting+"? Ring any bells?"];
 			tree[hintCounter++] = ["#abra08#Oh right, sorry. It's " + dumbPaintings[key % dumbPaintings.length] + ". -cough-"];
 		}
