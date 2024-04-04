@@ -37,7 +37,7 @@ class BlackGroup extends FlxGroup implements CustomDrawnFlxGroup
 	{
 		FlxSpriteUtil.fill(_groupBuffer, FlxColor.TRANSPARENT);
 
-		#if flash
+		#if (flash || android)
 		PixelFilterUtils.swapCameraBuffer(_groupBuffer);
 		super.draw();
 		PixelFilterUtils.swapCameraBuffer(_groupBuffer);

@@ -1,6 +1,7 @@
 package;
 
 import MmStringTools.*;
+import openfl.display.IBitmapDrawable;
 import flash.display.BitmapData;
 import flash.geom.Rectangle;
 import flixel.FlxG;
@@ -384,6 +385,15 @@ class Tablet extends FlxGroup
 					cameraPosition.x = FlxMath.bound(cameraPosition.x, sexyState._activePokeWindow._canvas.x, sexyState._activePokeWindow._canvas.x + sexyState._activePokeWindow._canvas.width - 183 - 3);
 					cameraPosition.y = FlxMath.bound(cameraPosition.y, sexyState._activePokeWindow._canvas.y, sexyState._activePokeWindow._canvas.y + sexyState._activePokeWindow._canvas.height - 181 - 3);
 
+					// pixels.draw can draw from either an IBitmapDrawable or a BitmapData 
+					// luckily, the pixels from a FlxSprite are a BitmapData
+					// so we get a properly scaled screeny and then sample from it
+					#if android
+					var drawSource:BitmapData = Screenshot.get().pixels;
+					#else
+					var drawSource:IBitmapDrawable = FlxG.stage;
+					#end
+
 					#if flash
 					pokeCamera.pixels.copyPixels(FlxG.camera.buffer, new Rectangle(cameraPosition.x, cameraPosition.y, 183, 181), new Point());
 					#else
@@ -395,7 +405,7 @@ class Tablet extends FlxGroup
 					// https://github.com/HaxeFlixel/flixel-addons/issues/82
 					var bounds:Rectangle = new Rectangle(cameraPosition.x, cameraPosition.y, 183, 181);
 					var m:Matrix = new Matrix(1, 0, 0, 1, -bounds.x, -bounds.y);
-					pokeCamera.pixels.draw(FlxG.stage, m);
+					pokeCamera.pixels.draw(drawSource, m);
 					#end
 					pokeCamera.dirty = true;
 					pokeCameras.insert(0, pokeCamera);

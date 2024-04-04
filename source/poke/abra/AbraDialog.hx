@@ -1767,6 +1767,8 @@ class AbraDialog
 				tree[770] = ["#abra04#Wait, what the heck am I doing!? I can just check the header of the original cross-universe HTTP request you used to download the EXE file."];
 				#elseif html5
 				tree[770] = ["#abra04#Wait, what the heck am I doing!? I can just check the header of the original cross-universe HTTP request you used to download the HTML file."];
+				#elseif android
+				tree[770] = ["#abra04#Wait, what the heck am I doing!? I can just check the header of the original cross-universe HTTP request you used to download the APK file."];
 				#else
 				tree[770] = ["#abra04#Wait, what the heck am I doing!? I can just check the header of the original cross-universe HTTP request you used to download the SWF file."];
 				#end

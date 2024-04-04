@@ -52,7 +52,7 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 		_highlightMatrix = new Matrix();
 		_highlightMatrix.translate(2, 4);
 
-		#if flash
+		#if (flash || android)
 		// Flash supports software rendering. We create a source buffer as
 		// large as the camera's viewport, and swap them
 		_sourceBuffer = new FlxSprite(0, 0, new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00));
@@ -87,7 +87,7 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 	{
 		_targetBuffer.graphic.bitmap.fillRect(_targetBuffer.graphic.bitmap.rect, FlxColor.TRANSPARENT);
 		
-		#if flash
+		#if (flash || android)
 		_targetBuffer.graphic.bitmap.threshold(_sourceBuffer.graphic.bitmap, _clipRect, _zeroPoint, '>', _blobThreshold << 16, _blobOpacity << 24 | _blobColour, 0x00FF0000, false);
 		#else
 		_tempBuffer.graphic.bitmap.fillRect(_tempBuffer.graphic.bitmap.rect, FlxColor.BLACK);
@@ -110,7 +110,7 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 		_targetBuffer.graphic.bitmap.colorTransform(_targetBuffer.graphic.bitmap.rect, hashlinkColorTransform);
 		#end
 
-		#if flash
+		#if (flash || android)
 		// Flash premultiplies the alpha, and supports the 'subtract'
 		// BlendMode. We render highlights by rendering the blob shapes, and
 		// erasing the unhighlighted sections with the 'Subtract' blend mode.
@@ -148,7 +148,7 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 	override public function draw():Void
 	{
 		var customDrawnBuffer:FlxSprite = customDrawToBuffer();
-		#if flash
+		#if (flash || android)
 		FlxG.camera.buffer.copyPixels(customDrawnBuffer.graphic.bitmap, customDrawnBuffer.graphic.bitmap.rect, _clipRect.topLeft, null, null, true);
 		#else
 		customDrawnBuffer.draw();
@@ -157,7 +157,7 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 
 	public function customDrawToBuffer():FlxSprite
 	{
-		#if flash
+		#if (flash || android)
 		// Swap the camera to a different screen buffer
 		_swapCameraBuffer();
 

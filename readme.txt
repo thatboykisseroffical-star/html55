@@ -50,7 +50,9 @@ This project is written in HaxeFlixel which takes some work to setup.
 If that all works, you should be able to build the MonsterMind SWF for Flash.
 
 ================================================================================
-2. Fixing Monster Mind for Windows
+2. Fixing Monster Mind for other platforms
+
+2.1 Windows
 
 Haxe supports many alternate platforms such as HTML5, Windows, Android and iOS.
 With the help of one of my fans I have gotten the Windows stuff sort of working,
@@ -68,6 +70,46 @@ so you will be able to launch the game in Windows. But, there are many problems.
    WhiteGroup and BlackGroup have been rewritten to be windows-friendly.
    BlobbyGroup has not. There are some "TODO" comments in a few other places
    which I noticed will need to be rewritten.
+
+2.2 Android
+
+Building Haxe for Android is more finicky than the other platforms, as it
+requires specific versions of the relevant SDKs and a fix to the build
+parameters for hxcpp that cause it not to compile.
+  - Follow the Haxe installation instructions from section 1 above. Make sure
+   your command line is set somewhere with user privileges before starting,
+   and especially not system32. Use 'pushd [DIR]' on Windows or 'cd [DIR]' on
+   linux to do so.
+  - Install Android SDK.
+   Remember the installation directory for later.
+  - Install Android NDK (native devkit) version r15c specifically, versions
+   past this appear to be incompatible as they don't include a needed
+   header file.
+   Remember the installation directory for later.
+  - Install JDK 11, it's available from Oracle, you just need an account to
+   download the installation/binaries.
+   Remember the installation directory for later.
+  - After the steps from section 1, run the command 'lime setup android'
+   you will be prompted for the three directories you just installed. Paste
+   them as prompted to set up the compile environment.
+  - If you try to compile now, you might get an error about for loops and 
+   c11 or c99, we need to follow this fix:
+   https://github.com/HaxeFoundation/hxcpp/pull/1042/files
+  - Navigate to your haxeflixel installation and find these two files:
+   ./haxe/lib/hxcpp/[VERSION]/src/hx/libs/regexp/pcre2_sources.xml
+   ./haxe/lib/hxcpp/toolchain/linux-toolchain.xml
+  - In pcre2_sources.xml:
+   add this as line 6:
+   <compilerflag value="-std=c99" unless="MSVC_VER" />
+   save the file (this is why we need user privileges)
+  - In linux-toolchain.xml:
+   remove line 44, it reads:
+   <cflag value="-std=gnu99" unless="HXCPP_NO_GNU99" />
+   save the file
+  - Navigate to the monster mind source using a command line and run
+   'lime build android'. It should compile successfully now, assuming there
+   isn't anything else wrong.
+  
 
 ================================================================================
 3. Browsing the Source Code

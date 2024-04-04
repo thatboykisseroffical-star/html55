@@ -1,8 +1,10 @@
 package;
+
 import demo.SexyDebugState;
 import ReservoirMeter.ReservoirStatus;
 import credits.CreditsState;
 import credits.EndingAnim;
+import credits.FakeCrash;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.transition.FlxTransitionableState;
@@ -55,6 +57,7 @@ class MainMenuState extends FlxTransitionableState
 	private var _buttons:FlxTypedGroup<FlxSprite>;
 	private var _optionsButton:FlxButton;
 	private var _itemsButton:FlxButton;
+	private var _mobileTestButton:FlxButton;
 	private var _creditsButton:FlxButton;
 	private var _blip:FlxSprite;
 	private var _time:Float = 0;
@@ -155,6 +158,13 @@ class MainMenuState extends FlxTransitionableState
 		_itemsButton.x -= 6;
 		_itemsButton.y = 32;
 		add(_itemsButton);
+
+		#if debug
+		_mobileTestButton = SexyState.newBackButton(testBtn, AssetPaths.tablet_button__png, _dialogTree);
+		_mobileTestButton.x -= 15;
+		_mobileTestButton.y = 75;
+		add(_mobileTestButton);
+		#end
 
 		if (PlayerData.abraStoryInt == 5 || PlayerData.abraStoryInt == 6)
 		{
@@ -337,6 +347,23 @@ class MainMenuState extends FlxTransitionableState
 			creditsState.backToMainMenu = true;
 			FlxG.switchState(creditsState);
 		}
+		// screenshot feature tests for mobile platform
+		if (line == "%crashsoon%")
+		{
+			FlxG.switchState(FakeCrash.newInstance());
+		}
+		if (line == "%tablet%")
+		{
+			if (ItemDatabase.playerHasItem(ItemDatabase.ITEM_STREAMING_PACKAGE)) {
+
+			} else {
+				ItemDatabase._playerItemIndexes.push(ItemDatabase.ITEM_STREAMING_PACKAGE);
+			}
+		}
+		if (line == "%zoom%")
+		{
+			FlxG.switchState(EndingAnim.newInstance());
+		}
 		return null;
 	}
 
@@ -356,6 +383,31 @@ class MainMenuState extends FlxTransitionableState
 			return;
 		}
 		FlxG.switchState(new ItemsMenuState());
+	}
+
+	private function testBtn():Void
+	{
+		if (DialogTree.isDialogging(_dialogTree))
+		{
+			return;
+		}
+		var tree:Array<Array<Object>> = new Array<Array<Object>>();
+		tree[0] = ["#self00#(Test which mobile problem?)"];
+		tree[1] = [10, 20, 30, 40];
+
+		tree[10] = ["Test Credits"];
+		tree[11] = ["%zoom%"];
+
+		tree[20] = ["Test Crash"];
+		tree[21] = ["%crashsoon%"];
+
+		tree[30] = ["Give Tablet"];
+		tree[31] = ["%tablet%"];
+
+		tree[40] = ["No"];
+
+		_dialogTree = new DialogTree(_dialogger, tree, dialogTreeCallback);
+		_dialogTree.go();
 	}
 
 	private function credits():Void

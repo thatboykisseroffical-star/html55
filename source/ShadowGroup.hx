@@ -69,7 +69,7 @@ class ShadowGroup extends FlxTypedGroup<Shadow> implements CustomDrawnFlxGroup
 		// clear the groupBuffer
 		FlxSpriteUtil.fill(_groupBuffer, FlxColor.TRANSPARENT);
 
-		#if flash
+		#if (flash || android)
 		PixelFilterUtils.swapCameraBuffer(_groupBuffer);
 		super.draw();
 		PixelFilterUtils.swapCameraBuffer(_groupBuffer);

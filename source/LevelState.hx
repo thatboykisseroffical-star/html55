@@ -203,7 +203,9 @@ class LevelState extends FlxTransitionableState
 	public static function newBackdrop():FlxSprite
 	{
 		var bgSprite:FlxSprite = new FlxSprite(0, 0);
-		bgSprite.makeGraphic(768, 432, 0x00000000, true);
+		var stageWidth = 768;
+		var stageHeight = 432;
+		bgSprite.makeGraphic(stageWidth, stageHeight, 0x00000000, true);
 		var bgAsset:FlxGraphicAsset = AssetPaths.bg0_tile__png;
 		if (PlayerData.profIndex == 0)
 		{
@@ -254,10 +256,10 @@ class LevelState extends FlxTransitionableState
 				bgSprite.stamp(bgStamp, x, y);
 				x += Std.int(bgStamp.width);
 			}
-			while (x < 768);
+			while (x < stageWidth);
 			y += Std.int(bgStamp.height);
 		}
-		while (y < 432);
+		while (y < stageHeight);
 		return bgSprite;
 	}
 

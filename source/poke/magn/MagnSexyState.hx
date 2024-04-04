@@ -112,7 +112,7 @@ class MagnSexyState extends SexyState<MagnWindow>
 		 [1, 3, 4, 4, 3],
 		 [2, 4, 5, 2, 0]];
 
-	#if windows
+	#if (windows || android)
 	// Workaround for Haxe #6630; Reflect.field on public static inline return null.
 	// https://github.com/HaxeFoundation/haxe/issues/6630
 	private static var WINDOWS_REFLECTION_WORKAROUND:Map<String, String> = [
@@ -1286,7 +1286,7 @@ class MagnSexyState extends SexyState<MagnWindow>
 		}
 		var sfxFieldName:String = "magn_lever_0063_" + topBot + "_" + speed + ab + "__mp3";
 		var embeddedSound:String;
-		#if windows
+		#if (windows || android)
 		// Workaround for Haxe #6630; Reflect.field on public static inline return null.
 		// https://github.com/HaxeFoundation/haxe/issues/6630
 		embeddedSound = WINDOWS_REFLECTION_WORKAROUND[sfxFieldName];

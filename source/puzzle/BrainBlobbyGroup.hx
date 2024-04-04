@@ -46,7 +46,7 @@ import openfl.geom.Rectangle;
 		_maskMatrix = new Matrix();
 		_maskMatrix.translate(_clipRect.x, _clipRect.y);
 
-		#if flash
+		#if (flash || android)
 		// Flash supports software rendering. We create a source buffer as
 		// large as the camera's viewport, and swap them
 		_sourceBuffer = new FlxSprite(0, 0, new BitmapData(FlxG.camera.width, FlxG.camera.height, true, 0x00));
@@ -85,7 +85,7 @@ import openfl.geom.Rectangle;
 	{
 		_targetBuffer.graphic.bitmap.fillRect(_targetBuffer.graphic.bitmap.rect, 0xFF2084A0);
 		
-		#if flash
+		#if (flash || android)
 		_targetBuffer.graphic.bitmap.threshold(_sourceBuffer.graphic.bitmap, _clipRect, _zeroPoint, '>', _blobThreshold << 16, _blobOpacity << 24 | _blobColour, 0x00FF0000, false);
 		_targetBuffer.graphic.bitmap.threshold(_sourceBuffer.graphic.bitmap, _clipRect, _zeroPoint, '>', _shineThreshold << 16, _blobOpacity << 24 | _shineColour, 0x00FF0000, false);
 		#else
@@ -106,7 +106,7 @@ import openfl.geom.Rectangle;
 	override public function draw():Void
 	{
 		var customDrawnBuffer:FlxSprite = customDrawToBuffer();
-		#if flash
+		#if (flash || android)
 		FlxG.camera.buffer.copyPixels(customDrawnBuffer.graphic.bitmap, customDrawnBuffer.graphic.bitmap.rect, _clipRect.topLeft, null, null, true);
 		#else
 		customDrawnBuffer.draw();
@@ -115,7 +115,7 @@ import openfl.geom.Rectangle;
 
 	public function customDrawToBuffer():FlxSprite
 	{
-		#if flash
+		#if (flash || android)
 		// Swap the camera to a different screen buffer
 		_swapCameraBuffer();
 
