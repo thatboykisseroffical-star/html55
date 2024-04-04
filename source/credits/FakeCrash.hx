@@ -1,4 +1,5 @@
 package credits;
+
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -99,21 +100,8 @@ class FakeCrash extends FlxState
 
 	public static function newInstance():FakeCrash
 	{
-		var screenshot = new FlxSprite();
-		screenshot.makeGraphic(FlxG.width, FlxG.height, FlxColor.WHITE, true);
-		#if flash
-		screenshot.pixels.copyPixels(FlxG.camera.buffer, new Rectangle(0, 0, FlxG.width, FlxG.height), new Point());
-		#else
-		// This code is adapted from FlxScreenGrab.grab()
-		// https://github.com/HaxeFlixel/flixel-addons/blob/95296191b4a583d3ce1e61383f4cde63dbda729c/flixel/addons/plugin/screengrab/FlxScreenGrab.hx
-		//
-		// Unfortunately it is slightly buggy, and draws parts of the screen with the wrong colors. This is possibly
-		// due to shortcomings in OpenFL, see Flixel Addons issue #82; FlxScreenGrab doesn't match PrintScreen results
-		// https://github.com/HaxeFlixel/flixel-addons/issues/82
-		var bounds:Rectangle = new Rectangle(0, 0, FlxG.stage.stageWidth, FlxG.stage.stageHeight);
-		var m:Matrix = new Matrix(1, 0, 0, 1, -bounds.x, -bounds.y);
-		screenshot.pixels.draw(FlxG.stage, m);
-		#end
+		var screenshot = Screenshot.get();
+
 		return new FakeCrash(screenshot);
 	}
 }

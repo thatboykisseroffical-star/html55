@@ -1,5 +1,6 @@
 package;
 
+import flixel.system.scaleModes.BaseScaleMode;
 import poke.magn.MagnSexyState;
 import poke.abra.AbraSexyState;
 import lime.tools.SplashScreen;
@@ -42,9 +43,10 @@ import puzzle.PuzzleState;
  */
 class Main extends Sprite
 {
-	public static var VERSION_STRING:String = "1.10.5-UNSTABLE";
-	var gameWidth:Int = 768; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
-	var gameHeight:Int = 432; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
+	public static var VERSION_STRING:String = "1.10.5";
+	public static var gameWidth:Int = 768; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
+	public static var gameHeight:Int = 432; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).	
+
 	var initialState:Class<FlxState> = SplashScreenState; // The FlxState the game starts with.
 	var framerate:Int = 60; // How many frames per second the game should run at.
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
@@ -95,10 +97,16 @@ class Main extends Sprite
 		var ratioX:Float = stageWidth / gameWidth;
 		var ratioY:Float = stageHeight / gameHeight;
 		var zoom:Float = Math.min(ratioX, ratioY);
+		
+		// android lock resolution
+		#if android
+		addChild(new FlxGame(gameWidth, gameHeight, initialState, framerate, framerate, skipSplash, startFullscreen));
+		#else
 		gameWidth = Math.ceil(stageWidth / zoom);
 		gameHeight = Math.ceil(stageHeight / zoom);
 
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, framerate, framerate, skipSplash, startFullscreen));
+		#end
 	}
 
 	/**

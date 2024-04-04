@@ -2215,10 +2215,15 @@ class PuzzleState extends LevelState
 				}
 				if ((_rankRightButtonCover != null || _rankLeftButtonCover != null) && _rankWindowGroup.visible)
 				{
+					// on mobile, the button hitboxes were offset from the graphics, now their 
+					// positions are based on the rank sprite location instead of hardcoded values
+					var _rankBtnYPos = _rankWindowSprite.y + 115;
+					var _rankYesXPos = _rankWindowSprite.x + 31;
+					var _rankNoXPos = _rankWindowSprite.x + 171;
 					_dialogger._clickEnabled = true;
 					if (_rankLeftButtonCover != null)
 					{
-						if (FlxG.mouse.getPosition().distanceTo(FlxPoint.weak(316, 210)) < 25)
+						if (FlxG.mouse.getPosition().distanceTo(FlxPoint.weak(_rankYesXPos, _rankBtnYPos)) < 25)
 						{
 							_rankLeftButtonCover.alpha = 0;
 							_dialogger._clickEnabled = false;
@@ -2236,7 +2241,7 @@ class PuzzleState extends LevelState
 					}
 					if (_rankRightButtonCover != null)
 					{
-						if (FlxG.mouse.getPosition().distanceTo(FlxPoint.weak(455, 210)) < 25)
+						if (FlxG.mouse.getPosition().distanceTo(FlxPoint.weak(_rankNoXPos, _rankBtnYPos)) < 25)
 						{
 							_rankRightButtonCover.alpha = 0;
 							_dialogger._clickEnabled = false;

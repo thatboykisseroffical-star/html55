@@ -4,7 +4,7 @@
 
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="MonsterMind" file="MonsterMind" main="Main" version="0.0.1" company="HaxeFlixel"/>
+	<app title="MonsterMind" file="MonsterMind" main="Main" version="1.10.5-UNSTABLE" company="HaxeFlixel"/>
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -25,7 +25,7 @@
 	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" />
 
 	<!--Mobile-specific-->
-	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" />
+	<window if="mobile" orientation="landscape" fullscreen="true" width="768" height="432" />
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 
