@@ -86,8 +86,7 @@ parameters for hxcpp that cause it not to compile.
    past this appear to be incompatible as they don't include a needed
    header file.
    Remember the installation directory for later.
-  - Install JDK 11, it's available from Oracle, you just need an account to
-   download the installation/binaries.
+  - Install OpenJDK 11, it's available from adoptopenjdk.net or other websites.
    Remember the installation directory for later.
   - After the steps from section 1, run the command 'lime setup android'
    you will be prompted for the three directories you just installed. Paste
@@ -97,7 +96,7 @@ parameters for hxcpp that cause it not to compile.
    https://github.com/HaxeFoundation/hxcpp/pull/1042/files
   - Navigate to your haxeflixel installation and find these two files:
    ./haxe/lib/hxcpp/[VERSION]/src/hx/libs/regexp/pcre2_sources.xml
-   ./haxe/lib/hxcpp/toolchain/linux-toolchain.xml
+   ./haxe/lib/hxcpp/[VERSION]/toolchain/linux-toolchain.xml
   - In pcre2_sources.xml:
    add this as line 6:
    <compilerflag value="-std=c99" unless="MSVC_VER" />
