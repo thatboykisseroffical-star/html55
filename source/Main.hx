@@ -43,7 +43,7 @@ import puzzle.PuzzleState;
  */
 class Main extends Sprite
 {
-	public static var VERSION_STRING:String = "1.10.5";
+	public static var VERSION_STRING:String = "1.10.6-UNSTABLE";
 	public static var gameWidth:Int = 768; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	public static var gameHeight:Int = 432; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).	
 
