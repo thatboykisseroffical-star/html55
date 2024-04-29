@@ -34,7 +34,7 @@ class WhiteGroup extends FlxGroup implements CustomDrawnFlxGroup
 	{
 		FlxSpriteUtil.fill(_groupBuffer, FlxColor.TRANSPARENT);
 		
-		#if (flash || android)
+		#if flash
 		PixelFilterUtils.swapCameraBuffer(_groupBuffer);
 		super.draw();
 		PixelFilterUtils.swapCameraBuffer(_groupBuffer);

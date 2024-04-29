@@ -16,7 +16,7 @@ import openfl.geom.Rectangle;
 
 /**
  * Uses a threshold filter to create a blobby effect. Used for rendering
- * sexual fluids and sweat
+ * sexual fluids and sweat.
  */
 class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 {
@@ -83,6 +83,17 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 		_sourceBuffer.graphic.bitmap = tmpBuffer;
 	}
 
+	function _fixThresholdBlackAlpha(spr:FlxSprite, _blobColour:Int):Void {
+		// threshold() function is broken in non-flash platforms, and draws translucent bright colors as black.
+		// We manually recolor them using a ColorTransform.
+		var redOffset:Int = (_blobColour & 0x00FF0000) >> 16;
+		var greenOffset:Int = (_blobColour & 0x0000FF00) >> 8;
+		var blueOffset:Int = (_blobColour & 0x000000FF) >> 0;
+		var fixColorTransform: ColorTransform = new ColorTransform(0, 0, 0, 1, redOffset, greenOffset, blueOffset);
+		
+		spr.graphic.bitmap.colorTransform(spr.graphic.bitmap.rect, fixColorTransform);
+	}
+
 	private function _postProcess():Void
 	{
 		_targetBuffer.graphic.bitmap.fillRect(_targetBuffer.graphic.bitmap.rect, FlxColor.TRANSPARENT);
@@ -97,17 +108,7 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 			_tempBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap, m);
 		}
 		_targetBuffer.graphic.bitmap.threshold(_tempBuffer.graphic.bitmap, _tempBuffer.graphic.bitmap.rect, _zeroPoint, '>', _blobThreshold << 16, _blobOpacity << 24 | _blobColour, 0x00FF0000, false);
-		#end
-
-		#if (android || hl || html5 || windows)
-		// HashLink's threshold() function is broken, and draws translucent bright colors as black. We manually
-		// recolor them using a ColorTransform.
-		var redOffset:Int = (_blobColour & 0x00FF0000) >> 16;
-		var greenOffset:Int = (_blobColour & 0x0000FF00) >> 8;
-		var blueOffset:Int = (_blobColour & 0x000000FF) >> 0;
-		var hashlinkColorTransform: ColorTransform = new ColorTransform(0, 0, 0, 1, redOffset, greenOffset, blueOffset);
-		
-		_targetBuffer.graphic.bitmap.colorTransform(_targetBuffer.graphic.bitmap.rect, hashlinkColorTransform);
+		_fixThresholdBlackAlpha(_targetBuffer,_blobColour);
 		#end
 
 		#if flash
@@ -142,6 +143,7 @@ class BlobbyGroup extends FlxGroup implements CustomDrawnFlxGroup
 			_tempBuffer.graphic.bitmap.draw(_sourceBuffer.graphic.bitmap, m, new ColorTransform(0, 0, 0, 2));
 		}
 		_targetBuffer.graphic.bitmap.threshold(_tempBuffer.graphic.bitmap, _tempBuffer.graphic.bitmap.rect, _zeroPoint, '>', _shineThreshold << 16, _shineOpacity << 24 | _shineColour, 0x00FF0000, false);
+		_fixThresholdBlackAlpha(_targetBuffer, _shineColour);
 		#end
 	}
 
