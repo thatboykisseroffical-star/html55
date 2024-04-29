@@ -74,6 +74,12 @@
 	<haxedef name="screenshot" if="windows" />
 	<haxedef name="screenshot" if="android" />
 	<haxedef name="screenshot" if="linux" />
+	
+	<!--on some platforms, Reflect.field on public static inline returns null-->
+	<!--we implement a workaround array instead on these platforms-->
+	<haxedef name="reflection" if="windows" />
+	<haxedef name="reflection" if="android" />
+	<haxedef name="reflection" if="linux" />
 
 	<!--Disable the Flixel core sound tray-->
 	<!--<haxedef name="FLX_NO_SOUND_TRAY" />-->

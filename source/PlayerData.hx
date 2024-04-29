@@ -280,10 +280,10 @@ class PlayerData
 	public static var detailLevel:DetailLevel = DetailLevel.Max;
 	public static var sfw:Bool = false;
 
-	#if (windows || android)
+	#if reflection
 	// Workaround for Haxe #6630; Reflect.field on public static inline return null.
 	// https://github.com/HaxeFoundation/haxe/issues/6630
-	private static var WINDOWS_REFLECTION_WORKAROUND:Map<String, Bool> = [
+	private static var REFLECTION_WORKAROUND:Map<String, Bool> = [
 			"abraDefaultMale" => PlayerData.abraDefaultMale,
 			"buizDefaultMale" => PlayerData.buizDefaultMale,
 			"grovDefaultMale" => PlayerData.grovDefaultMale,
@@ -551,10 +551,10 @@ class PlayerData
 	public static function isDefaultMale(prefix:String):Bool
 	{
 		var isMaleFieldName:String = prefix + "DefaultMale";
-		#if (windows || android)
+		#if reflection
 		// Workaround for Haxe #6630; Reflect.field on public static inline return null.
 		// https://github.com/HaxeFoundation/haxe/issues/6630
-		return WINDOWS_REFLECTION_WORKAROUND[isMaleFieldName];
+		return REFLECTION_WORKAROUND[isMaleFieldName];
 		#else
 		return Reflect.field(PlayerData, prefix + "DefaultMale");
 		#end

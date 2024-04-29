@@ -44,10 +44,10 @@ class MagnWindow extends PokeWindow
 				"green", "green", "green", "green", "yellow"
 			];
 	
-	#if (windows || android)
+	#if reflection
 	// Workaround for Haxe #6630; Reflect.field on public static inline return null.
 	// https://github.com/HaxeFoundation/haxe/issues/6630
-	private static var WINDOWS_REFLECTION_WORKAROUND:Map<String, FlxGraphicAsset> = [
+	private static var REFLECTION_WORKAROUND:Map<String, FlxGraphicAsset> = [
 			"magn_button_green_center__png" => AssetPaths.magn_button_green_center__png,
 			"magn_button_green_left__png" => AssetPaths.magn_button_green_left__png,
 			"magn_button_green_right__png" => AssetPaths.magn_button_green_right__png,
@@ -872,10 +872,10 @@ class MagnWindow extends PokeWindow
 			{
 				var buttonFieldName:String = "magn_button_" + BUTTON_RYG[i] + "_" + BUTTON_LCR[i] + "__png";
 				var buttonGraphic:FlxGraphicAsset;
-				#if (windows || android)
+				#if reflection
 				// Workaround for Haxe #6630; Reflect.field on public static inline return null.
 				// https://github.com/HaxeFoundation/haxe/issues/6630
-				buttonGraphic = WINDOWS_REFLECTION_WORKAROUND[buttonFieldName];
+				buttonGraphic = REFLECTION_WORKAROUND[buttonFieldName];
 				#else
 				buttonGraphic = Reflect.field(AssetPaths, buttonFieldName);
 				#end
