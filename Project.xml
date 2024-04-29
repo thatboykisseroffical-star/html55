@@ -69,6 +69,12 @@
 	<haxedef name="FLX_NO_TOUCH" if="desktop" />
 	<!--<haxedef name="FLX_NO_GAMEPAD" />-->
 
+	<!--on some platforms, screenshots capture the window at full resolution, including borders-->
+	<!--we fix this by pre scaling and offsetting the screenshots on these platforms-->
+	<haxedef name="screenshot" if="windows" />
+	<haxedef name="screenshot" if="android" />
+	<haxedef name="screenshot" if="linux" />
+
 	<!--Disable the Flixel core sound tray-->
 	<!--<haxedef name="FLX_NO_SOUND_TRAY" />-->
 

@@ -29,10 +29,10 @@ class Screenshot {
             var bounds:Rectangle = new Rectangle(0, 0, sw, sh);
             var m:Matrix = new Matrix(1, 0, 0, 1, -bounds.x, -bounds.y);
 
-            // on android phones the "stage" is the entire available resolution of the device
-            // so screenshots will be native resolution instead of game resolution
+            // on some platforms the "stage" is the entire available resolution of the game window
+            // so screenshots will be bigger/smaller than game resolution
             // this math corrects these problems
-            #if android
+            #if screenshot
             var sr:Float=(sw/sh);
             var gr:Float=(Main.gameWidth/Main.gameHeight);
             var zr:Float=Math.min((sw/Main.gameWidth),(sh/Main.gameHeight));
