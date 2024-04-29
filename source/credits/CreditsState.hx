@@ -179,7 +179,10 @@ class CreditsState extends FlxTransitionableState
 		credits.push(["", " "]);
 		credits.push(["", "#(...i am seriously the biggest asshole. i'm so sorry, it's just a really pretty song)"]);
 		credits.push([]);
+		credits.push(["code contributors:"]);
 		credits.push([]);
+		credits.push(["the frog"]);
+		credits.push(["kavukamari"]);
 		credits.push([]);
 		credits.push(["testers:"]);
 		credits.push([]);
@@ -637,7 +640,7 @@ class CreditsState extends FlxTransitionableState
 
 	private function eventMoveCredits(args:Array<Dynamic>)
 	{
-		setTextVelocity(-23.5);
+		setTextVelocity(-24.5);
 	}
 
 	private function eventStartMusic(args:Array<Dynamic>)
