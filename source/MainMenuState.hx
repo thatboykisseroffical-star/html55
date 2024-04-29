@@ -392,7 +392,7 @@ class MainMenuState extends FlxTransitionableState
 			return;
 		}
 		var tree:Array<Array<Object>> = new Array<Array<Object>>();
-		tree[0] = ["#self00#(Test which mobile problem?)"];
+		tree[0] = ["#self00#(Test which screenshot issue?)"];
 		tree[1] = [10, 20, 30, 40];
 
 		tree[10] = ["Test Credits"];

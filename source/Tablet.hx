@@ -388,7 +388,7 @@ class Tablet extends FlxGroup
 					// pixels.draw can draw from either an IBitmapDrawable or a BitmapData 
 					// luckily, the pixels from a FlxSprite are a BitmapData
 					// so we get a properly scaled screeny and then sample from it
-					#if android
+					#if screenshot
 					var drawSource:BitmapData = Screenshot.get().pixels;
 					#else
 					var drawSource:IBitmapDrawable = FlxG.stage;
