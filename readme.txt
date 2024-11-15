@@ -422,6 +422,7 @@ the task.
 
   This infrastructure is already in place, but you want to make sure you're
   setting and storing your various PlayerData and PlayerSave variables appropriately
+
 4.7.9 Gender should toggle in items menu
 4.7.10 Lucky item to make your character appear more
 4.7.11 Sex toy sequence
@@ -470,9 +471,14 @@ the task.
 ================================================================================
 5. License
 
-Monster Mind's code and framework are licensed under the MIT licence. Please see the LICENSE.md file for more information. tl;dr you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.
+Monster Mind's code and framework are licensed under the MIT licence. Please see the  
+LICENSE.md file for more information. tl;dr you can do whatever you want as long as  
+you include the original copyright and license notice in any copy of the  
+software/source.  
 
-Monster Mind's sounds, music, images, fonts, and everything else are all licensed by other companies. Most are from Pokemon games, and a few are from other places. They are not mine to give away.
+Monster Mind's sounds, music, images, fonts, and everything else are all licensed by  
+other companies. Most are from Pokemon games, and a few are from other places. They  
+are not mine to give away.
 
 ================================================================================
 6. In closing
@@ -482,6 +488,6 @@ like others to be able to expand the game in ways they see fit. If you can make
 this game better or if you have questions about this source code I can be reached
 a lot of places:
 
-Discord: ArgonVile#2603
+Discord: argonvile
 E-mail: argon.vile@gmail.com
 Telegram: https://t.me/ArgonVile
