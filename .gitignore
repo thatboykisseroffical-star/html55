@@ -1,5 +1,6 @@
 # Exported artifacts
 export/
+android/
 
 # Visual Studio Code ignores
 .vscode/
