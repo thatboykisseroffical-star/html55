@@ -893,7 +893,7 @@ class HeraShopDialog
 
 		tree[300] = ["...The hardest\npuzzles?"];
 		tree[301] = ["#hera05#So if you've tried the hardest 5-peg puzzles and they're still too easy for you... This diamond key unlocks even harder puzzles than that!"];
-		tree[302] = ["#hera03#Beating one of these puzzles gives you a diamond chest, which has CRAZY amounts of money -- we're talking 1,000$ or more!"];
+		tree[302] = ["#hera03#Beating one of these puzzles gives you a diamond chest, which has CRAZY amounts of money -- we're talking ^1,000 or more!"];
 		tree[303] = ["#hera07#But diamond puzzles are CRAZY hard. Grovyle was telling me some of them took him ten minutes or longer. And I mean, that's Grovyle! He's usually fast at these things."];
 		tree[304] = ["#hera06#So anyway it's up to you, did you want to buy the diamond puzzle key for " + moneyString(itemPrice) + "?"];
 
@@ -1298,7 +1298,7 @@ class HeraShopDialog
 			tree[304] = ["#hera10#...Sorry! This isn't my best pitch, I know. I'm not really into anal beads."];
 			tree[305] = ["#hera11#I prefer when things go INTO a butt. I know! I know. I'm a total prude."];
 			tree[306] = ["#hera06#Abra's way more into these kinds of toys than I am. Maybe you could talk to him?"];
-			tree[307] = ["#hera05#But still... Did you maybe want to buy the giant pile of anal beads for " + moneyString(itemPrice) + "? I mean, that's like 1$ per bead!"];
+			tree[307] = ["#hera05#But still... Did you maybe want to buy the giant pile of anal beads for " + moneyString(itemPrice) + "? I mean, that's like ^1 per bead!"];
 
 			if (!PlayerData.abraMale)
 			{
