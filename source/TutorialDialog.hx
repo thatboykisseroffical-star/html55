@@ -895,7 +895,7 @@ class TutorialDialog
 				tree[13] = ["#abra08#It's like trying to explain discrete math to a chimpanzee."];
 				tree[14] = ["#grov09#......"];
 				tree[15] = ["#abra09#Well, more like trying to explain discrete math to a snail."];
-				tree[16] = ["#abra05#A, hmm... A snail of below-average intelligence. A retarded snail."];
+				tree[16] = ["#abra05#A, hmm... A snail of below-average intelligence. A moronic snail."];
 				tree[17] = ["#grov10#This conversation is not... exactly bestowing me with confidence that you're ready to lead the player in a tutorial, Abra!"];
 				tree[18] = ["%move-peg-from-red-to-297x224%"];
 				tree[19] = ["%move-peg-from-green-to-282x234%"];
@@ -924,7 +924,7 @@ class TutorialDialog
 				tree[52] = ["%setprofindex-0%"];
 				tree[53] = ["#abra02#Great! Then let's begin."];
 				tree[54] = ["#grov10#Oh!! Goodness..."];
-				tree[55] = ["#grov09#<name>, umm, you might not know what you're in for. I'll tell you in advance I don't think you're a retarded snail."];
+				tree[55] = ["#grov09#<name>, umm, you might not know what you're in for. I'll tell you in advance I don't think you're a moronic snail."];
 				tree[56] = ["#grov08#...Maybe you can come visit me afterwards for a confidence boost."];
 				tree[57] = ["#grov09#...And a handjob."];
 				tree[58] = ["#grov10#...I'll make this up to you, I promise! Please don't quit the game!"];
