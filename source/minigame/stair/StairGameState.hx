@@ -1149,7 +1149,7 @@ class StairGameState extends MinigameState
 		if (button0.visible && button0.animation.frameIndex == 1 && FlxG.mouse.y < _helpButton.y + _helpButton.height && FlxG.mouse.x > _helpButton.x)
 		{
 			// user is mousing over the help button, but it also intersects button0's rectangle... un-highlight button0
-			button0.status = FlxButton.NORMAL;
+			button0.status = FlxButtonState.NORMAL;
 			button0.animation.frameIndex = 0;
 		}
 
