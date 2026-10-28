@@ -1,0 +1,46 @@
+name: Build and publish HTML5
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: 4.3.6
+      - name: Patch project for web build
+        run: |
+          sed -i '/^import lime\.tools\.SplashScreen;/d' source/Main.hx
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+          ffmpeg -y -f lavfi -i "sine=frequency=1500:duration=0.045" -af "afade=t=out:st=0.005:d=0.04" -c:a libvorbis assets/sounds/type.ogg
+          ffmpeg -y -f lavfi -i "sine=frequency=1500:duration=0.045" -af "afade=t=out:st=0.005:d=0.04" assets/sounds/type.wav
+      - name: Install libraries
+        run: |
+          haxelib install lime 8.0.1 --always
+          haxelib install openfl 9.2.1 --always
+          haxelib install flixel 5.3.1 --always
+          haxelib install flixel-addons 3.1.1 --always
+          haxelib run lime setup -y || true
+      - name: Build
+        run: haxelib run lime build html5 -release
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: export/html5/bin
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
