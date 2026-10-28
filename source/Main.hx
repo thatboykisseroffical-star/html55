@@ -3,7 +3,6 @@ package;
 import flixel.system.scaleModes.BaseScaleMode;
 import poke.magn.MagnSexyState;
 import poke.abra.AbraSexyState;
-import lime.tools.SplashScreen;
 import credits.CreditsState;
 import demo.SexyDebugState;
 import demo.TeaserTextState;
